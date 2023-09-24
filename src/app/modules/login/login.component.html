@@ -1,0 +1,15 @@
+<div class="justify-content-center align-content-center h-screen bg-primary" style="display: grid;">
+    <form [formGroup]="formulario" method="post" 
+    class="flex flex-column gap-2 p-card p-3" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+        <h1 class="m-0">OverSky</h1>
+        <div class="flex flex-column">
+            <label for="Usuario">Usuario:</label>
+            <input formControlName="usuario" type="text" pInputText />
+        </div>
+        <div class="flex flex-column">
+            <label for="contrasena">contraseña:</label>
+            <p-password formControlName="contrasena" [toggleMask]="true"></p-password>
+        </div>
+        <p-button label="Submit" [disabled]="formulario.invalid"></p-button>
+    </form>
+</div>
