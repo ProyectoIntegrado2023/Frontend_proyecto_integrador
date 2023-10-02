@@ -1,29 +1,6 @@
 <div class="h-screen overflow-hidden d-grid" style="grid-template-columns: 1fr auto;">
     <main class="gap-3 p-3 bg-primary d-grid" style="grid-template-rows: 10rem; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));">
-        <div class="p-card align-content-center d-grid max-h-10rem max-w-10rem">
-            <div class="p-card-body flex flex-column text-center">
-                <i class="pi pi-book text-5xl"></i>
-                <strong class="text-xl">Gestionar proyecto</strong>
-            </div>
-        </div>
-        <div class="p-card align-content-center d-grid max-h-10rem max-w-10rem">
-            <div class="p-card-body flex flex-column text-center">
-                <i class="pi pi-calendar text-5xl"></i>
-                <strong class="text-xl">Ejecutar proyecto</strong>
-            </div>
-        </div>
-        <div class="p-card align-content-center d-grid max-h-10rem max-w-10rem">
-            <div class="p-card-body flex flex-column text-center">
-                <i class="pi pi-hourglass text-5xl"></i>
-                <strong class="text-xl">Consultar horas</strong>
-            </div>
-        </div>
-        <div class="p-card align-content-center d-grid max-h-10rem max-w-10rem">
-            <div class="p-card-body flex flex-column text-center">
-                <i class="pi pi-user text-5xl"></i>
-                <strong class="text-xl">Gestionar usuario</strong>
-            </div>
-        </div>
+        <app-card-module [moduleView]="module" *ngFor="let module of moduleView" class="p-card align-content-center d-grid"></app-card-module>
     </main>
     <div class="flex flex-column px-3 py-2 text-center gap-2 max-w-14rem bg-black-alpha-90 text-white">
         <h1 class="m-0">OverSky</h1>
@@ -32,6 +9,6 @@
             <h3 class="m-0">Nombre del ususario</h3>
             <p class="m-0">rol del usuario</p>
         </div>
-        <p-button label="Cerrar sesion" styleClass="p-button-danger"></p-button>
+        <p-button label="Cerrar sesion" styleClass="p-button-danger" (onClick)="cerrarSesion()"></p-button>
     </div>
 </div>
