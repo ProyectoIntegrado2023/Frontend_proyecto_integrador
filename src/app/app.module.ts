@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { ButtonModule } from 'primeng/button';
     ReactiveFormsModule,
     PasswordModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    HttpClientModule
   ],
   exports: [
     ButtonModule,

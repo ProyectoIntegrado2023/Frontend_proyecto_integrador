@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "titulo": "Gestionar proyecto",
+    "icon": "book",
+    "url": "home/modulo/1",
+    "id_acceso_padre": null
+  },
+  {
+    "id": 2,
+    "titulo": "Ejecutar proyecto",
+    "icon": "calendar",
+    "url": "home/modulo/2",
+    "id_acceso_padre": null
+  },
+  {
+    "id": 3,
+    "titulo": "Consultar horas",
+    "icon": "hourglass",
+    "url": "home/modulo/3",
+    "id_acceso_padre": null
+  },
+  {
+    "id": 4,
+    "titulo": "Gestionar usuario",
+    "icon": "user",
+    "url": "home/modulo/4",
+    "id_acceso_padre": null
+  },
+  {
+    "id": 5,
+    "titulo": "Plantilla",
+    "icon": null,
+    "url": "home/modulo/1",
+    "id_acceso_padre": 1
+  },
+  {
+    "id": 6,
+    "titulo": "Proyecto",
+    "icon": null,
+    "url": "home/modulo/1/proyecto",
+    "id_acceso_padre": 1
+  },
+  {
+    "id": 7,
+    "titulo": "Proyecto",
+    "icon": null,
+    "url": "home/modulo/2/proyecto",
+    "id_acceso_padre": 2
+  },
+  {
+    "id": 8,
+    "titulo": "Horas del alumno",
+    "icon": null,
+    "url": "home/modulo/3/horas",
+    "id_acceso_padre": 3
+  },
+  {
+    "id": 9,
+    "titulo": "Usuario",
+    "icon": null,
+    "url": "home/modulo/3/usuario",
+    "id_acceso_padre": 4
+  }
+]  

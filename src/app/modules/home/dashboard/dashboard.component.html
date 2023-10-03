@@ -1,0 +1,13 @@
+<div class="d-grid h-screen" style="grid-template-rows: 80px 1fr;">
+    <header class="bg-primary p-3 flex justify-content-between align-items-center">
+        <i class="pi pi-bars text-5xl"></i>
+        <span class="text-3xl font-bold">{{titulo}}</span>
+        <i class="pi pi-user text-5xl"></i>
+    </header>
+    <div class="d-grid" style="grid-template-columns: auto 1fr;">
+        <app-sidebar-module [access]="accesos" class="flex"></app-sidebar-module>
+        <main class="overflow-y-scroll" style="max-height: calc(100vh - 80px);">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</div>
