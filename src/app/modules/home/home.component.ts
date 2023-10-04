@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.accessService.getAll().subscribe(data => {
-      this.moduleView = data;
+      this.moduleView = data.filter(v => v.id_acceso_padre == null);
     });
   }
 
