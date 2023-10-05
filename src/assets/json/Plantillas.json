@@ -1,0 +1,142 @@
+[
+    {
+      "id": 1,
+      "nombre": "Plantilla 1",
+      "tipo": "especifico",
+      "descripcion": "Esta plantilla se utiliza para el proyecto A",
+      "url": "https://github.com/example/projectA"
+    },
+    {
+      "id": 2,
+      "nombre": "Plantilla 2",
+      "tipo": "macro",
+      "descripcion": "Esta plantilla se utiliza para el proyecto B",
+      "url": "https://github.com/example/projectB"
+    },
+    {
+      "id": 3,
+      "nombre": "Plantilla 3",
+      "tipo": "especifico",
+      "descripcion": "Esta plantilla se utiliza para el proyecto C",
+      "url": "https://github.com/example/projectC"
+    },
+    {
+      "id": 4,
+      "nombre": "Plantilla 4",
+      "tipo": "macro",
+      "descripcion": "Esta plantilla se utiliza para el proyecto D",
+      "url": "https://github.com/example/projectD"
+    },
+    {
+      "id": 5,
+      "nombre": "Plantilla 5",
+      "tipo": "especifico",
+      "descripcion": "Esta plantilla se utiliza para el proyecto E",
+      "url": "https://github.com/example/projectE"
+    },
+    {
+      "id": 6,
+      "nombre": "Plantilla 6",
+      "tipo": "macro",
+      "descripcion": "Esta plantilla se utiliza para el proyecto F",
+      "url": "https://github.com/example/projectF"
+    },
+    {
+      "id": 7,
+      "nombre": "Plantilla 7",
+      "tipo": "especifico",
+      "descripcion": "Esta plantilla se utiliza para el proyecto G",
+      "url": "https://github.com/example/projectG"
+    },
+    {
+      "id": 8,
+      "nombre": "Plantilla 8",
+      "tipo": "macro",
+      "descripcion": "Esta plantilla se utiliza para el proyecto H",
+      "url": "https://github.com/example/projectH"
+    },
+    {
+      "id": 9,
+      "nombre": "Plantilla 9",
+      "tipo": "especifico",
+      "descripcion": "Esta plantilla se utiliza para el proyecto I",
+      "url": "https://github.com/example/projectI"
+    },
+    {
+      "id": 10,
+      "nombre": "Plantilla 10",
+      "tipo": "macro",
+      "descripcion": "Esta plantilla se utiliza para el proyecto J",
+      "url": "https://github.com/example/projectJ"
+    },
+    {
+      "id": 11,
+      "nombre": "Plantilla 11",
+      "tipo": "especifico",
+      "descripcion": "Esta plantilla se utiliza para el proyecto K",
+      "url": "https://github.com/example/projectK"
+    },
+    {
+      "id": 12,
+      "nombre": "Plantilla 12",
+      "tipo": "macro",
+      "descripcion": "Esta plantilla se utiliza para el proyecto L",
+      "url": "https://github.com/example/projectL"
+    },
+    {
+      "id": 13,
+      "nombre": "Plantilla 13",
+      "tipo": "especifico",
+      "descripcion": "Esta plantilla se utiliza para el proyecto M",
+      "url": "https://github.com/example/projectM"
+    },
+    {
+      "id": 14,
+      "nombre": "Plantilla 14",
+      "tipo": "macro",
+      "descripcion": "Esta plantilla se utiliza para el proyecto N",
+      "url": "https://github.com/example/projectN"
+    },
+    {
+      "id": 15,
+      "nombre": "Plantilla 15",
+      "tipo": "especifico",
+      "descripcion": "Esta plantilla se utiliza para el proyecto O",
+      "url": "https://github.com/example/projectO"
+    },
+    {
+      "id": 16,
+      "nombre": "Plantilla 16",
+      "tipo": "macro",
+      "descripcion": "Esta plantilla se utiliza para el proyecto P",
+      "url": "https://github.com/example/projectP"
+    },
+    {
+      "id": 17,
+      "nombre": "Plantilla 17",
+      "tipo": "especifico",
+      "descripcion": "Esta plantilla se utiliza para el proyecto Q",
+      "url": "https://github.com/example/projectQ"
+    },
+    {
+      "id": 18,
+      "nombre": "Plantilla 18",
+      "tipo": "macro",
+      "descripcion": "Esta plantilla se utiliza para el proyecto R",
+      "url": "https://github.com/example/projectR"
+    },
+    {
+      "id": 19,
+      "nombre": "Plantilla 19",
+      "tipo": "especifico",
+      "descripcion": "Esta plantilla se utiliza para el proyecto S",
+      "url": "https://github.com/example/projectS"
+    },
+    {
+      "id": 20,
+      "nombre": "Plantilla 20",
+      "tipo": "macro",
+      "descripcion": "Esta plantilla se utiliza para el proyecto T",
+      "url": "https://github.com/example/projectT"
+    }
+  ]
