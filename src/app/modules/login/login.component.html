@@ -1,15 +1,24 @@
-<div class="justify-content-center align-content-center h-screen bg-primary" style="display: grid;">
-    <form [formGroup]="formulario" method="post" 
-    class="flex flex-column gap-2 p-card p-3" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
-        <h1 class="m-0">OverSky</h1>
-        <div class="flex flex-column">
-            <label for="Usuario">Usuario:</label>
-            <input formControlName="usuario" type="text" pInputText />
-        </div>
-        <div class="flex flex-column">
-            <label for="contrasena">contraseña:</label>
-            <p-password formControlName="contrasena" [toggleMask]="true"></p-password>
-        </div>
-        <p-button label="Submit" [disabled]="formulario.invalid" (onClick)="onSumit()"></p-button>
-    </form>
+<div class="contenido-general mat-accent">
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="formulario" class="orden-formulario">
+                <strong class="mat-h1">OverSky</strong>
+
+                <mat-form-field class="content-input">
+                    <mat-label>Ingresar su email</mat-label>
+                    <input matInput placeholder="usuario.apellido@upeu.edu.pe" formControlName="usuario" required>
+                </mat-form-field>
+
+                <mat-form-field class="content-input">
+                    <mat-label>Ingresar su contraseña</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="contrasena">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" [disabled]="formulario.invalid" (click)="onSumit()">SUMIT</button>
+            </form>
+        </mat-card-content>
+    </mat-card>
 </div>

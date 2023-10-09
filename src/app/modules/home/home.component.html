@@ -1,14 +1,25 @@
-<div class="h-screen overflow-hidden d-grid" style="grid-template-columns: 1fr auto;">
-    <main class="gap-3 p-3 bg-primary d-grid" style="grid-template-rows: 10rem; grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));">
-        <app-card-module [moduleView]="module" *ngFor="let module of moduleView" class="p-card align-content-center d-grid"></app-card-module>
-    </main>
-    <div class="flex flex-column px-3 py-2 text-center gap-2 max-w-14rem bg-black-alpha-90 text-white">
-        <h1 class="m-0">OverSky</h1>
-        <i class="pi pi-users text-8xl"></i>
-        <div>
-            <h3 class="m-0">Nombre del ususario</h3>
-            <p class="m-0">rol del usuario</p>
+<div class="home-container">
+    <header class="home-header">
+        <h1>OverSky</h1>
+        <div class="home-perfil">
+            <h3>Luis Keny Lucero Balvin</h3>
+            <p>Administrador</p>
         </div>
-        <p-button label="Cerrar sesion" styleClass="p-button-danger" (onClick)="cerrarSesion()"></p-button>
+        <button mat-raised-button color="warn" (click)="cerrarSesion()">Cerrar Sesion</button>
+    </header>
+    <main>
+        <mat-card *ngFor="let module of moduleView" class="home-card" (click)="navegar(module)">
+            <mat-card-content>{{module.titulo}}</mat-card-content>
+        </mat-card>
+    </main>
+    <div class="home-sidebar-usuario">
+        <h1>OverSky</h1>
+        <div class="home-perfil">
+            <img class="home-img-perfil" src="https://img.freepik.com/fotos-premium/hombre-negocios-traje-elegante-oficina-apuesto-hombre-adulto-caucasico-conceptos-sobre-negocios-personas_186382-25479.jpg" 
+            alt="perfil del usuario">
+            <h3>Luis Keny Lucero Balvin</h3>
+            <p>Administrador</p>
+        </div>
+        <button mat-raised-button color="warn" (click)="cerrarSesion()">Cerrar Sesion</button>
     </div>
 </div>

@@ -1,0 +1,25 @@
+.contenido-general {
+    height: 100vh;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-indigo);
+}
+
+.orden-formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.content-input {
+    width: 20rem;
+}
+
+@media (width < 500px) {
+    .content-input {
+        width: 100%;
+    }
+}

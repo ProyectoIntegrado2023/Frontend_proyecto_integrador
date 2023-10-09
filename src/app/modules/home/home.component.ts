@@ -20,6 +20,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  navegar(module: ModuleView){
+    this.router.navigate([module.url]);
+  }
+
   cerrarSesion(): void{
     this.router.navigate(['/log-in']);
   }

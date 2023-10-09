@@ -2,19 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
-import { CardModuleComponent } from './components/card-module/card-module.component';
 import { HomeComponent } from './home.component';
-import { ButtonModule } from 'primeng/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
-    HomeComponent,
-    CardModuleComponent
+    HomeComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    ButtonModule
+    MatCardModule,
+    MatButtonModule
   ]
 })
 export class HomeModule { }
