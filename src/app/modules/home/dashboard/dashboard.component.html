@@ -4,7 +4,7 @@
     </header>
     <div style="display: grid; grid-template-columns: auto 1fr;">
         <section class="sidebar">
-            <button mat-raised-button color="primary" *ngFor="let model of accesos">{{model.titulo}}</button>
+            <button mat-raised-button color="primary" *ngFor="let model of accesos" (click)="navegar(model)">{{model.titulo}}</button>
         </section>
         <main style="overflow-y: scroll; max-height: calc(100vh - 80px);">
             <router-outlet></router-outlet>

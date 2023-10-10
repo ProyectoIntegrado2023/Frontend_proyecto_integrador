@@ -31,7 +31,7 @@
     "id": 5,
     "titulo": "Plantilla",
     "icon": null,
-    "url": "home/modulo/1",
+    "url": "home/modulo/1/plantilla",
     "id_acceso_padre": 1
   },
   {
@@ -68,5 +68,12 @@
     "icon": null,
     "url": "home/modulo/3/usuario",
     "id_acceso_padre": 4
+  },
+  {
+    "id": 10000000,
+    "titulo": "Agregar proyecto",
+    "icon": null,
+    "url": "home/modulo/1/agregar-proyecto",
+    "id_acceso_padre": 1
   }
 ]  

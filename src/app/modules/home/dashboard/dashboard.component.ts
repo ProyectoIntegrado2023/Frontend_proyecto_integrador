@@ -27,4 +27,8 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  navegar(acceso: ModuleView) {
+    this.router.navigate([acceso.url]);
+  }
+
 }
