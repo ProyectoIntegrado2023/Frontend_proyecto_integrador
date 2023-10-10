@@ -61,5 +61,12 @@
     "icon": null,
     "url": "home/modulo/3/usuario",
     "id_acceso_padre": 4
+  },
+  {
+    "id": 9,
+    "titulo": "Usuario",
+    "icon": null,
+    "url": "home/modulo/3/usuario",
+    "id_acceso_padre": 4
   }
 ]  
