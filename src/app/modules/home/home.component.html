@@ -1,24 +1,34 @@
-<div class="home-container">
-    <header class="home-header">
-        <h1>OverSky</h1>
-        <div class="home-perfil">
-            <h3>Luis Keny Lucero Balvin</h3>
-            <p>Administrador</p>
+<div class="container">
+    <header>
+        <h1>{{titulo}}</h1>
+        <div>
+            <img class="img-perfil" src="https://www.freepnglogos.com/uploads/businessman-png/businessman-stroitelstvo-construction-industry-12.png" 
+            alt="perfil del usuario">
+            <div class="desplige-usuario">
+                <label class="material-symbols-outlined" for="open">expand_more</label>
+                <input type="checkbox" name="open" id="open" style="display: none;">
+                <div class="contenedor-usuario">
+                    <div class="perfil">
+                        <h3>Luis Keny Lucero Balvin</h3>
+                        <span>Administrador</span>
+                    </div>
+                    <button mat-raised-button color="warn" (click)="cerrarSesion()">Cerrar Sesion</button>
+                </div>
+            </div>
         </div>
-        <button mat-raised-button color="warn" (click)="cerrarSesion()">Cerrar Sesion</button>
     </header>
     <main>
-        <mat-card *ngFor="let module of moduleView" class="home-card" (click)="navegar(module)">
-            <mat-card-content>{{module.titulo}}</mat-card-content>
-        </mat-card>
+        <div *ngFor="let module of moduleView" class="card" (click)="navegar(module)">
+            {{module.titulo}}
+        </div>
     </main>
-    <div class="home-sidebar-usuario">
-        <h1>OverSky</h1>
-        <div class="home-perfil">
-            <img class="home-img-perfil" src="https://img.freepik.com/fotos-premium/hombre-negocios-traje-elegante-oficina-apuesto-hombre-adulto-caucasico-conceptos-sobre-negocios-personas_186382-25479.jpg" 
+    <div class="sidebar-usuario">
+        <h1>{{titulo}}</h1>
+        <div class="perfil">
+            <img class="img-perfil" src="https://www.freepnglogos.com/uploads/businessman-png/businessman-stroitelstvo-construction-industry-12.png" 
             alt="perfil del usuario">
             <h3>Luis Keny Lucero Balvin</h3>
-            <p>Administrador</p>
+            <span>Administrador</span>
         </div>
         <button mat-raised-button color="warn" (click)="cerrarSesion()">Cerrar Sesion</button>
     </div>

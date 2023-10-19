@@ -1,12 +1,31 @@
-<div class="dashboard-content">
-    <header class="dashboard-header">
-        <span class="dashboard-header-titulo">{{titulo}}</span>
+<div class="content">
+    <header>
+        <div>
+            <i class="material-symbols-outlined" id="btn_open" (click)="effectSidebar()">menu</i>
+            <span class="nombre-pagina-web" (click)="regresarHome()">{{titulo}}</span>
+        </div>
+        <span class="header-titulo">{{modulo}}</span>
+        <div>
+            <img class="img-perfil" src="https://www.freepnglogos.com/uploads/businessman-png/businessman-stroitelstvo-construction-industry-12.png" 
+            alt="perfil del usuario">
+            <div class="desplige-usuario">
+                <label class="material-symbols-outlined" for="open">expand_more</label>
+                <input type="checkbox" name="open" id="open" style="display: none;">
+                <div class="contenedor-usuario">
+                    <div class="perfil">
+                        <h3>Luis Keny Lucero Balvin</h3>
+                        <span>Administrador</span>
+                    </div>
+                    <button mat-raised-button color="warn" (click)="cerrarSesion()">Cerrar Sesion</button>
+                </div>
+            </div>
+        </div>
     </header>
-    <div style="display: grid; grid-template-columns: auto 1fr;">
-        <section class="sidebar">
-            <button mat-raised-button color="primary" *ngFor="let model of accesos" (click)="navegar(model)">{{model.titulo}}</button>
+    <div class="contenedor-principal" [ngClass]="{'contenedor-principal-block': statusSidebar, 'contenedor-principal-none': !statusSidebar}">
+        <section class="sidebar" [ngClass]="{'container-sidebar-short': !statusSidebar, 'container-sidebar-large':statusSidebar}">
+            <button mat-raised-button *ngFor="let model of accesos" (click)="navegar(model)">{{model.titulo}}</button>
         </section>
-        <main style="overflow-y: scroll; max-height: calc(100vh - 80px);">
+        <main>
             <router-outlet></router-outlet>
         </main>
     </div>

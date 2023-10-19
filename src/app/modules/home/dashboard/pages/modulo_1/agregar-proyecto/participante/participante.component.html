@@ -1,0 +1,98 @@
+<section>
+    <div>
+        <div class="contenedor-estudiante">
+            <h2>Asignar estudiante</h2>
+            <div>
+                <select name="facultad" id="facultad">
+                    <option value="1">FIA</option>
+                </select>
+                <select name="escuela" id="escuela">
+                    <option value="1">Ingenieria de sistema</option>
+                </select>
+                <select name="ciclo" id="ciclo">
+                    <option value="1">IV</option>
+                </select>
+            </div>
+            <div class="contenedor-busqueda">
+                <label for="">Estudiante externo:</label>
+                <div>
+                    <input type="text" name="externo-estudiante" id="buscar-estudiante">
+                    <input type="submit" value="Buscar">
+                </div>
+                <span class="resultado-busqueda">resultado <button>Agregar</button></span>
+            </div>
+            <table>
+                <thead>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Facultad</th>
+                    <th>Escuela</th>
+                    <th>Ciclo</th>
+                    <th>Grupo</th>
+                    <th>Accion</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Luis Lucero</td>
+                        <td>FIA</td>
+                        <td>Ing de Sistemas</td>
+                        <td>IV</td>
+                        <td>I</td>
+                        <td>
+                            <button>Quitar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="contenedor-docente">
+            <h2>Asignar docente</h2>
+            <div>
+                <select name="facultad" id="facultad">
+                    <option value="1">FIA</option>
+                </select>
+                <select name="escuela" id="escuela">
+                    <option value="1">Ingenieria de sistema</option>
+                </select>
+                <select name="curso" id="curso-articulado">
+                    <option value="1">ADS</option>
+                </select>
+            </div>
+            <div class="contenedor-busqueda">
+                <label for="">docente externo:</label>
+                <div>
+                    <input type="text" name="externo-docente" id="buscar-docente">
+                    <input type="submit" value="Buscar">
+                </div>
+                <span class="resultado-busqueda">resultado <button>Agregar</button></span>
+            </div>
+            <table>
+                <thead>
+                    <th>DNI</th>
+                    <th>Nombre</th>
+                    <th>Facultad</th>
+                    <th>Escuela</th>
+                    <th>Curso articulado</th>
+                    <th>Accion</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>71952458</td>
+                        <td>Diana Sanchez</td>
+                        <td>FIA</td>
+                        <td>Ingenieria de Sistemas</td>
+                        <td>ADS</td>
+                        <td>
+                            <button>Quitar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <section class="contenedor-btn-acciones">
+        <button mat-raised-button color="warn">Cancelar</button>
+        <button type="submit" mat-raised-button color="primary">Guardar</button>
+    </section>
+</section>

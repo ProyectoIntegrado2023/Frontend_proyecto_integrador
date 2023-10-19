@@ -1,47 +1,8 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  fruit: string;
-}
-
-const FRUITS: string[] = [
-  'blueberry',
-  'lychee',
-  'kiwi',
-  'mango',
-  'peach',
-  'lime',
-  'pomegranate',
-  'pineapple',
-];
-
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Proyecto } from '../../../../../../core/model/proyecto.model'
 
 @Component({
   selector: 'app-proyecto',
@@ -50,14 +11,35 @@ const NAMES: string[] = [
 })
 export class ProyectoComponent implements AfterViewInit {
   
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['codigo', 'nombre', 'tipo', 'coordinador','semestre', 'lugar', 'escuela', 'estado', 'accion'];
+  dataSource: MatTableDataSource<Proyecto>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   @ViewChild(MatSort) sort: MatSort | any;
 
   constructor() {
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+    const users: Proyecto[] = [
+      {
+        codigo: '2023123FIA2',
+        nombre: 'Hora del codigo',
+        tipo: 'Especifico',
+        coordinador: 'Diana Sanchez',
+        semestre: '2023-2',
+        lugar: 'carapongo huachipa',
+        escuela: 'Ingeniera de sistmea',
+        estado: 'Terminado'
+      },
+      {
+        codigo: '2023123FIA3',
+        nombre: 'Hora del codigo',
+        tipo: 'Especifico',
+        coordinador: 'Diana Sanchez',
+        semestre: '2023-2',
+        lugar: 'carapongo huachipa',
+        escuela: 'Ingeniera de sistmea',
+        estado: 'Terminado'
+      }
+    ]
     this.dataSource = new MatTableDataSource(users);
   }
 
@@ -75,19 +57,4 @@ export class ProyectoComponent implements AfterViewInit {
     }
   }
   
-}
-
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    fruit: FRUITS[Math.round(Math.random() * (FRUITS.length - 1))],
-  };
 }

@@ -1,0 +1,40 @@
+<section>
+    <div>
+        <h1>Seleccionar encargado de grupo</h1>
+        <table>
+            <thead>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Facultad</th>
+                <th>Escuela</th>
+                <th>Ciclo</th>
+                <th>Grupo</th>
+                <th>
+                    <select name="rol" id="rol">
+                        <option value="1">encargado</option>
+                    </select>
+                </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Luis Lucero</td>
+                    <td>FIA</td>
+                    <td>Ing de Sistemas</td>
+                    <td>IV</td>
+                    <td>I</td>
+                    <td>
+                        <label class="container">
+                            <input type="checkbox" id="encargado" name="encargado">
+                            <div class="checkmark"></div>
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <section class="contenedor-btn-acciones">
+        <button mat-raised-button color="warn">Cancelar</button>
+        <button type="submit" mat-raised-button color="primary">Guardar</button>
+    </section>
+</section>

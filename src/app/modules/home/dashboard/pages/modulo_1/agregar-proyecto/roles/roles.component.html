@@ -1,0 +1,47 @@
+<section class="content">
+    <div class="content-main">
+        <div>
+            <h3>Roles de Negocio</h3>
+            <ul>
+                <li *ngFor="let rolNegocio of listaRolNegocio">
+                    <label class="container">
+                        <input type="checkbox" [id]="'rol-' + rolNegocio.id" (click)="agregarRol(rolNegocio.id)">
+                        <div class="checkmark"></div>
+                    </label>
+                    <label for="rol-{{rolNegocio.id}}" (click)="agregarRol(rolNegocio.id)">{{rolNegocio.nombre}}</label>
+                </li>
+            </ul>
+        </div>
+        <table>
+            <thead>
+                <th>Roles</th>
+                <th>Horas</th>
+                <th>Descripcion</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>rol1</td>
+                    <td>
+                        <input type="text" name="hora" id="hora">
+                    </td>
+                    <td>
+                        <input type="text" name="descripcion" id="descripcion">
+                    </td>
+                </tr>
+                <tr *ngFor="let rolProyecto of listaRolProyecto">
+                    <td>{{rolProyecto.nombre}}</td>
+                    <td>
+                        <input type="text" name="hora" id="hora">
+                    </td>
+                    <td>
+                        <input type="text" name="descripcion" id="descripcion">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <section class="contenedor-btn-acciones">
+        <button mat-raised-button color="warn">Cancelar</button>
+        <button type="submit" mat-raised-button color="primary">Guardar</button>
+    </section>
+</section>

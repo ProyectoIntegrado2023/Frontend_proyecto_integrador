@@ -1,10 +1,35 @@
+h1 {
+    color: black;
+    font-size: 3rem;
+    font-weight: 500;
+}
+
 .contenido-general {
     height: 100vh;
     display: grid;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-indigo);
+    background: linear-gradient(to bottom,rgba(0,238,255,0.7),rgba(3,28,255,0.7));
+    /* background-image: linear-gradient(to bottom,rgba(0,238,255,0.7),rgba(3,28,255,0.7)),url('https://blog.orionstereo.org/content/images/2021/11/Campus-de-la-UPeU.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;*/
 }
+
+.contenido-general > div{
+    background: rgba(255, 255, 255, 0.6);
+    padding: 2rem 3rem;
+    backdrop-filter: blur(10px);
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.4),
+                inset -5px -5px 10px rgba(255, 255, 255, 0.4);
+    border: solid 0.5rem rgba(255, 255, 255, 0.729);
+    border-radius: 2rem 2rem 2rem 2rem;
+    -webkit-border-radius: 2rem 2rem 2rem 2rem;
+    -moz-border-radius: 2rem 2rem 2rem 2rem;
+    -ms-border-radius: 2rem 2rem 2rem 2rem;
+    -o-border-radius: 2rem 2rem 2rem 2rem;
+}
+
 
 .orden-formulario {
     display: flex;
@@ -15,11 +40,31 @@
 }
 
 .content-input {
-    width: 20rem;
+    width: 30rem;
+
+    & * {
+        background: transparent !important;
+        font-size: 110%;
+    }
 }
 
-@media (width < 500px) {
+@media (width < 600px) {
+    .contenido-general > div {
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        align-items: center;
+        border: 0;
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        -ms-border-radius: 0;
+        -o-border-radius: 0;
+    }
     .content-input {
         width: 100%;
+        & * {
+            background: transparent !important;
+        }
     }
 }

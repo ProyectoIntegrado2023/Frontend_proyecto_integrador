@@ -1,0 +1,43 @@
+.contenedor-btn-acciones {
+    border-top: solid 0.1rem #0000004f;
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+section {
+    & * {
+        margin: 0;
+    }
+
+    & > div{
+        padding-bottom: 1rem;
+        display: grid;
+        gap: 1rem;
+        justify-content: center;
+    }
+}
+
+.contenedor-docente, .contenedor-estudiante {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contenedor-busqueda{
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+}
+
+.resultado-busqueda {
+    padding: 0.2rem 0.3rem;
+    border: solid 0.1rem #0000004f;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+}

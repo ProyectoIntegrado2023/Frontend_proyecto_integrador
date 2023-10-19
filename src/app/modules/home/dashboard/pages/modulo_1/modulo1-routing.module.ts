@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'proyecto',
+        redirectTo: 'plantilla',
         pathMatch: 'full'
       },
       {
@@ -23,6 +23,10 @@ const routes: Routes = [
       {
         path: 'agregar-proyecto',
         loadChildren: () => import('./agregar-proyecto/agregar-proyecto.module').then(m => m.AgregarProyectoModule)
+      },
+      {
+        path: 'agregar-plantilla',
+        loadChildren: () => import('./agregar-plantilla/agregar-plantilla.module').then(m => m.AgregarPlantillaModule)
       }
     ]
   }

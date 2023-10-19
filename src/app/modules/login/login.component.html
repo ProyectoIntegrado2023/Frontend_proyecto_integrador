@@ -1,24 +1,22 @@
-<div class="contenido-general mat-accent">
-    <mat-card>
-        <mat-card-content>
-            <form [formGroup]="formulario" class="orden-formulario">
-                <strong class="mat-h1">OverSky</strong>
-
-                <mat-form-field class="content-input">
-                    <mat-label>Ingresar su email</mat-label>
-                    <input matInput placeholder="usuario.apellido@upeu.edu.pe" formControlName="usuario" required>
-                </mat-form-field>
-
-                <mat-form-field class="content-input">
-                    <mat-label>Ingresar su contraseña</mat-label>
-                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="contrasena">
-                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                </mat-form-field>
-
-                <button mat-raised-button color="primary" [disabled]="formulario.invalid" (click)="onSumit()">SUMIT</button>
-            </form>
-        </mat-card-content>
-    </mat-card>
-</div>
+<section class="contenido-general">
+    <div>
+        <form [formGroup]="formulario" class="orden-formulario">
+            <h1>{{titulo}}</h1>
+    
+            <mat-form-field class="content-input">
+                <mat-label>Ingresar su email</mat-label>
+                <input matInput placeholder="usuario.example@upeu.edu.pe" formControlName="usuario" required>
+            </mat-form-field>
+    
+            <mat-form-field class="content-input">
+                <mat-label>Ingresar su contraseña</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="contrasena">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+    
+            <button mat-raised-button color="primary" [disabled]="formulario.invalid" (click)="onSumit()">Iniciar sesion</button>
+        </form>
+    </div>
+</section>
