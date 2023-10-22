@@ -5,7 +5,22 @@ import { ProyectoComponent } from './proyecto.component';
 const routes: Routes = [
   {
     path: '',
-    component: ProyectoComponent
+    component: ProyectoComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'listar',
+        pathMatch: 'full'
+      },
+      {
+        path: 'listar',
+        loadChildren: () => import('./listar/listar.module').then(m => m.ListarModule)
+      },
+      {
+        path: 'editar',
+        loadChildren: () => import('./editar/editar.module').then(m => m.EditarModule)
+      }
+    ]
   }
 ];
 

@@ -63,13 +63,6 @@
     "id_acceso_padre": 4
   },
   {
-    "id": 9,
-    "titulo": "Usuario",
-    "icon": null,
-    "url": "home/modulo/3/usuario",
-    "id_acceso_padre": 4
-  },
-  {
     "id": 10,
     "titulo": "Agregar proyecto",
     "icon": null,
@@ -117,5 +110,40 @@
     "icon": null,
     "url": "home/modulo/1/agregar-proyecto/encargado",
     "id_acceso_padre": 10
+  },
+  {
+    "id": 17,
+    "titulo": "General",
+    "icon": null,
+    "url": "home/modulo/1/proyecto/editar/general",
+    "id_acceso_padre": 6
+  },
+  {
+    "id": 18,
+    "titulo": "Roles",
+    "icon": null,
+    "url": "home/modulo/1/proyecto/editar/roles",
+    "id_acceso_padre": 6
+  },
+  {
+    "id": 19,
+    "titulo": "Actividad",
+    "icon": null,
+    "url": "home/modulo/1/proyecto/editar/actividad",
+    "id_acceso_padre": 6
+  },
+  {
+    "id": 20,
+    "titulo": "Participante",
+    "icon": null,
+    "url": "home/modulo/1/proyecto/editar/participante",
+    "id_acceso_padre": 6
+  },
+  {
+    "id": 21,
+    "titulo": "Encargado",
+    "icon": null,
+    "url": "home/modulo/1/proyecto/editar/encargado",
+    "id_acceso_padre": 6
   }
 ]  

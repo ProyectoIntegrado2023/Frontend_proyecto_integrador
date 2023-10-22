@@ -2,6 +2,7 @@ import { ModuleView } from 'src/app/core/model/moduleView.model';
 import { AccessService } from './../../../../../../core/services/access.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Proyecto } from 'src/app/core/model/proyecto.model';
 
 @Component({
   selector: 'app-agregar-proyecto',
@@ -11,20 +12,38 @@ import { Router } from '@angular/router';
 export class AgregarProyectoComponent implements OnInit {
 
   listAccesso: ModuleView[] = []
-
+  proyecto!: Proyecto
+  
   constructor(private accessService: AccessService, 
               private router: Router){}
 
   ngOnInit(): void {
-    const fullUrl = this.router.url.split('/');
-    const requiredPartOfUrl = fullUrl.slice(0, fullUrl.indexOf('agregar-proyecto/'));
-    const currentUrl = requiredPartOfUrl.join('/');
+    const currentUrl = this.router.url;
     
     this.accessService.getAll().subscribe(data => {
-      const idPadre = data.find(v => '/' + v.url == currentUrl)?.id;
-      this.listAccesso = data.filter(v => v.id_acceso_padre == idPadre);
+      
+      const idPadre = this.findAccessIdByURL(data, currentUrl);
+      this.listAccesso = data.filter(v => v.id_acceso_padre === idPadre);
+      
     });
+  }
 
+  findAccessIdByURL(data: ModuleView[], currentUrl: string): number | null {
+      const parts = currentUrl.split('/');
+      let idPadre = null;
+  
+      for (let i = parts.length; i >= 0; i--) {
+        
+        const partialUrl = parts.slice(0, i).join('/');
+        const access = data.find(v => '/' + v.url === partialUrl);
+        
+        if (access) {
+          idPadre = access.id_acceso_padre;
+          break;
+        }
+      }
+  
+      return idPadre;
   }
 
   navegar(acceso: ModuleView){

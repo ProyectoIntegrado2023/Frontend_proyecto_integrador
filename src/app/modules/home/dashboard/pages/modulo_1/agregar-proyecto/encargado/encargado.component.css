@@ -10,10 +10,56 @@ section > div {
     padding-bottom: 1rem;
     display: grid;
     justify-content: center;
-    text-align: center;
+    
+    & > h1 {
+      text-align: center;
+    }
 }
-table {
-    font-size: medium;
+
+main.contenedor-tabla-data {
+  position: relative;
+  padding: 0.2rem 0;
+  border: solid 0.1rem #0000004f;
+  overflow: hidden;
+  border-radius: 0.4rem;
+  -webkit-border-radius: 0.4rem;
+  -moz-border-radius: 0.4rem;
+  -ms-border-radius: 0.4rem;
+  -o-border-radius: 0.4rem;
+}
+
+main.contenedor-tabla-data > header {
+  font-weight: 500;
+  font-size: medium;
+  border-bottom: solid 0.1rem #0000004f;
+}
+
+main.contenedor-tabla-data > section {
+  overflow-y: scroll;
+  max-height: 10rem;
+  display: grid;
+  gap: 0.2rem;
+
+  &::-webkit-scrollbar {
+      display: none;
+  }
+}
+
+main.contenedor-tabla-data > section > p:hover {
+  background: #00000021;
+}
+
+main.contenedor-tabla-data > header,
+main.contenedor-tabla-data > section > p {
+  padding: 0 0.5rem;
+  display: grid;
+  gap: 0.2rem;
+}
+
+main.data-estudiante > header,
+main.data-estudiante > section > p {
+  align-items: center;
+  grid-template-columns: 1fr 2fr 1fr 2fr 1fr 1fr 1fr;
 }
 
 /*input checkbox  -------------------------------------------*/

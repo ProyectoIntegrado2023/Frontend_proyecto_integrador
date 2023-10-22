@@ -15,6 +15,9 @@ import { GeneralComponent } from './general/general.component';
     CommonModule,
     AgregarProyectoRoutingModule,
     MatButtonModule
+  ],
+  exports: [
+    AgregarProyectoComponent
   ]
 })
 export class AgregarProyectoModule { }

@@ -1,0 +1,13 @@
+.material-symbols-outlined {
+    padding: 0.2rem;
+    cursor: pointer;
+    border-radius: 0.2rem;
+    -webkit-border-radius: 0.2rem;
+    -moz-border-radius: 0.2rem;
+    -ms-border-radius: 0.2rem;
+    -o-border-radius: 0.2rem;
+}
+
+.material-symbols-outlined:hover {
+    background: rgba(4, 4, 4, 0.2);
+}
