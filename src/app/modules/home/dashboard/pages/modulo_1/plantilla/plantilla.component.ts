@@ -1,6 +1,6 @@
 import { PlantillaService } from './../../../../../../core/services/plantilla.service';
 import { Component, OnInit } from '@angular/core';
-import { Plantilla } from 'src/app/core/model/plantilla.model';
+import { Plantilla } from 'src/app/core/model/frontend/plantilla.model';
 
 @Component({
   selector: 'app-plantilla',

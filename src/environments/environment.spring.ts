@@ -1,0 +1,1 @@
+export const environment_api = 'http://localhost:8080/'

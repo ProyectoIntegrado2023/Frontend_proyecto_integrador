@@ -1,0 +1,14 @@
+<section>
+    <img class="img-perfil" appPerfil src="" alt="perfil del usuario">
+    <div class="desplige-usuario">
+        <label class="material-symbols-outlined" for="open">expand_more</label>
+        <input type="checkbox" name="open" id="open" style="display: none;">
+        <div class="contenedor-usuario">
+            <div class="perfil">
+                <h3>{{persona.nombre}}</h3>
+                <span>Administrador</span>
+            </div>
+            <button mat-raised-button color="warn" (click)="cerrarSesion()">Cerrar Sesion</button>
+        </div>
+    </div>
+</section>

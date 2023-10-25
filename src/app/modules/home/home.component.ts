@@ -1,9 +1,11 @@
 import { AccessService } from './../../core/services/access.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModuleView } from 'src/app/core/model/moduleView.model';
+import { Acceso } from 'src/app/core/model/frontend/acceso.model';
 import { constGlobal } from '../../core/global/const-global';
 import { Subscription } from 'rxjs';
+import { Persona } from 'src/app/core/model/frontend/persona.model';
+import { PersonaService } from 'src/app/core/services/persona.service';
 
 @Component({
   selector: 'app-home',
@@ -12,28 +14,40 @@ import { Subscription } from 'rxjs';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  private subscription!: Subscription;
-  moduleView: ModuleView[] = [];
+  private subscriptionAcceso!: Subscription;
+  private subscriptionPersona!: Subscription;
+  accesos: Acceso[] = [];
+  persona: Persona = new Persona();
   titulo: string = constGlobal.NOMBRE_PAGINA_WEB;
 
   constructor( 
     private router: Router, 
-    private accessService: AccessService
+    private accessService: AccessService,
+    private personaService: PersonaService
   ){}
 
   ngOnInit(): void {
-    this.subscription = this.accessService.getAll().subscribe(data => {
-      this.moduleView = data.filter(v => v.id_acceso_padre == null);
+    const id: number = parseInt(localStorage.getItem('usuario_id')!);
+    this.subscriptionPersona = this.personaService.getById(id).subscribe(data => {
+      this.persona = data;
+    })
+
+    this.subscriptionAcceso = this.accessService.getAll().subscribe(data => {
+      this.accesos = data.filter(v => v.id_acceso_padre == 0);
     });
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+    if (this.subscriptionAcceso) {
+      this.subscriptionAcceso.unsubscribe();
+    }
+
+    if (this.subscriptionPersona) {
+      this.subscriptionPersona.unsubscribe();
     }
   }
 
-  public navegar(module: ModuleView){
+  public navegar(module: Acceso){
     this.router.navigate([module.url]);
   }
 

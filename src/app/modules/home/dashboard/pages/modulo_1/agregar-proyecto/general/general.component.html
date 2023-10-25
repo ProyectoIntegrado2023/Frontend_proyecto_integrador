@@ -1,4 +1,13 @@
-<form>
+<section class="form">
+  <article class="alerta-confirmacion" (click)="cerrarConfirmacion()"
+  [ngClass]="{
+    'confirmado': confirmarGuardado,
+    'no-confirmado': !confirmarGuardado,
+    'satisfecho': satisfaccion,
+    'no-satisfecho': !satisfaccion
+  }">
+    <span>{{mensaje}}</span>
+  </article>
   <section class="contenedor-datos-principales">
     <div class="datos-general">
       <h1 class="title-datos-generales">#20232FIA2</h1>
@@ -9,13 +18,13 @@
     <div class="datos-proyecto-general">
       <div>
         <label for="nombre-proyecto">NOMBRE DEL PROYECTO:</label>
-        <input type="text" name="nombre" id="nombre-proyecto">
+        <input type="text" name="nombre" id="nombre-proyecto" [(ngModel)]="proyecto.nombre">
       </div>
 
       <div>
         <div>
           <label for="lugar">LUGAR:</label>
-          <input type="text" name="lugar" id="lugar">
+          <input type="text" name="lugar" id="lugar" [(ngModel)]="proyecto.lugar">
         </div>
         <div>
           <label for="fecha-inicio">FECHA:</label>
@@ -43,7 +52,7 @@
       <div>
         <div>
           <label for="presupuesto">PRESUPUESTO:</label>
-          <input type="text" name="presupuesto" id="presupuesto">
+          <input type="text" name="presupuesto" id="presupuesto" [(ngModel)]="proyecto.presupuesto">
         </div>
         <div>
           <label for="curso-articulado">CURSO ARTICULADO:</label>
@@ -60,12 +69,12 @@
 
   <section class="contenedor-objetivo">
     <label for="objetivo">OBJETIVO: </label>
-    <textarea name="objetivo" id="objetivo" cols="30" rows="10"></textarea>
+    <textarea name="objetivo" id="objetivo" cols="30" rows="10" [(ngModel)]="proyecto.objetivos"></textarea>
   </section>
 
   <section class="contenedor-descripcion">
     <label for="descripcion">DESCRIPCION: </label>
-    <textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea>
+    <textarea name="descripcion" id="descripcion" cols="30" rows="10" [(ngModel)]="proyecto.descripcion"></textarea>
   </section>
   
   <section class="contenedor-recursos">
@@ -74,7 +83,7 @@
   </section>
   
   <section class="contenedor-btn-acciones">
-    <button mat-raised-button color="warn">Cancelar</button>
-    <button type="submit" mat-raised-button color="primary">Guardar</button>
+    <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="guardarProyecto()">Guardar</button>
   </section>
-</form>
+</section>

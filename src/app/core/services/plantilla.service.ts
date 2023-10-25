@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Plantilla } from '../model/plantilla.model';
+import { PlantillaModel } from '../model/backend/plantilla.model';
+import { Plantilla } from '../model/frontend/plantilla.model';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { PlantillaFiltrarParaFrontend } from '../transform/plantilla.transform';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +15,9 @@ export class PlantillaService {
 
   constructor(private http: HttpClient) {}
 
-  getAll(){
-    return this.http.get<Plantilla[]>(this.url);
+  getAll(): Observable<Plantilla[]>{
+    return this.http.get<PlantillaModel[]>(this.url).pipe(
+      map((plantillasModel: PlantillaModel[]) => plantillasModel.map(PlantillaFiltrarParaFrontend))
+    )
   }
 }

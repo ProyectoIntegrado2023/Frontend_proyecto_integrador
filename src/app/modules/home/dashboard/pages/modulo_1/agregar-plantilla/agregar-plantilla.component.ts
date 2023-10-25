@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./agregar-plantilla.component.css']
 })
 export class AgregarPlantillaComponent {
-
+  
 }

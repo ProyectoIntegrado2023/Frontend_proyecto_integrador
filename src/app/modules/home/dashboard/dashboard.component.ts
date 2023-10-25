@@ -1,7 +1,7 @@
 import { AccessService } from './../../../core/services/access.service';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModuleView } from 'src/app/core/model/moduleView.model';
+import { Acceso } from 'src/app/core/model/frontend/acceso.model';
 import { constGlobal } from '../../../core/global/const-global';
 import { Subscription } from 'rxjs';
 
@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private subscription!: Subscription;
   titulo: string = constGlobal.NOMBRE_PAGINA_WEB
   modulo: string = ''
-  accesos: ModuleView[] = []
+  accesos: Acceso[] = []
   statusSidebar:boolean = true
 
   constructor(
@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  public navegar(acceso: ModuleView) {
+  public navegar(acceso: Acceso) {
     this.router.navigate([acceso.url]);
   }
 
@@ -58,9 +58,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public regresarHome(): void {
     this.router.navigate(['/home']);
-  }
-
-  public cerrarSesion(): void{
-    this.router.navigate(['/log-in']);
   }
 }

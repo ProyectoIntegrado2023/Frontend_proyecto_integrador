@@ -1,8 +1,8 @@
-import { ModuleView } from 'src/app/core/model/moduleView.model';
+import { Acceso } from 'src/app/core/model/frontend/acceso.model';
 import { AccessService } from './../../../../../../core/services/access.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Proyecto } from 'src/app/core/model/proyecto.model';
+import { Proyecto } from 'src/app/core/model/frontend/proyecto.model';
 
 @Component({
   selector: 'app-agregar-proyecto',
@@ -11,7 +11,7 @@ import { Proyecto } from 'src/app/core/model/proyecto.model';
 })
 export class AgregarProyectoComponent implements OnInit {
 
-  listAccesso: ModuleView[] = []
+  listAccesso: Acceso[] = []
   proyecto!: Proyecto
   
   constructor(private accessService: AccessService, 
@@ -28,7 +28,7 @@ export class AgregarProyectoComponent implements OnInit {
     });
   }
 
-  findAccessIdByURL(data: ModuleView[], currentUrl: string): number | null {
+  findAccessIdByURL(data: Acceso[], currentUrl: string): number | null {
       const parts = currentUrl.split('/');
       let idPadre = null;
   
@@ -46,7 +46,7 @@ export class AgregarProyectoComponent implements OnInit {
       return idPadre;
   }
 
-  navegar(acceso: ModuleView){
+  navegar(acceso: Acceso){
     this.router.navigate([acceso.url]);
   }
 }

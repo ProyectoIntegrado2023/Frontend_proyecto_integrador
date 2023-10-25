@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { GeneralRoutingModule } from './general-routing.module';
 import { GeneralComponent } from './general.component';
 import {MatButtonModule} from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     CommonModule,
     GeneralRoutingModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ]
 })
 export class GeneralModule { }

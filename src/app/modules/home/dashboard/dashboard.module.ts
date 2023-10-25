@@ -3,19 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import { Modulo5Component } from './pages/modulo_5/modulo5.component';
 import { MatButtonModule } from '@angular/material/button';
-
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
-    DashboardComponent,
-    Modulo5Component
+    DashboardComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    MatButtonModule
+    MatButtonModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }

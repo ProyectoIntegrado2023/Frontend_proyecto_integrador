@@ -8,59 +8,6 @@ header {
     display: none;
 
     & * { margin: 0; }
-
-    & > div {
-        display: flex;
-    }
-
-    & .desplige-usuario {
-        position: relative;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-    }
-
-    & .desplige-usuario > label { cursor: pointer; }
-
-    & .desplige-usuario:hover {
-        background: var(--color-indigo-dark);
-    }
-}
-
-header img {
-    height: 3rem;
-    width: 3rem;
-    border: solid 0.15rem #fff;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-}
-
-.desplige-usuario:has(input:checked) > .contenedor-usuario{
-    display: grid;
-}
-
-.contenedor-usuario {
-    padding: 1rem 2rem;
-    background: var(--color-indigo);
-    position: absolute;
-    right: 0;
-    top: 90%;
-    display: none;
-    gap: 0.2rem;
-    border: solid 0.2rem var(--color-indigo-dark);
-    border-radius: 1rem;
-    -webkit-border-radius: 1rem;
-    -moz-border-radius: 1rem;
-    -ms-border-radius: 1rem;
-    -o-border-radius: 1rem;
-    transition: all 5s ease-in-out;
-    -webkit-transition: all 5s ease-in-out;
-    -moz-transition: all 5s ease-in-out;
-    -ms-transition: all 5s ease-in-out;
-    -o-transition: all 5s ease-in-out;
 }
 
 .container {

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Proyecto } from '../../../../../../../core/model/proyecto.model'
+import { Proyecto } from '../../../../../../../core/model/frontend/proyecto.model'
 import { ProyectoService } from 'src/app/core/services/proyecto.service';
 import { Router } from '@angular/router';
 
@@ -25,6 +25,8 @@ export class ListarComponent implements OnInit  {
   ) {}
 
   ngOnInit(): void {
+    localStorage.removeItem('proyecto');
+
     this.proyectoService.getAll().subscribe(data => {
       this.listaProyecto = data;
       this.dataSource = new MatTableDataSource(this.listaProyecto);
@@ -44,8 +46,17 @@ export class ListarComponent implements OnInit  {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  public eliminar(id: number){
+    this.proyectoService.delete(id).subscribe(data => {
+      this.listaProyecto = this.listaProyecto.filter(v => v.id != id);
+      this.dataSource = new MatTableDataSource(this.listaProyecto);
+      this.paginatorAndSort();
+    })
+  }
  
-  public statusView(){
+  public navegar(proyecto: Proyecto){
+    localStorage.setItem('proyecto', JSON.stringify(proyecto));
     this.router.navigate(['/home/modulo/1/proyecto/editar'])
   }
 }

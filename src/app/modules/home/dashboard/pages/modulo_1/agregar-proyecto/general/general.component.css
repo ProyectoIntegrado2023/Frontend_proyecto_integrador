@@ -1,4 +1,4 @@
-form {
+.form {
   position: relative;
   width: 100%;
   display: grid;
@@ -24,8 +24,11 @@ input[type="date"] {
 input,
 textarea,
 select {
-  outline: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: medium;
+  outline: none;
+  padding: 0.5rem;
+  border: solid 0.1rem var(--color-primary-component-general);
   border-radius: 0.4rem;
   -webkit-border-radius: 0.4rem;
   -moz-border-radius: 0.4rem;
@@ -37,13 +40,6 @@ label,
 div:has(.badge) > p {
   font-weight: 500;
   font-size: medium;
-}
-
-select,
-input,
-textarea {
-  padding: 0.5rem;
-  border: solid 0.1rem var(--color-primary-component-general);
 }
 
 select:focus,
@@ -124,12 +120,60 @@ textarea:focus {
   -o-border-radius: 0.3rem;
 }
 
-@media (width < 800px) {
+.alerta-confirmacion {
+  z-index: 2;
+  cursor: pointer;
+  padding: 0.5rem;
+  position: fixed;
+  border-radius: 0.4rem;
+  -webkit-border-radius: 0.4rem;
+  -moz-border-radius: 0.4rem;
+  -ms-border-radius: 0.4rem;
+  -o-border-radius: 0.4rem;
+  transition: all .5s ease-in-out;
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -ms-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+}
+
+.confirmado {
+  right: 1rem;
+  bottom: 1rem;
+}
+
+.no-confirmado {
+  right: -10rem;
+  bottom: 1rem;
+}
+
+.no-satisfecho {
+  background-color: red;
+  color: #fff;
+}
+
+.satisfecho {
+  background-color: green;
+  color: #fff;
+}
+
+@media (width < 1000px) {
   .contenedor-datos-principales {
     display: flex;
     flex-direction: column;
 
     & .datos-proyecto-general > div:has(>div) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+@media (width < 500px) {
+  .contenedor-datos-principales {
+    display: flex;
+    flex-direction: column;
+
+    & .datos-proyecto-general div {
       display: flex;
       flex-direction: column;
     }

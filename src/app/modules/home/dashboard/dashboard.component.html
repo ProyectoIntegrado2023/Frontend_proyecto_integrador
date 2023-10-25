@@ -5,21 +5,7 @@
             <span class="nombre-pagina-web" (click)="regresarHome()">{{titulo}}</span>
         </div>
         <span class="header-titulo">{{modulo}}</span>
-        <div>
-            <img class="img-perfil" src="https://www.freepnglogos.com/uploads/businessman-png/businessman-stroitelstvo-construction-industry-12.png" 
-            alt="perfil del usuario">
-            <div class="desplige-usuario">
-                <label class="material-symbols-outlined" for="open">expand_more</label>
-                <input type="checkbox" name="open" id="open" style="display: none;">
-                <div class="contenedor-usuario">
-                    <div class="perfil">
-                        <h3>Luis Keny Lucero Balvin</h3>
-                        <span>Administrador</span>
-                    </div>
-                    <button mat-raised-button color="warn" (click)="cerrarSesion()">Cerrar Sesion</button>
-                </div>
-            </div>
-        </div>
+        <app-perfil></app-perfil>
     </header>
     <div class="contenedor-principal" [ngClass]="{'contenedor-principal-block': statusSidebar, 'contenedor-principal-none': !statusSidebar}">
         <section class="sidebar" [ngClass]="{'container-sidebar-short': !statusSidebar, 'container-sidebar-large':statusSidebar}">
