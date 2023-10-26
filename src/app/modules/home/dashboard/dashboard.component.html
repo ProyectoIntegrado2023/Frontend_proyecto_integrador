@@ -1,0 +1,18 @@
+<div class="content">
+    <header>
+        <div>
+            <i class="material-symbols-outlined" id="btn_open" (click)="effectSidebar()">menu</i>
+            <span class="nombre-pagina-web" (click)="regresarHome()">{{titulo}}</span>
+        </div>
+        <span class="header-titulo">{{modulo}}</span>
+        <app-perfil></app-perfil>
+    </header>
+    <div class="contenedor-principal" [ngClass]="{'contenedor-principal-block': statusSidebar, 'contenedor-principal-none': !statusSidebar}">
+        <section class="sidebar" [ngClass]="{'container-sidebar-short': !statusSidebar, 'container-sidebar-large':statusSidebar}">
+            <button mat-raised-button *ngFor="let model of accesos" (click)="navegar(model)">{{model.titulo}}</button>
+        </section>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</div>

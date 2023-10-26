@@ -1,0 +1,159 @@
+h1 {
+    color: black;
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+.contenido-general {
+    height: 100vh;
+    background: linear-gradient(to bottom,rgba(0,238,255,0.7),rgba(3,28,255,0.7));
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    /* background-image: linear-gradient(to bottom,rgba(0,238,255,0.7),rgba(3,28,255,0.7)),url('https://blog.orionstereo.org/content/images/2021/11/Campus-de-la-UPeU.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;*/
+}
+
+.contenido-general > div{
+    background: rgba(255, 255, 255, 0.6);
+    padding: 2rem 3rem;
+    backdrop-filter: blur(10px);
+    box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.4),
+                inset -5px -5px 10px rgba(255, 255, 255, 0.4);
+    border: solid 0.5rem rgba(255, 255, 255, 0.729);
+    border-radius: 2rem 2rem 2rem 2rem;
+    -webkit-border-radius: 2rem 2rem 2rem 2rem;
+    -moz-border-radius: 2rem 2rem 2rem 2rem;
+    -ms-border-radius: 2rem 2rem 2rem 2rem;
+    -o-border-radius: 2rem 2rem 2rem 2rem;
+}
+
+
+.orden-formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.content-input {
+    width: 30rem;
+
+    & * {
+        background: transparent !important;
+        font-size: 110%;
+    }
+}
+
+@media (width < 600px) {
+    .contenido-general > div {
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        align-items: center;
+        border: 0;
+        border-radius: 0;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        -ms-border-radius: 0;
+        -o-border-radius: 0;
+    }
+    .content-input {
+        width: 100%;
+        & * {
+            background: transparent !important;
+        }
+    }
+}
+
+/* button animation */
+.error-login-activate {
+    right: 1rem;
+}
+
+.error-login-close {
+    right: -10rem;
+}
+
+button.noselect {
+    z-index: 2;
+    position: fixed;
+    top: 1rem;
+
+    width: 10rem;
+    height: 50px;
+
+    background: red;
+    background: #e62222;
+    cursor: pointer;
+    
+    display: flex;
+    align-items: center;
+    
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+   
+button.noselect, button.noselect span {
+    transition: 200ms;
+}
+   
+button.noselect .text {
+    color: white;
+    font-weight: bold;
+    width: calc(10rem - 40px);
+}
+   
+button.noselect .icon {
+    position: absolute;
+    border-left: 1px solid #c41b1b;
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-transform: translateX(110px);
+    -moz-transform: translateX(110px);
+    -ms-transform: translateX(110px);
+    -o-transform: translateX(110px);
+}
+   
+button svg {
+    width: 15px;
+    fill: #eee;
+}
+   
+button.noselect:hover {
+    background: #ff3636;
+}
+   
+button.noselect:hover .text {
+    color: transparent;
+}
+   
+button.noselect:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+}
+   
+button.noselect:focus {
+    outline: none;
+}
+   
+button.noselect:active .icon svg {
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
+}

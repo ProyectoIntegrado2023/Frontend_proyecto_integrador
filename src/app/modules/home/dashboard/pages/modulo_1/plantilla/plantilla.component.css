@@ -1,0 +1,61 @@
+.contentido {
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem
+}
+
+.card {
+    max-width: 10rem;
+    position: relative;
+
+    & .card-icon {
+        z-index: 1;
+        position: absolute;
+        color: #fff;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        & > label {
+            cursor: pointer;
+        }
+    }
+
+    & .content-action-card {
+        display: none;
+
+        & input[type="checkbox"] {
+            display: none;
+        }
+    }
+
+    & .content-action-card:has(input[type="checkbox"]:checked) {
+        display: grid;
+    }
+    
+    & .card-contenido {
+        padding: 0.5rem;
+    }
+}
+
+.card-badge {
+    width: 5rem;
+    text-align: center;
+    padding: 0.3rem;
+    color: #fff;
+    border-radius: 0.3rem;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    -ms-border-radius: 0.3rem;
+    -o-border-radius: 0.3rem;
+}
+
+.especifico {
+    background: var(--color-indigo-dark);
+}
+
+.macro {
+    background: var(--color-accent);
+}

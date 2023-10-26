@@ -1,0 +1,35 @@
+h1 { margin: 0; }
+
+header {
+    position: relative;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+article {
+    position: absolute;
+    left: 0;
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    -webkit-border-radius: 0.4rem;
+    -moz-border-radius: 0.4rem;
+    -ms-border-radius: 0.4rem;
+    -o-border-radius: 0.4rem;
+}
+
+span { color: #fff; }
+
+article:hover {
+    background: blue;
+    color: #fff;
+    transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -ms-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+}

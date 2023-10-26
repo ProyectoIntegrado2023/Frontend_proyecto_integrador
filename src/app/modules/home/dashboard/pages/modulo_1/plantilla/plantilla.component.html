@@ -1,0 +1,22 @@
+<div class="contentido">
+    <mat-card class="card" *ngFor="let plantilla of lista_plantilla, let i = index">
+        <div class="card-icon">
+            <label [for]="'visible-' + i" class="material-symbols-outlined">more_vert</label>
+            <div class="content-action-card">
+                <input type="checkbox" name="visible" [id]="'visible-' + i">
+                <button>Descargar</button>
+                <button>Eliminar</button>
+                <button>Editar</button>
+            </div>
+        </div>
+        <img mat-card-image src="https://static.vecteezy.com/system/resources/thumbnails/005/182/612/small/green-abstract-geometric-shape-background-free-vector.jpg" 
+        alt="Photo of a Shiba Inu">
+        <div class="card-contenido">
+            <mat-card-title>{{plantilla.nombre}}</mat-card-title>
+            <mat-card-subtitle>{{plantilla.descripcion}}</mat-card-subtitle>
+            <div class="card-badge" [ngClass]="plantilla.tipo == 'especifico' ? 'especifico':'macro' ">
+                {{plantilla.tipo}}
+            </div>
+        </div>
+    </mat-card>
+</div>
