@@ -10,7 +10,7 @@ header {
     & * { margin: 0; }
 }
 
-.container {
+.container-p {
     height: 100vh;
     overflow: hidden;
     display: grid;
@@ -105,7 +105,7 @@ header {
 @media (width < 500px) {
     header {display: flex;}
     .sidebar-usuario { display: none; }
-    .container {
+    .container-p {
         grid-template-rows: auto 1fr;
         grid-template-columns: 1fr;
 

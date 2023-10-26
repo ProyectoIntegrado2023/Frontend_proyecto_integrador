@@ -1,0 +1,48 @@
+<section class="container">
+    <div class="d-flex justify-content-center p-2">
+        <span class="h1 strong">Mantener escuela</span>
+    </div>
+    <main class="d-flex gap-3 justify-content-center">
+        <div class="d-grid justify-content-center align-items-start">
+            <table class="table h5">
+                <thead>
+                    <th>#</th>
+                    <th>nombre</th>
+                    <th>Facultad</th>
+                    <th>Accion</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Ingenieria de Sistemas</td>
+                        <td>FIA</td>
+                        <td>
+                            <i class="material-symbols-outlined material-icons text-primary">edit</i>
+                            <i class="material-symbols-outlined material-icons text-danger">delete</i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <article class="card">
+            <div class="card-body">
+                <h3 class="text-center">Agregar escuela</h3>
+                <div class="mb-3">
+                    <label for="escuela" class="form-label">nombre</label>
+                    <input type="text" class="form-control" id="escuela">
+                </div>
+                <div class="mb-3">
+                    <label for="facultad" class="form-label">Facultad</label>
+                    <select class="form-control" id="facultad">
+                        <option value="FIA">FIA</option>
+                        <option value="FIA">FCED</option>
+                    </select>
+                </div>
+                <div class="d-flex gap-1 justify-content-end">
+                    <button class="btn btn-outline-danger">Cancelar</button>
+                    <button class="btn btn-primary">Agregar</button>
+                </div>
+            </div>
+        </article>
+    </main>
+</section>

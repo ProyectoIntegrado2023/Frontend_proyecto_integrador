@@ -24,13 +24,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ){}
 
   ngOnInit(): void {
-    const segments = this.router.url.split('/');
-    const position = segments.findIndex(v => v == 'modulo');
-    const numeroDeRuta = parseFloat(segments[position + 1]);
-    
+    const currentUrl = this.router.url;
+    const parts = currentUrl.split('/');
+    const url = parts.slice(1, parts.indexOf('modulo') + 2).join('/');
+    console.log(url);
+
     this.subscription = this.accessService.getAll().subscribe(data => {
-      this.modulo = data.find(v => v.id == numeroDeRuta)?.titulo ?? 'no existe';
-      this.accesos = data.filter(v => v.id_acceso_padre == numeroDeRuta);
+      const accesoPadre = data.find(v => v.id_acceso_padre == 0 && v.url == url);
+      this.modulo = accesoPadre?.titulo ?? '';
+      this.accesos = data.filter(v => v.id_acceso_padre == accesoPadre?.id);
     });
 
   }
