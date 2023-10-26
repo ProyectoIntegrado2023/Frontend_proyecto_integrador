@@ -28,14 +28,12 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const id: number = parseInt(localStorage.getItem('usuario_id')!);
-    this.subscriptionPersona = this.personaService
-      .getById(id)
-      .subscribe((data) => {
-        this.persona = data;
-      });
+    this.subscriptionPersona = this.personaService.getById(id).subscribe(data => {
+      this.persona = data;
+    })
 
-    this.subscriptionAcceso = this.accessService.getAll().subscribe((data) => {
-      this.accesos = data.filter((v) => v.id_acceso_padre == null);
+    this.subscriptionAcceso = this.accessService.getAll().subscribe(data => {
+      this.accesos = data.filter(v => v.id_acceso_padre == null);
     });
   }
 

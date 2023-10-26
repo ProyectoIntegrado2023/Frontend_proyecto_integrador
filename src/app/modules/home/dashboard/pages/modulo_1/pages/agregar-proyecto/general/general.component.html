@@ -1,0 +1,89 @@
+<section class="form">
+  <article class="alerta-confirmacion" (click)="cerrarConfirmacion()"
+  [ngClass]="{
+    'confirmado': confirmarGuardado,
+    'no-confirmado': !confirmarGuardado,
+    'satisfecho': satisfaccion,
+    'no-satisfecho': !satisfaccion
+  }">
+    <span>{{mensaje}}</span>
+  </article>
+  <section class="contenedor-datos-principales">
+    <div class="datos-general">
+      <h1 class="title-datos-generales">#20232FIA2</h1>
+      <h3>ESCUELA INGENIERIA DE SISTEMA</h3>
+      <h5>CORDINADORA: DIANA SANCHEZ</h5>
+    </div>
+
+    <div class="datos-proyecto-general">
+      <div>
+        <label for="nombre-proyecto">NOMBRE DEL PROYECTO:</label>
+        <input type="text" name="nombre" id="nombre-proyecto" [(ngModel)]="proyecto.nombre">
+      </div>
+
+      <div>
+        <div>
+          <label for="lugar">LUGAR:</label>
+          <input type="text" name="lugar" id="lugar" [(ngModel)]="proyecto.lugar">
+        </div>
+        <div>
+          <label for="fecha-inicio">FECHA:</label>
+          <input type="date" name="fecha-inicio" id="fecha-inicio" [(ngModel)]="proyecto.fecha_inicio">
+          <label for="fecha-fin">AL</label>
+          <input type="date" name="fecha-fin" id="fecha-fin"  [(ngModel)]="proyecto.fecha_fin">
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="tipo-convenio">TIPO CONVENIO:</label>
+          <select name="tipo-convenio" id="tipo-convenio">
+            <option value="0">seleccione un convenio</option>
+            <option value="1">especifico</option>
+            <option value="2">macro</option>
+          </select>
+        </div>
+        <div>
+          <p>ESTADO:</p>
+          <span class="badge">Pendiente</span>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <label for="presupuesto">PRESUPUESTO:</label>
+          <input type="text" name="presupuesto" id="presupuesto" [(ngModel)]="proyecto.presupuesto">
+        </div>
+        <div>
+          <label for="curso-articulado">CURSO ARTICULADO:</label>
+          <select name="curso-articulado" id="curso-articulado">
+            <option value="1">seleccione un curso</option>
+            <option value="2">Analisis y diseño de sistema</option>
+            <option value="3">Iingenieria de requerimiento</option>
+            <option value="4">lenguaje de programacion</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contenedor-objetivo">
+    <label for="objetivo">OBJETIVO: </label>
+    <textarea name="objetivo" id="objetivo" cols="30" rows="10" [(ngModel)]="proyecto.objetivos"></textarea>
+  </section>
+
+  <section class="contenedor-descripcion">
+    <label for="descripcion">DESCRIPCION: </label>
+    <textarea name="descripcion" id="descripcion" cols="30" rows="10" [(ngModel)]="proyecto.descripcion"></textarea>
+  </section>
+  
+  <section class="contenedor-recursos">
+    <div>Subir documento</div>
+    <div>Listar Documento</div>
+  </section>
+  
+  <section class="contenedor-btn-acciones">
+    <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="guardarProyecto()">Guardar</button>
+  </section>
+</section>

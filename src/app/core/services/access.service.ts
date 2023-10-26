@@ -12,7 +12,7 @@ import { environment_api } from 'src/environments/environment.spring';
 })
 export class AccessService {
 
-  private url: string = environment_api +'acceso'
+  private url: string =  environment_api +'acceso' //'../../../assets/json/Accesos.json'
   
   constructor(private http: HttpClient) { }
 
