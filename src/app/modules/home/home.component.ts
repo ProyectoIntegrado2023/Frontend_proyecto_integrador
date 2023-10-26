@@ -10,30 +10,32 @@ import { PersonaService } from 'src/app/core/services/persona.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
   private subscriptionAcceso!: Subscription;
   private subscriptionPersona!: Subscription;
   accesos: Acceso[] = [];
   persona: Persona = new Persona();
   titulo: string = constGlobal.NOMBRE_PAGINA_WEB;
 
-  constructor( 
-    private router: Router, 
+  constructor(
+    private router: Router,
     private accessService: AccessService,
     private personaService: PersonaService
-  ){}
+  ) {}
 
   ngOnInit(): void {
     const id: number = parseInt(localStorage.getItem('usuario_id')!);
-    this.subscriptionPersona = this.personaService.getById(id).subscribe(data => {
-      this.persona = data;
-    })
+    this.subscriptionPersona = this.personaService
+      .getById(id)
+      .subscribe((data) => {
+        this.persona = data;
+      });
 
-    this.subscriptionAcceso = this.accessService.getAll().subscribe(data => {
-      this.accesos = data.filter(v => v.id_acceso_padre == 0);
+    this.subscriptionAcceso = this.accessService.getAll().subscribe((data) => {
+      this.accesos = data.filter((v) => v.id_acceso_padre == null);
     });
   }
 
@@ -47,12 +49,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  public navegar(module: Acceso){
+  public navegar(module: Acceso) {
     this.router.navigate([module.url]);
   }
 
-  public cerrarSesion(): void{
+  public cerrarSesion(): void {
     this.router.navigate(['/log-in']);
   }
-
 }

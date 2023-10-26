@@ -11,7 +11,6 @@ import { Usuario } from 'src/app/core/model/frontend/usuario.model';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
   hide = true;
   formulario: FormGroup = new FormGroup({});
   titulo: string = constGlobal.NOMBRE_PAGINA_WEB;

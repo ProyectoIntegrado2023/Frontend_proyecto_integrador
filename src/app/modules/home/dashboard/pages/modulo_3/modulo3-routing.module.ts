@@ -1,16 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Modulo3Component } from './modulo3.component';
+import { HorasComponent } from './horas/horas.component';
+import { HorasDetallesComponent } from './horas-detalles/horas-detalles.component';
 
 const routes: Routes = [
   {
+    path: 'horas-detalles',
+    component: HorasDetallesComponent,
+  },
+  {
+    path: 'horas',
+    component: HorasComponent,
+  },
+  {
     path: '',
-    component: Modulo3Component
-  }
+    redirectTo: 'horas-detalles',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class Modulo3RoutingModule { }
+export class Modulo3RoutingModule {}

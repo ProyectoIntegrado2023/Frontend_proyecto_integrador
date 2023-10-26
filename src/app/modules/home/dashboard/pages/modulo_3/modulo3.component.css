@@ -1,0 +1,12 @@
+.custom-input {
+  width: 50%; /* Ajusta el ancho del input */
+  font-weight: 300; /* Ajusta el grosor de la fuente */
+  font-size: 14px; /* Ajusta el tamaño de la fuente */
+  text-align: center; /* Centra el texto dentro del input */
+}
+
+.custom-h1 {
+  font-weight: 400; /* Ajusta el grosor de la fuente del h1 */
+  margin-right: 15px; /* Ajusta el espacio a la derecha del h1 para centrarlo */
+  text-align: right; /* Centra el texto a la derecha */
+}
