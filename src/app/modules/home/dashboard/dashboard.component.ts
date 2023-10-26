@@ -26,11 +26,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const currentUrl = this.router.url;
     const parts = currentUrl.split('/');
-    const url = parts.slice(1, parts.indexOf('modulo') + 2).join('/');
-    console.log(url);
+    const url = parts.slice(1, parts.indexOf('modulo') + 2).join('/')
 
     this.subscription = this.accessService.getAll().subscribe(data => {
-      const accesoPadre = data.find(v => v.id_acceso_padre == 0 && v.url == url);
+      const accesoPadre = data.find(v => v.id_acceso_padre == null && v.url == url);
       this.modulo = accesoPadre?.titulo ?? '';
       this.accesos = data.filter(v => v.id_acceso_padre == accesoPadre?.id);
     });
