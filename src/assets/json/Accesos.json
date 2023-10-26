@@ -49,78 +49,84 @@
   },
   {
     "id_accesos": 9,
+    "nombre": "Horas-Detalles",
+    "url": "home/modulo/3/horas-detalles",
+    "id_accesos_padre": 3
+  },
+  {
+    "id_accesos": 10,
     "nombre": "Usuario",
     "url": "home/modulo/3/usuario",
     "id_accesos_padre": 4
   },
   {
-    "id_accesos": 10,
+    "id_accesos": 11,
     "nombre": "Agregar proyecto",
     "url": "home/modulo/1/agregar-proyecto",
     "id_accesos_padre": 1
   },
   {
-    "id_accesos": 11,
+    "id_accesos": 12,
     "nombre": "Agregar plantilla",
     "url": "home/modulo/1/agregar-plantilla",
     "id_accesos_padre": 1
   },
   {
-    "id_accesos": 12,
+    "id_accesos": 13,
     "nombre": "General",
     "url": "home/modulo/1/agregar-proyecto/general",
     "id_accesos_padre": 10
   },
   {
-    "id_accesos": 13,
+    "id_accesos": 14,
     "nombre": "Roles",
     "url": "home/modulo/1/agregar-proyecto/roles",
     "id_accesos_padre": 10
   },
   {
-    "id_accesos": 14,
+    "id_accesos": 15,
     "nombre": "Actividad",
     "url": "home/modulo/1/agregar-proyecto/actividad",
     "id_accesos_padre": 10
   },
   {
-    "id_accesos": 15,
+    "id_accesos": 16,
     "nombre": "Participante",
     "url": "home/modulo/1/agregar-proyecto/participante",
     "id_accesos_padre": 10
   },
   {
-    "id_accesos": 16,
+    "id_accesos": 17,
     "nombre": "Encargado",
     "url": "home/modulo/1/agregar-proyecto/encargado",
     "id_accesos_padre": 10
   },
   {
-    "id_accesos": 17,
+    "id_accesos": 18,
     "nombre": "General",
     "url": "home/modulo/1/proyecto/editar/general",
     "id_accesos_padre": 6
   },
   {
-    "id_accesos": 18,
+    "id_accesos": 19,
     "nombre": "Roles",
     "url": "home/modulo/1/proyecto/editar/roles",
     "id_accesos_padre": 6
   },
   {
-    "id_accesos": 19,
+    "id_accesos": 20,
     "nombre": "Actividad",
     "url": "home/modulo/1/proyecto/editar/actividad",
     "id_accesos_padre": 6
   },
   {
-    "id_accesos": 20,
+    "id_accesos": 21,
     "nombre": "Participante",
     "url": "home/modulo/1/proyecto/editar/participante",
     "id_accesos_padre": 6
   },
   {
-    "id_accesos": 21,
+    "id_accesos": 22,
     "nombre": "Encargado",
     "url": "home/modulo/1/proyecto/editar/encargado",
     "id_accesos_padre": 6

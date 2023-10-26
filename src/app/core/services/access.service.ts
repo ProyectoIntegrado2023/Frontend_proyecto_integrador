@@ -5,7 +5,6 @@ import { Acceso } from '../model/frontend/acceso.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AccesoFiltrarParaFrontend } from '../transform/acceso.transform';
-import { environment_api } from 'src/environments/environment.spring';
 
 @Injectable({
   providedIn: 'root',
@@ -23,4 +22,5 @@ export class AccessService {
       )
     );
   }
+
 }
