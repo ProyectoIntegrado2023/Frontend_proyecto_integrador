@@ -1,326 +1,296 @@
 [
   {
-    "id_accesos": 1,
-    "nombre": "Gestionar proyecto",
-    "url": "home/modulo/1",
-    "id_accesos_padre": 0
+      "id_accesos": 1,
+      "nombre": "Gestionar proyecto",
+      "url": "home/modulo/1",
+      "id_accesos_padre": null,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 2,
-    "nombre": "Ejecutar proyecto",
-    "url": "home/modulo/2",
-    "id_accesos_padre": 0
+      "id_accesos": 2,
+      "nombre": "Ejecutar proyecto",
+      "url": "home/modulo/2",
+      "id_accesos_padre": null,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 3,
-    "nombre": "Consultar horas",
-    "url": "home/modulo/3",
-    "id_accesos_padre": 0
+      "id_accesos": 3,
+      "nombre": "Consultar horas",
+      "url": "home/modulo/3",
+      "id_accesos_padre": null,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 4,
-    "nombre": "Gestionar usuario",
-    "url": "home/modulo/4",
-    "id_accesos_padre": 0
+      "id_accesos": 4,
+      "nombre": "Gestionar usuario",
+      "url": "home/modulo/4",
+      "id_accesos_padre": null,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 5,
-    "nombre": "Plantilla",
-    "url": "home/modulo/1/plantilla",
-    "id_accesos_padre": 1
+      "id_accesos": 5,
+      "nombre": "Plantilla",
+      "url": "home/modulo/1/plantilla",
+      "id_accesos_padre": 1,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 6,
-    "nombre": "Proyecto",
-    "url": "home/modulo/1/proyecto",
-    "id_accesos_padre": 1
+      "id_accesos": 6,
+      "nombre": "Proyecto",
+      "url": "home/modulo/1/proyecto",
+      "id_accesos_padre": 1,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 7,
-    "nombre": "Proyecto",
-    "url": "home/modulo/2/proyecto",
-    "id_accesos_padre": 2
+      "id_accesos": 7,
+      "nombre": "Proyecto",
+      "url": "home/modulo/2/proyecto",
+      "id_accesos_padre": 2,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 8,
-    "nombre": "Horas del alumno",
-    "url": "home/modulo/3/horas",
-    "id_accesos_padre": 3
+      "id_accesos": 8,
+      "nombre": "Horas del alumno",
+      "url": "home/modulo/3/horas",
+      "id_accesos_padre": 3,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 9,
-    "nombre": "Usuario",
-    "url": "home/modulo/3/usuario",
-    "id_accesos_padre": 4
+      "id_accesos": 10,
+      "nombre": "Agregar proyecto",
+      "url": "home/modulo/1/agregar-proyecto",
+      "id_accesos_padre": 1,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 10,
-    "nombre": "Agregar proyecto",
-    "url": "home/modulo/1/agregar-proyecto",
-    "id_accesos_padre": 1
+      "id_accesos": 11,
+      "nombre": "Agregar plantilla",
+      "url": "home/modulo/1/agregar-plantilla",
+      "id_accesos_padre": 1,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 11,
-    "nombre": "Agregar plantilla",
-    "url": "home/modulo/1/agregar-plantilla",
-    "id_accesos_padre": 1
+      "id_accesos": 12,
+      "nombre": "General",
+      "url": "home/modulo/1/agregar-proyecto/general",
+      "id_accesos_padre": 10,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 12,
-    "nombre": "General",
-    "url": "home/modulo/1/agregar-proyecto/general",
-    "id_accesos_padre": 10
+      "id_accesos": 13,
+      "nombre": "Roles",
+      "url": "home/modulo/1/agregar-proyecto/roles",
+      "id_accesos_padre": 10,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 13,
-    "nombre": "Roles",
-    "url": "home/modulo/1/agregar-proyecto/roles",
-    "id_accesos_padre": 10
+      "id_accesos": 14,
+      "nombre": "Actividad",
+      "url": "home/modulo/1/agregar-proyecto/actividad",
+      "id_accesos_padre": 10,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 14,
-    "nombre": "Actividad",
-    "url": "home/modulo/1/agregar-proyecto/actividad",
-    "id_accesos_padre": 10
+      "id_accesos": 15,
+      "nombre": "Participante",
+      "url": "home/modulo/1/agregar-proyecto/participante",
+      "id_accesos_padre": 10,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 15,
-    "nombre": "Participante",
-    "url": "home/modulo/1/agregar-proyecto/participante",
-    "id_accesos_padre": 10
+      "id_accesos": 16,
+      "nombre": "Encargado",
+      "url": "home/modulo/1/agregar-proyecto/encargado",
+      "id_accesos_padre": 10,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 16,
-    "nombre": "Encargado",
-    "url": "home/modulo/1/agregar-proyecto/encargado",
-    "id_accesos_padre": 10
+      "id_accesos": 17,
+      "nombre": "General",
+      "url": "home/modulo/1/proyecto/editar/general",
+      "id_accesos_padre": 6,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 17,
-    "nombre": "General",
-    "url": "home/modulo/1/proyecto/editar/general",
-    "id_accesos_padre": 6
+      "id_accesos": 18,
+      "nombre": "Roles",
+      "url": "home/modulo/1/proyecto/editar/roles",
+      "id_accesos_padre": 6,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 18,
-    "nombre": "Roles",
-    "url": "home/modulo/1/proyecto/editar/roles",
-    "id_accesos_padre": 6
+      "id_accesos": 19,
+      "nombre": "Actividad",
+      "url": "home/modulo/1/proyecto/editar/actividad",
+      "id_accesos_padre": 6,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 19,
-    "nombre": "Actividad",
-    "url": "home/modulo/1/proyecto/editar/actividad",
-    "id_accesos_padre": 6
+      "id_accesos": 20,
+      "nombre": "Participante",
+      "url": "home/modulo/1/proyecto/editar/participante",
+      "id_accesos_padre": 6,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 20,
-    "nombre": "Participante",
-    "url": "home/modulo/1/proyecto/editar/participante",
-    "id_accesos_padre": 6
+      "id_accesos": 21,
+      "nombre": "Encargado",
+      "url": "home/modulo/1/proyecto/editar/encargado",
+      "id_accesos_padre": 6,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 21,
-    "nombre": "Encargado",
-    "url": "home/modulo/1/proyecto/editar/encargado",
-    "id_accesos_padre": 6
+      "id_accesos": 22,
+      "nombre": "GRUPOS",
+      "url": "home/modulo/2/lista-proyecto/proyecto/grupos",
+      "id_accesos_padre": 7,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 22,
-    "nombre": "Configuracion",
-    "url": "home/modulo/5",
-    "id_accesos_padre": 0
+      "id_accesos": 23,
+      "nombre": "ACTIVIDADES",
+      "url": "home/modulo/2/lista-proyecto/proyecto/actividades",
+      "id_accesos_padre": 7,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 23,
-    "nombre": "Mantener rol negocio",
-    "url": "home/modulo/5/rol-negocio",
-    "id_accesos_padre": 22
+      "id_accesos": 24,
+      "nombre": "Seguimiento",
+      "url": "home/modulo/2/lista-proyecto/proyecto/seguimiento",
+      "id_accesos_padre": 7,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 24,
-    "nombre": "Mantener estado",
-    "url": "home/modulo/5/estado",
-    "id_accesos_padre": 22
+      "id_accesos": 25,
+      "nombre": "Asignar-Horas",
+      "url": "home/modulo/2/lista-proyecto/proyecto/asignar-horas",
+      "id_accesos_padre": 7,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 25,
-    "nombre": "Mantener curso articulado",
-    "url": "home/modulo/5/curso-articulado",
-    "id_accesos_padre": 22
+      "id_accesos": 26,
+      "nombre": "Informe-Final",
+      "url": "home/modulo/2/lista-proyecto/proyecto/informe-final",
+      "id_accesos_padre": 7,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 26,
-    "nombre": "Mantener semestre",
-    "url": "home/modulo/5/semestre",
-    "id_accesos_padre": 22
+      "id_accesos": 28,
+      "nombre": "Horas detalle",
+      "url": "home/modulo/3/horas-detalles",
+      "id_accesos_padre": 3,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 27,
-    "nombre": "Mantener facultad",
-    "url": "home/modulo/5/facultad",
-    "id_accesos_padre": 22
+      "id_accesos": 30,
+      "nombre": "Asignar coordinador",
+      "url": "home/modulo/4/asignar-coordinador",
+      "id_accesos_padre": 4,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 28,
-    "nombre": "Mantener escuela",
-    "url": "home/modulo/5/escuela",
-    "id_accesos_padre": 22
+      "id_accesos": 31,
+      "nombre": "Crear roles del sistema",
+      "url": "home/modulo/4/crear-roles-sistema",
+      "id_accesos_padre": 4,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 29,
-    "nombre": "Mantener ciclo",
-    "url": "home/modulo/5/ciclo",
-    "id_accesos_padre": 22
+      "id_accesos": 32,
+      "nombre": "Listar roles del sistema",
+      "url": "home/modulo/4/listar-roles-sistema",
+      "id_accesos_padre": 4,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 30,
-    "nombre": "Mantener tipo convenio",
-    "url": "home/modulo/5/tipo-convenio",
-    "id_accesos_padre": 22
+      "id_accesos": 33,
+      "nombre": "Seleccionar privilegios",
+      "url": "home/modulo/4/asignar-privilegios/seleccionar-privilegios",
+      "id_accesos_padre": 9,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 31,
-    "nombre": "Mantener docente",
-    "url": "home/modulo/5/docente",
-    "id_accesos_padre": 22
+      "id_accesos": 34,
+      "nombre": "Asignar privilegios",
+      "url": "home/modulo/4/asignar-privilegios",
+      "id_accesos_padre": 4,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 32,
-    "nombre": "Mantener usuario",
-    "url": "home/modulo/5/usuario",
-    "id_accesos_padre": 22
+      "id_accesos": 35,
+      "nombre": "Configuracion",
+      "url": "home/modulo/5",
+      "id_accesos_padre": null,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 1,
-    "nombre": "Gestionar proyecto",
-    "url": "home/modulo/1",
-    "id_accesos_padre": null
+      "id_accesos": 36,
+      "nombre": "Mantener rol negocio",
+      "url": "home/modulo/5/rol-negocio",
+      "id_accesos_padre": 22,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 2,
-    "nombre": "Ejecutar proyecto",
-    "url": "home/modulo/2",
-    "id_accesos_padre": null
+      "id_accesos": 37,
+      "nombre": "Mantener estado",
+      "url": "home/modulo/5/estado",
+      "id_accesos_padre": 22,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 3,
-    "nombre": "Consultar horas",
-    "url": "home/modulo/3",
-    "id_accesos_padre": null
+      "id_accesos": 38,
+      "nombre": "Mantener curso articulado",
+      "url": "home/modulo/5/curso-articulado",
+      "id_accesos_padre": 22,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 4,
-    "nombre": "Gestionar usuario",
-    "url": "home/modulo/4",
-    "id_accesos_padre": null
+      "id_accesos": 39,
+      "nombre": "Mantener semestre",
+      "url": "home/modulo/5/semestre",
+      "id_accesos_padre": 22,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 5,
-    "nombre": "Plantilla",
-    "url": "home/modulo/1/plantilla",
-    "id_accesos_padre": 1
+      "id_accesos": 40,
+      "nombre": "Mantener facultad",
+      "url": "home/modulo/5/facultad",
+      "id_accesos_padre": 22,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 6,
-    "nombre": "Proyecto",
-    "url": "home/modulo/1/proyecto",
-    "id_accesos_padre": 1
+      "id_accesos": 41,
+      "nombre": "Mantener escuela",
+      "url": "home/modulo/5/escuela",
+      "id_accesos_padre": 22,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 7,
-    "nombre": "Proyecto",
-    "url": "home/modulo/2/proyecto",
-    "id_accesos_padre": 2
+      "id_accesos": 42,
+      "nombre": "Mantener ciclo",
+      "url": "home/modulo/5/ciclo",
+      "id_accesos_padre": 22,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 8,
-    "nombre": "Horas del alumno",
-    "url": "home/modulo/3/horas",
-    "id_accesos_padre": 3
+      "id_accesos": 43,
+      "nombre": "Mantener tipo convenio",
+      "url": "home/modulo/5/tipo-convenio",
+      "id_accesos_padre": 22,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 9,
-    "nombre": "Horas-Detalles",
-    "url": "home/modulo/3/horas-detalles",
-    "id_accesos_padre": 3
+      "id_accesos": 44,
+      "nombre": "Mantener docente",
+      "url": "home/modulo/5/docente",
+      "id_accesos_padre": 22,
+      "estado": "ACTIVO"
   },
   {
-    "id_accesos": 10,
-    "nombre": "Usuario",
-    "url": "home/modulo/3/usuario",
-    "id_accesos_padre": 4
-  },
-  {
-    "id_accesos": 11,
-    "nombre": "Agregar proyecto",
-    "url": "home/modulo/1/agregar-proyecto",
-    "id_accesos_padre": 1
-  },
-  {
-    "id_accesos": 12,
-    "nombre": "Agregar plantilla",
-    "url": "home/modulo/1/agregar-plantilla",
-    "id_accesos_padre": 1
-  },
-  {
-    "id_accesos": 13,
-    "nombre": "General",
-    "url": "home/modulo/1/agregar-proyecto/general",
-    "id_accesos_padre": 10
-  },
-  {
-    "id_accesos": 14,
-    "nombre": "Roles",
-    "url": "home/modulo/1/agregar-proyecto/roles",
-    "id_accesos_padre": 10
-  },
-  {
-    "id_accesos": 15,
-    "nombre": "Actividad",
-    "url": "home/modulo/1/agregar-proyecto/actividad",
-    "id_accesos_padre": 10
-  },
-  {
-    "id_accesos": 16,
-    "nombre": "Participante",
-    "url": "home/modulo/1/agregar-proyecto/participante",
-    "id_accesos_padre": 10
-  },
-  {
-    "id_accesos": 17,
-    "nombre": "Encargado",
-    "url": "home/modulo/1/agregar-proyecto/encargado",
-    "id_accesos_padre": 10
-  },
-  {
-    "id_accesos": 18,
-    "nombre": "General",
-    "url": "home/modulo/1/proyecto/editar/general",
-    "id_accesos_padre": 6
-  },
-  {
-    "id_accesos": 19,
-    "nombre": "Roles",
-    "url": "home/modulo/1/proyecto/editar/roles",
-    "id_accesos_padre": 6
-  },
-  {
-    "id_accesos": 20,
-    "nombre": "Actividad",
-    "url": "home/modulo/1/proyecto/editar/actividad",
-    "id_accesos_padre": 6
-  },
-  {
-    "id_accesos": 21,
-    "nombre": "Participante",
-    "url": "home/modulo/1/proyecto/editar/participante",
-    "id_accesos_padre": 6
-  },
-  {
-    "id_accesos": 22,
-    "nombre": "Encargado",
-    "url": "home/modulo/1/proyecto/editar/encargado",
-    "id_accesos_padre": 6
+      "id_accesos": 45,
+      "nombre": "Mantener usuario",
+      "url": "home/modulo/5/usuario",
+      "id_accesos_padre": 22,
+      "estado": "ACTIVO"
   }
 ]

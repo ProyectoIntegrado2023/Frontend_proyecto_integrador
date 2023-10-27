@@ -1,0 +1,56 @@
+<div *ngIf="status; else navegar">
+  <br><br>
+<div class="container1">
+<button id="buscar">BUSCAR</button>
+<input type="text" placeholder="Ingrese DNI">
+</div>
+<br><br>
+<div>
+   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> N° </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+  
+    <!-- Dni Column -->
+    <ng-container matColumnDef="dni">
+      <th mat-header-cell *matHeaderCellDef> DNI </th>
+      <td mat-cell *matCellDef="let element"> {{element.dni}} </td>
+    </ng-container>
+  
+    <!-- Nombre Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+  
+    <!-- Rol-Sistema Column -->
+    <ng-container matColumnDef="rolsis">
+      <th mat-header-cell *matHeaderCellDef> ROL - SISTEMA </th>
+      <td mat-cell *matCellDef="let element"> {{element.rolsis}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="accion">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let element">
+        <button (click)="navegate()">SELECT</button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+    </table>
+</div>
+  
+  
+
+</div>
+<ng-template #navegar>
+  <router-outlet></router-outlet>
+</ng-template>
