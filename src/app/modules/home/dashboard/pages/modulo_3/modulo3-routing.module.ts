@@ -5,18 +5,18 @@ import { HorasDetallesComponent } from './horas-detalles/horas-detalles.componen
 
 const routes: Routes = [
   {
-    path: 'horas-detalles',
-    component: HorasDetallesComponent,
-  },
-  {
-    path: 'horas',
-    component: HorasComponent,
-  },
-  {
     path: '',
     redirectTo: 'horas-detalles',
     pathMatch: 'full',
   },
+  {
+    path: 'horas-detalles',
+    loadChildren: () => import('./horas-detalles/horas-detalles.module').then(m => m.HorasDetallesModule)
+  },
+  {
+    path: 'horas',
+    loadChildren: () => import('./horas/horas.module').then(m => m.HorasModule)
+  }
 ];
 
 @NgModule({

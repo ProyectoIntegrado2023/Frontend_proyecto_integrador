@@ -7,6 +7,9 @@ import { Column } from '../horas-detalles/interface/Table.interface';
   styleUrls: ['./horas.component.css']
 })
 export class HorasComponent implements OnInit {
+  
+  col: any[] = []
+  
   constructor() {}
 
   ngOnInit(): void {

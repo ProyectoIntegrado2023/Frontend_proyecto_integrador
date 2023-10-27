@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Modulo3Component } from './modulo3.component';
+import { InfFinalComponent } from './inf-final.component';
 
-describe('Modulo3Component', () => {
-  let component: Modulo3Component;
-  let fixture: ComponentFixture<Modulo3Component>;
+describe('InfFinalComponent', () => {
+  let component: InfFinalComponent;
+  let fixture: ComponentFixture<InfFinalComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [Modulo3Component]
+      declarations: [InfFinalComponent]
     });
-    fixture = TestBed.createComponent(Modulo3Component);
+    fixture = TestBed.createComponent(InfFinalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { GruposRoutingModule } from './grupos-routing.module';
 
-import { Modulo4RoutingModule } from './modulo4-routing.module';
+
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    Modulo4RoutingModule,
+    GruposRoutingModule
   ]
 })
-export class Modulo4Module { }
+export class GruposModule { }
