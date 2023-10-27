@@ -1,25 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ProyectoModel } from '../model/backend/proyecto.model';
-import { map } from 'rxjs/operators';
-import { Proyecto } from '../model/frontend/proyecto.model';
 import { Observable } from 'rxjs';
-import { ProyectoFiltrarParaBackend, ProyectoFiltrarParaFrontend } from '../transform/proyecto.transform';
+import { map } from 'rxjs/operators';
+import { ProyectoModel } from '../model/backend/proyecto.model';
 import { ProyectoEntity } from '../model/database/proyecto.model';
-import { environment_api } from 'src/environments/environment.spring';
+import { Proyecto } from '../model/frontend/proyecto.model';
+import { ProyectoFiltrarParaBackend, ProyectoFiltrarParaFrontend } from '../transform/proyecto.transform';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProyectoService {
-  
-  private url: string = environment_api + 'proyecto' // '../../../assets/json/Proyectos.json'
+
+  private url: string = '../../../assets/json/Proyectos.json' // environment_api + 'proyecto'
   constructor(
     private http: HttpClient
   ){}
 
   public getAll(): Observable<Proyecto[]>{
-    return this.http.get<ProyectoModel[]>(this.url + '/list').pipe( //+ '/list'
+    return this.http.get<ProyectoModel[]>(this.url).pipe( //+ '/list'
       map((proyectosModel: ProyectoModel[]) => proyectosModel.map(ProyectoFiltrarParaFrontend))
     );
 
