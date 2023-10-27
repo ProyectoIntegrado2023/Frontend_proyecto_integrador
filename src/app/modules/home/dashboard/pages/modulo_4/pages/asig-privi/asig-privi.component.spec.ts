@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AsigPriviComponent } from './asig-privi.component';
 
-import { ProyectoComponent } from './proyecto.component';
 
-describe('ProyectoComponent', () => {
-  let component: ProyectoComponent;
-  let fixture: ComponentFixture<ProyectoComponent>;
+describe('AsigPriviComponent', () => {
+  let component: AsigPriviComponent;
+  let fixture: ComponentFixture<AsigPriviComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProyectoComponent]
+      declarations: [AsigPriviComponent]
     });
-    fixture = TestBed.createComponent(ProyectoComponent);
+    fixture = TestBed.createComponent(AsigPriviComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

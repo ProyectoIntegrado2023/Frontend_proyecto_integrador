@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     })
 
     this.subscriptionAcceso = this.accessService.getAll().subscribe(data => {
-      this.accesos = data.filter(v => v.id_acceso_padre == 0);
+      this.accesos = data.filter(v => v.id_acceso_padre == null);
     });
   }
 
