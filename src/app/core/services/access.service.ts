@@ -12,12 +12,12 @@ import { environment_api } from 'src/environments/environment.spring';
 })
 export class AccessService {
 
-  private url: string =  environment_api +'acceso' //'../../../assets/json/Accesos.json'
+  private url: string = environment_api +'acceso'  //'../../../assets/json/Accesos.json'
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Acceso[]>{
-    return this.http.get<AccesoModel[]>(this.url + '/list').pipe(
+    return this.http.get<AccesoModel[]>(this.url + '/list').pipe( //+ '/list'
       map((accesosModel: AccesoModel[]) => accesosModel.map(AccesoFiltrarParaFrontend))
     )
   }

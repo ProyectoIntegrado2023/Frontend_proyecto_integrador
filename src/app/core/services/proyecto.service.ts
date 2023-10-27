@@ -13,13 +13,13 @@ import { environment_api } from 'src/environments/environment.spring';
 })
 export class ProyectoService {
   
-  private url: string = environment_api + 'proyecto'
+  private url: string = environment_api + 'proyecto' // '../../../assets/json/Proyectos.json'
   constructor(
     private http: HttpClient
   ){}
 
   public getAll(): Observable<Proyecto[]>{
-    return this.http.get<ProyectoModel[]>(this.url + '/list').pipe(
+    return this.http.get<ProyectoModel[]>(this.url + '/list').pipe( //+ '/list'
       map((proyectosModel: ProyectoModel[]) => proyectosModel.map(ProyectoFiltrarParaFrontend))
     );
 

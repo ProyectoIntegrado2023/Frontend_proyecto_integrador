@@ -44,7 +44,7 @@
   {
       "id_accesos": 7,
       "nombre": "Proyecto",
-      "url": "home/modulo/2/proyecto",
+      "url": "home/modulo/2/lista-proyecto",
       "id_accesos_padre": 2,
       "estado": "ACTIVO"
   },
