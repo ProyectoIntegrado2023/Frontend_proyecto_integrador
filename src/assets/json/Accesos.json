@@ -43,9 +43,9 @@
   },
   {
     "id": 7,
-    "titulo": "Proyecto",
+    "titulo": "Lista Proyecto",
     "icon": null,
-    "url": "home/modulo/2/proyecto",
+    "url": "home/modulo/2/lista-proyecto",
     "id_acceso_padre": 2
   },
   {
@@ -117,5 +117,41 @@
     "icon": null,
     "url": "home/modulo/1/agregar-proyecto/encargado",
     "id_acceso_padre": 10
+  },
+  {
+    "id": 17,
+    "titulo": "Grupos",
+    "icon": null,
+    "url": "home/modulo/2/lista-proyecto/proyecto/grupos",
+    "id_acceso_padre": 7
+  },
+  {
+    "id": 18,
+    "titulo": "Actividades",
+    "icon": null,
+    "url": "home/modulo/2/lista-proyecto/proyecto/actividades",
+    "id_acceso_padre": 7
+  },
+  {
+    "id": 19,
+    "titulo": "Seguimiento",
+    "icon": null,
+    "url": "home/modulo/2/lista-proyecto/proyecto/seguimiento",
+    "id_acceso_padre": 7
+  },
+  {
+    "id": 20,
+    "titulo": "Asignar-Horas",
+    "icon": null,
+    "url": "home/modulo/2/lista-proyecto/proyecto/asignar-horas",
+    "id_acceso_padre": 7
+  },
+  {
+    "id": 21,
+    "titulo": "Informe-Final",
+    "icon": null,
+    "url": "home/modulo/2/lista-proyecto/proyecto/informe-final",
+    "id_acceso_padre": 7
   }
-]  
+
+]
