@@ -227,70 +227,70 @@
       "id_accesos": 36,
       "nombre": "Mantener rol negocio",
       "url": "home/modulo/5/rol-negocio",
-      "id_accesos_padre": 22,
+      "id_accesos_padre": 35,
       "estado": "ACTIVO"
   },
   {
       "id_accesos": 37,
       "nombre": "Mantener estado",
       "url": "home/modulo/5/estado",
-      "id_accesos_padre": 22,
+      "id_accesos_padre": 35,
       "estado": "ACTIVO"
   },
   {
       "id_accesos": 38,
       "nombre": "Mantener curso articulado",
       "url": "home/modulo/5/curso-articulado",
-      "id_accesos_padre": 22,
+      "id_accesos_padre": 35,
       "estado": "ACTIVO"
   },
   {
       "id_accesos": 39,
       "nombre": "Mantener semestre",
       "url": "home/modulo/5/semestre",
-      "id_accesos_padre": 22,
+      "id_accesos_padre": 35,
       "estado": "ACTIVO"
   },
   {
       "id_accesos": 40,
       "nombre": "Mantener facultad",
       "url": "home/modulo/5/facultad",
-      "id_accesos_padre": 22,
+      "id_accesos_padre": 35,
       "estado": "ACTIVO"
   },
   {
       "id_accesos": 41,
       "nombre": "Mantener escuela",
       "url": "home/modulo/5/escuela",
-      "id_accesos_padre": 22,
+      "id_accesos_padre": 35,
       "estado": "ACTIVO"
   },
   {
       "id_accesos": 42,
       "nombre": "Mantener ciclo",
       "url": "home/modulo/5/ciclo",
-      "id_accesos_padre": 22,
+      "id_accesos_padre": 35,
       "estado": "ACTIVO"
   },
   {
       "id_accesos": 43,
       "nombre": "Mantener tipo convenio",
       "url": "home/modulo/5/tipo-convenio",
-      "id_accesos_padre": 22,
+      "id_accesos_padre": 35,
       "estado": "ACTIVO"
   },
   {
       "id_accesos": 44,
       "nombre": "Mantener docente",
       "url": "home/modulo/5/docente",
-      "id_accesos_padre": 22,
+      "id_accesos_padre": 35,
       "estado": "ACTIVO"
   },
   {
       "id_accesos": 45,
       "nombre": "Mantener usuario",
       "url": "home/modulo/5/usuario",
-      "id_accesos_padre": 22,
+      "id_accesos_padre": 35,
       "estado": "ACTIVO"
   }
 ]

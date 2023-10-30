@@ -1,33 +1,84 @@
-import { SemestreModel } from './semestre.model';
-import { ActividadModel } from './actividad.model';
-import { RecursoModel } from './recurso.model';
-import { ParticipanteModel } from './participante.model';
-import { RolProyectoModel } from './rolProyecto.model';
-import { CicloModel } from './ciclo.model';
-import { EscuelaModel } from './escuela.model';
-import { TipoConvenioModel } from './tipoConvenio.model';
-import { EstadoModel } from './estado.model';
+import { Proyecto } from '../index.frontend';
+import { SemestreModel, ActividadModel, RecursoModel, 
+  ParticipanteModel, RolProyectoModel, CicloModel, 
+  EscuelaModel, TipoConvenioModel, EstadoModel, CursoArticuladoModel } from '../index.backend';
 
 export class ProyectoModel {
-    actividades:          ActividadModel[]            = [];
-    recurso:              RecursoModel[]              = [];
-    participante:         ParticipanteModel[]         = [];
-    rol_proyecto:         RolProyectoModel[]          = [];
-    id_curso_articulado:  any                         = null;
-    id_tipo_de_convenio:  TipoConvenioModel           = new TipoConvenioModel();
-    id_estado:            EstadoModel                 = new EstadoModel();
-    id_ciclo:             CicloModel                  = new CicloModel();
-    id_escuela:           EscuelaModel                = new EscuelaModel();
-    nombre:               string                      = '';
-    codigo:               string                      = '';
-    coordinador:          string                      = '';
-    lugar:                string                      = '';
-    fecha_inicio:         string                      = '';
-    presupuesto:          number                      = 0;
-    id_semestre:          SemestreModel               = new SemestreModel();
-    fecha_fin:            string                      = '';
-    descripcion:          string                      = '';
-    objetivos:            string                      = '';
-    informe_final:        string                      = '';
-    id_proyecto:          number | null               = null;
+
+  static init(): ProyectoModel {
+    return new this(
+      0,
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      0,
+      '',
+      '',
+      '',
+      CursoArticuladoModel.init(),
+      TipoConvenioModel.init(),
+      EstadoModel.init(),
+      CicloModel.init(),
+      EscuelaModel.init(),
+      SemestreModel.init(),
+      [],
+      [],
+      [],
+      [],
+    )
+  }
+
+  static fromFrontend(obj: Proyecto): ProyectoModel{
+    return obj != null ? new this(
+      obj.id,
+      obj.nombre,
+      obj.codigo,
+      obj.coordinador,
+      obj.fecha_inicio,
+      obj.fecha_fin,
+      obj.lugar,
+      obj.presupuesto,
+      obj.descripcion,
+      obj.objetivos,
+      obj.informe_final,
+      CursoArticuladoModel.fromFrontend(obj.curso_articulado),
+      TipoConvenioModel.fromFrontend(obj.tipo_convenio),
+      EstadoModel.fromFrontend(obj.estado),
+      CicloModel.fromFrontend(obj.ciclo),
+      EscuelaModel.fromFrontend(obj.escuela),
+      SemestreModel.fromFrontend(obj.semestre),
+      [],
+      [],
+      [],
+      []
+    ) : this.init();
+  }
+
+  constructor(
+    public id_proyecto           : number                 | null,
+    public nombre                : string                 | null,
+    public codigo                : string                 | null,
+    public coordinador           : string                 | null,
+    public fecha_inicio          : string                 | null,
+    public fecha_fin             : string                 | null,
+    public lugar                 : string                 | null,
+    public presupuesto           : number                 | null,
+    public descripcion           : string                 | null,
+    public objetivos             : string                 | null,
+    public informe_final         : string                 | null,
+    public id_curso_articulado   : CursoArticuladoModel   ,
+    public id_tipo_de_convenio   : TipoConvenioModel      ,
+    public id_estado             : EstadoModel            ,
+    public id_ciclo              : CicloModel             ,
+    public id_escuela            : EscuelaModel           ,
+    public id_semestre           : SemestreModel          ,
+    public actividades           : ActividadModel[]       ,
+    public recurso               : RecursoModel[]         ,
+    public participante          : ParticipanteModel[]    ,
+    public rol_proyecto          : RolProyectoModel[]     ,
+  ){}
+
   }

@@ -1,9 +1,9 @@
-import { AccessService } from './../../../core/services/access.service';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Acceso } from 'src/app/core/model/frontend/acceso.model';
-import { constGlobal } from '../../../core/global/const-global';
 import { Subscription } from 'rxjs';
+import { Acceso } from 'src/app/core/model/index.frontend';
+import { NOMBRE_PAGINA_WEB } from '../../../core/global/const-global';
+import { AccessService } from 'src/app/core/index.services';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
 export class DashboardComponent implements OnInit, OnDestroy {
   
   private subscription!: Subscription;
-  titulo: string = constGlobal.NOMBRE_PAGINA_WEB
+  titulo: string = NOMBRE_PAGINA_WEB
   modulo: string = ''
   accesos: Acceso[] = []
   statusSidebar:boolean = true

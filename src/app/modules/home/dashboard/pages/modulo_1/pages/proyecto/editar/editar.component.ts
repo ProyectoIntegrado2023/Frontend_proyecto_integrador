@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Proyecto } from 'src/app/core/model/frontend/proyecto.model';
+import { Proyecto } from 'src/app/core/model/index.frontend';
 
 @Component({
   selector: 'app-editar',

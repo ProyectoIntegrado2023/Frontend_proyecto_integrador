@@ -1,3 +1,1 @@
-export class constGlobal {
-    public static readonly NOMBRE_PAGINA_WEB = 'OverSky';
-}
+export const NOMBRE_PAGINA_WEB = 'OverSky'

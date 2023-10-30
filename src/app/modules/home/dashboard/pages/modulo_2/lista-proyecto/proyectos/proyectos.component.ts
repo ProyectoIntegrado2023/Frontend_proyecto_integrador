@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Acceso } from 'src/app/core/model/frontend/acceso.model';
-import { AccessService } from 'src/app/core/services/access.service';
+import { Acceso } from 'src/app/core/model/index.frontend';
+import { AccessService } from 'src/app/core/index.services';
 
 @Component({
   selector: 'app-proyectos',

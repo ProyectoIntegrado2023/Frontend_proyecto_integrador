@@ -1,8 +1,8 @@
 <section class="form">
   <article class="alerta-confirmacion" (click)="cerrarConfirmacion()"
   [ngClass]="{
-    'confirmado': confirmarGuardado,
-    'no-confirmado': !confirmarGuardado,
+    'confirmado': confirmarEnvioHttp,
+    'no-confirmado': !confirmarEnvioHttp,
     'satisfecho': satisfaccion,
     'no-satisfecho': !satisfaccion
   }">
@@ -10,9 +10,9 @@
   </article>
   <section class="contenedor-datos-principales">
     <div class="datos-general">
-      <h1 class="title-datos-generales">#20232FIA2</h1>
-      <h3>ESCUELA INGENIERIA DE SISTEMA</h3>
-      <h5>CORDINADORA: DIANA SANCHEZ</h5>
+      <h1 class="title-datos-generales">{{proyecto.codigo}}</h1>
+      <h3>{{proyecto.escuela.nombre | uppercase}}</h3>
+      <h5>CORDINADOR: {{proyecto.coordinador | uppercase}}</h5>
     </div>
 
     <div class="datos-proyecto-general">
@@ -56,11 +56,9 @@
         </div>
         <div>
           <label for="curso-articulado">CURSO ARTICULADO:</label>
-          <select name="curso-articulado" id="curso-articulado">
-            <option value="1">seleccione un curso</option>
-            <option value="2">Analisis y diseño de sistema</option>
-            <option value="3">Iingenieria de requerimiento</option>
-            <option value="4">lenguaje de programacion</option>
+          <select name="curso-articulado" id="curso-articulado" [(ngModel)]="proyecto.curso_articulado">
+            <option [value]="null">seleccione un curso</option>
+            <option [ngValue]="curso" *ngFor="let curso of listaCursoArticulado">{{curso.nombre}}</option>
           </select>
         </div>
       </div>

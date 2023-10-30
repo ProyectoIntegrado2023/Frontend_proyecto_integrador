@@ -1,8 +1,7 @@
-import { Acceso } from 'src/app/core/model/frontend/acceso.model';
-import { AccessService } from './../../../../../../../core/services/access.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Proyecto } from 'src/app/core/model/frontend/proyecto.model';
+import { AccessService } from 'src/app/core/index.services';
+import { Acceso, Proyecto } from 'src/app/core/model/index.frontend';
 
 @Component({
   selector: 'app-agregar-proyecto',

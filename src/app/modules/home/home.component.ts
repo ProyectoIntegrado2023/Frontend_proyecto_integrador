@@ -1,11 +1,9 @@
-import { AccessService } from './../../core/services/access.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Acceso } from 'src/app/core/model/frontend/acceso.model';
-import { constGlobal } from '../../core/global/const-global';
 import { Subscription } from 'rxjs';
-import { Persona } from 'src/app/core/model/frontend/persona.model';
-import { PersonaService } from 'src/app/core/services/persona.service';
+import { NOMBRE_PAGINA_WEB } from '../../core/global/const-global';
+import { Acceso, Persona } from 'src/app/core/model/index.frontend';
+import { AccessService, PersonaService } from 'src/app/core/index.services';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +15,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   private subscriptionAcceso!: Subscription;
   private subscriptionPersona!: Subscription;
   accesos: Acceso[] = [];
-  persona: Persona = new Persona();
-  titulo: string = constGlobal.NOMBRE_PAGINA_WEB;
+  persona: Persona = Persona.init();
+  titulo: string = NOMBRE_PAGINA_WEB;
 
   constructor(
     private router: Router,

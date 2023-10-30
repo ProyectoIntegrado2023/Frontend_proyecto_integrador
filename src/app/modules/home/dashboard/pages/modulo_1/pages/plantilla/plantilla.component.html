@@ -14,8 +14,8 @@
         <div class="card-contenido">
             <mat-card-title>{{plantilla.nombre}}</mat-card-title>
             <mat-card-subtitle>{{plantilla.descripcion}}</mat-card-subtitle>
-            <div class="card-badge" [ngClass]="plantilla.tipo == 'especifico' ? 'especifico':'macro' ">
-                {{plantilla.tipo}}
+            <div class="card-badge" [ngClass]="plantilla.tipo_convenio.nombre == 'especifico' ? 'especifico':'macro' ">
+                {{plantilla.tipo_convenio.nombre}}
             </div>
         </div>
     </mat-card>

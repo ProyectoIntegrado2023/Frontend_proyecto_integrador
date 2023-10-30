@@ -1,0 +1,27 @@
+export { Acceso } from "./frontend/acceso.model";
+export { Actividad } from "./frontend/actividad.model";
+export { ActividadParticipante } from "./frontend/actividadParticipante.model";
+export { Ciclo } from "./frontend/ciclo.model";
+export { CursoArticulado } from "./frontend/cursoArticulado.model";
+export { Docente } from "./frontend/docente.model";
+export { Encargado } from "./frontend/encargado.model";
+export { Escuela } from "./frontend/escuela.model";
+export { Estado } from "./frontend/estado.model";
+export { Estudiante } from "./frontend/estudiante.model";
+export { Facultad } from "./frontend/facultad.model";
+export { GrupoUniversitario } from "./frontend/grupoUniversitario.model";
+export { Participante } from "./frontend/participante.model";
+export { Persona } from "./frontend/persona.model";
+export { Plantilla } from "./frontend/plantilla.model";
+export { Proyecto } from "./frontend/proyecto.model";
+export { Recurso } from "./frontend/recurso.model";
+export { RolNegocio } from "./frontend/rolNegocio.model";
+export { RolProyecto } from "./frontend/rolProyecto.model";
+export { RolProyectoEncargado } from "./frontend/rolProyectoEncargado.model";
+export { RolSistema } from "./frontend/rolSistema.model";
+export { RolSistemaAcceso } from "./frontend/rolSistemaAcceso.model";
+export { Semestre } from "./frontend/semestre.model";
+export { TipoConvenio } from "./frontend/tipoConvenio.model";
+export { Usuario } from "./frontend/usuario.model";
+export { UsuarioAcceso } from "./frontend/usuarioAcceso.model";
+

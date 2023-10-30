@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { Proyecto } from '../../../../../../../../core/model/frontend/proyecto.model'
-import { ProyectoService } from 'src/app/core/services/proyecto.service';
 import { Router } from '@angular/router';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Proyecto } from 'src/app/core/model/index.frontend'
+import { ProyectoService } from 'src/app/core/index.services';
 
 @Component({
   selector: 'app-listar',

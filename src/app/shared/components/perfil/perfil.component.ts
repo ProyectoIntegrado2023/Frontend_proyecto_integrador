@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Persona } from 'src/app/core/model/frontend/persona.model';
-import { PersonaService } from 'src/app/core/services/persona.service';
+import { Persona } from 'src/app/core/model/index.frontend';
+import { PersonaService } from 'src/app/core/index.services';
 
 @Component({
   selector: 'app-perfil',
@@ -12,7 +12,7 @@ import { PersonaService } from 'src/app/core/services/persona.service';
 export class PerfilComponent implements OnInit, OnDestroy {
 
   private subscriptionPersona!: Subscription
-  persona: Persona = new Persona();
+  persona: Persona = Persona.init();
   constructor(
     private router: Router,
     private personaService: PersonaService,
