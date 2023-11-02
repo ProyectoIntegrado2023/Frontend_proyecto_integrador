@@ -166,10 +166,15 @@ textarea:focus {
   .contenedor-datos-principales {
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     & .datos-proyecto-general > div:has(>div) {
       display: flex;
       flex-direction: column;
+      align-items: center;
+    }
+    & .datos-proyecto-general > div:has(>select) {
+      justify-content: center;
     }
   }
 }
