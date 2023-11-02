@@ -39,7 +39,7 @@ export class GeneralComponent implements OnInit {
   ngOnInit ():void {
     if(this.router.url === this.urlGuardar) {
       localStorage.removeItem('proyecto');
-      this.persona = JSON.parse(localStorage.getItem('persona')!);
+      this.persona = JSON.parse(localStorage.getItem('persona')!);      
       this.proyecto.coordinador = this.persona.nombre;
 
       this.tipoConvenioService.getAll().subscribe(data => {
@@ -57,13 +57,13 @@ export class GeneralComponent implements OnInit {
 
     } else {
       this.proyecto = localStorage.getItem('proyecto') ? JSON.parse(localStorage.getItem('proyecto')!) : Proyecto.init();
-      this.proyectoService.getAll().subscribe(data => {
-        this.listaProyecto = data
-      })
       this.cursoArticuladoService.getAll().subscribe(data => {
         this.listaCursoArticulado = data.filter(c => c.escuela.nombre == this.proyecto.escuela.nombre)
       })
     }
+    this.proyectoService.getAll().subscribe(data => {
+      this.listaProyecto = data
+    })
   }
 
   public guardarProyecto() {
@@ -72,7 +72,7 @@ export class GeneralComponent implements OnInit {
         (res) => {
           this.mensaje = 'se guardo corectamente'
           this.satisfaccion = true
-          // this.proyecto = Proyecto.init()
+          // localStorage.setItem('proyectoAgregado', JSON.stringify(this.proyecto))
         },
         (error) => {
           this.mensaje = 'ocurrio un error'
@@ -111,10 +111,11 @@ export class GeneralComponent implements OnInit {
   }
 
   public generarCodigoProyecto(escuela: string) {
+    // que el proyecto creado permasca hasta que cambie de sesion
     const año = new Date().getFullYear();
     const abreviacion = this.obtenerAbreviacionEscuela(escuela);
     const numeroProyectos = this.obtenerNumeroProyectos(año + abreviacion); //mejorar no cuenta los proyecto creados anteriormente para aumentar
-    const numeroProyectosStr = numeroProyectos.toString().padStart(2, '0'); //formateado para dos numeros revisar si funciona como deberia
+    const numeroProyectosStr = numeroProyectos.toString().padStart(2, '0'); 
     const codigoProyecto = año + abreviacion + numeroProyectosStr;
 
     return codigoProyecto;
@@ -131,14 +132,16 @@ export class GeneralComponent implements OnInit {
 
   public obtenerNumeroProyectos(codigo: string) {
     let contadorCodigo: number = 0;
-    this.listaProyecto.filter(p => {
+    this.listaProyecto.forEach(p => {
       if(p.codigo != null) {
-        const parteInicial = p.codigo.match(/^\d+[A-Z]+/)![0]; //buscar las letras del codigo y los separa del resto del codigo
-        if(parteInicial == codigo) {
-          contadorCodigo++;
-        }
+        try{
+          const parteInicial = p.codigo.substring(0, p.codigo.length -2);
+          if(parteInicial == codigo) {
+            contadorCodigo++;
+          }
+        } catch {}
       }
-    });
+    })
     return contadorCodigo + 1;
   }
 
