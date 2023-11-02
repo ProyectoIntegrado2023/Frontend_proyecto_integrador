@@ -23,10 +23,19 @@ header {
 
 }
 
-
 main {
     overflow-y: scroll;
     max-height: calc(100vh - 80px);
+}
+
+i {
+    cursor: pointer;
+}
+
+.nombre-pagina-web:hover {
+    /* text-decoration: underline; */
+    font-weight: 500;
+    font-size: x-large;
 }
 
 .content {
@@ -72,8 +81,19 @@ main {
 }
 
 .sidebar button {
+    padding: 0.5rem;
     background: var(--color-indigo);
+    width: 100%;
     color: #fff;
+    border: none;
+
+    &:hover {
+        background: #3426ff;
+    }
+}
+
+.sidebar button.active {
+    background: #1e14ac;
 }
 
 .container-sidebar-large{

@@ -12,7 +12,8 @@ import { AccessService } from 'src/app/core/index.services';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   
-  private subscription!: Subscription;
+  subscription!: Subscription;
+  AccesoSeleccionado: number = 0
   titulo: string = NOMBRE_PAGINA_WEB
   modulo: string = ''
   accesos: Acceso[] = []
@@ -32,6 +33,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       const accesoPadre = data.find(v => v.id_acceso_padre == null && v.url == url);
       this.modulo = accesoPadre?.titulo ?? '';
       this.accesos = data.filter(v => v.id_acceso_padre == accesoPadre?.id);
+      this.AccesoSeleccionado = this.accesos[0].id ?? 0;
     });
 
   }
@@ -43,6 +45,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   public navegar(acceso: Acceso) {
+    this.AccesoSeleccionado = acceso.id ?? 0;
     this.router.navigate([acceso.url]);
   }
 

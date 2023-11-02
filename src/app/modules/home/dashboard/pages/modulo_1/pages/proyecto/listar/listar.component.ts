@@ -15,6 +15,7 @@ export class ListarComponent implements OnInit  {
   listaProyecto: Proyecto[] = []
   displayedColumns: string[] = ['codigo', 'nombre', 'tipo', 'coordinador','semestre', 'lugar', 'escuela', 'estado', 'accion'];
   dataSource!: MatTableDataSource<Proyecto>;
+  arrayPaginator: number[] = [5, 10, 25, 100];
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   @ViewChild(MatSort) sort: MatSort | any;

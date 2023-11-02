@@ -11,7 +11,7 @@ import { UsuarioService } from 'src/app/core/index.services';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  hide = true;
+  hide: boolean = true;
   formulario: FormGroup = new FormGroup({});
   titulo: string = NOMBRE_PAGINA_WEB;
   usuarios: Usuario[] = []
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    localStorage.removeItem('usuario_id');
+    localStorage.removeItem('persona');
 
     this.usuarioService.getAll().subscribe(data => {
       this.usuarios = data
@@ -40,10 +40,9 @@ export class LoginComponent implements OnInit {
   onSumit(): void{
     const { value } = this.formulario;
     const loginValid: boolean = this.usuarios.some(v => v.username === value.usuario && v.password === value.contrasena)
-    const usuario: Usuario = this.usuarios.find(v => v.username === value.usuario && v.password === value.contrasena)!;
-
     if (loginValid) {
-      usuario.id != null ? localStorage.setItem('usuario_id', usuario.id.toString()) : null
+      const usuario: Usuario = this.usuarios.find(v => v.username === value.usuario && v.password === value.contrasena)!;
+      localStorage.setItem('persona', JSON.stringify(usuario.persona));
       this.router.navigate(['/home']);
     } else {
       this.loginError = true

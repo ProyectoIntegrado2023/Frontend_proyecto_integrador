@@ -1,34 +1,21 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { Persona } from 'src/app/core/model/index.frontend';
-import { PersonaService } from 'src/app/core/index.services';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent implements OnInit, OnDestroy {
+export class PerfilComponent implements OnInit {
 
-  private subscriptionPersona!: Subscription
   persona: Persona = Persona.init();
   constructor(
     private router: Router,
-    private personaService: PersonaService,
   ){}
     
   ngOnInit(): void {
-    const id: number = parseInt(localStorage.getItem('usuario_id')!);
-    this.subscriptionPersona = this.personaService.getById(id).subscribe(data => {
-      this.persona = data;
-    })
-  }
-
-  ngOnDestroy(): void {
-    if (this.subscriptionPersona) {
-      this.subscriptionPersona.unsubscribe();
-    }
+    this.persona = JSON.parse(localStorage.getItem('persona')!)
   }
 
   public cerrarSesion(): void{

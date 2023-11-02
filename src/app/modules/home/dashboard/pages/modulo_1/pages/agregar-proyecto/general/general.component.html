@@ -10,8 +10,10 @@
   </article>
   <section class="contenedor-datos-principales">
     <div class="datos-general">
-      <h1 class="title-datos-generales">{{proyecto.codigo}}</h1>
-      <h3>{{proyecto.escuela.nombre | uppercase}}</h3>
+      <h1 class="title-datos-generales">{{proyecto.codigo || 'GENERANDO...'}}</h1>
+      <select name="escuela" id="escuela" (change)="filtrarCursoPorEscula()" [(ngModel)]="proyecto.escuela">
+        <option [ngValue]="escuela" *ngFor="let escuela of listaEscuela">{{escuela.nombre}}</option>
+      </select>
       <h5>CORDINADOR: {{proyecto.coordinador | uppercase}}</h5>
     </div>
 
@@ -37,10 +39,8 @@
       <div>
         <div>
           <label for="tipo-convenio">TIPO CONVENIO:</label>
-          <select name="tipo-convenio" id="tipo-convenio">
-            <option value="0">seleccione un convenio</option>
-            <option value="1">especifico</option>
-            <option value="2">macro</option>
+          <select name="tipo-convenio" id="tipo-convenio" [(ngModel)]="proyecto.tipo_convenio">
+            <option [ngValue]="convenio" *ngFor="let convenio of listaTipoConvenio">{{convenio.nombre}}</option>
           </select>
         </div>
         <div>
@@ -55,12 +55,18 @@
           <input type="text" name="presupuesto" id="presupuesto" [(ngModel)]="proyecto.presupuesto">
         </div>
         <div>
-          <label for="curso-articulado">CURSO ARTICULADO:</label>
-          <select name="curso-articulado" id="curso-articulado" [(ngModel)]="proyecto.curso_articulado">
-            <option [value]="null">seleccione un curso</option>
-            <option [ngValue]="curso" *ngFor="let curso of listaCursoArticulado">{{curso.nombre}}</option>
+          <label for="ciclo">CICLO:</label>
+          <select name="ciclo" id="ciclo" (change)="filtrarCursoArticulado()" [(ngModel)]="proyecto.ciclo">
+            <option [ngValue]="ciclo" *ngFor="let ciclo of listarCiclo">{{ciclo.nombre}}</option>
           </select>
         </div>
+      </div>
+
+      <div>
+        <label for="curso-articulado">CURSO ARTICULADO:</label>
+        <select name="curso-articulado" id="curso-articulado" [(ngModel)]="proyecto.curso_articulado">
+          <option [ngValue]="curso" *ngFor="let curso of listaCursoArticulado">{{curso.nombre}}</option>
+        </select>
       </div>
     </div>
   </section>
