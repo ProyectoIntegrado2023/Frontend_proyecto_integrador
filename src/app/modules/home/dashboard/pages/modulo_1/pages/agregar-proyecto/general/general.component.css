@@ -1,7 +1,3 @@
-#escuela {
-  max-width: 20rem;
-}
-
 .form {
   position: relative;
   width: 100%;
@@ -23,6 +19,11 @@ textarea {
 
 input[type="date"] {
   font-size: 1rem;
+}
+
+select {
+  min-width: 5rem;
+  max-width: 20rem;
 }
 
 input,
@@ -165,10 +166,15 @@ textarea:focus {
   .contenedor-datos-principales {
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     & .datos-proyecto-general > div:has(>div) {
       display: flex;
       flex-direction: column;
+      align-items: center;
+    }
+    & .datos-proyecto-general > div:has(>select) {
+      justify-content: center;
     }
   }
 }
