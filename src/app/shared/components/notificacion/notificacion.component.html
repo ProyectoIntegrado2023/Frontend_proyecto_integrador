@@ -1,0 +1,9 @@
+<article class="alerta-confirmacion" (click)="cerrarConfirmacion()"
+  [ngClass]="{
+    'confirmado': confirmarEnvioHttp,
+    'no-confirmado': !confirmarEnvioHttp,
+    'satisfecho': satisfaccion,
+    'no-satisfecho': !satisfaccion
+  }">
+    <span>{{mensaje}}</span>
+  </article>

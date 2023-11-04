@@ -53,11 +53,15 @@ textarea:focus {
   box-shadow: 0 0 1rem var(--color-primary-component-general);
 }
 
-.contenedor-datos-principales,
-.contenedor-recursos {
+.contenedor-datos-principales {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1rem;
+}
+
+.contenedor-recursos {
+  display: grid;
+  align-items: center;
 }
 
 .contenedor-descripcion,
@@ -123,43 +127,6 @@ textarea:focus {
   -moz-border-radius: 0.3rem;
   -ms-border-radius: 0.3rem;
   -o-border-radius: 0.3rem;
-}
-
-.alerta-confirmacion {
-  z-index: 2;
-  cursor: pointer;
-  padding: 0.5rem;
-  position: fixed;
-  border-radius: 0.4rem;
-  -webkit-border-radius: 0.4rem;
-  -moz-border-radius: 0.4rem;
-  -ms-border-radius: 0.4rem;
-  -o-border-radius: 0.4rem;
-  transition: all .5s ease-in-out;
-  -webkit-transition: all .5s ease-in-out;
-  -moz-transition: all .5s ease-in-out;
-  -ms-transition: all .5s ease-in-out;
-  -o-transition: all .5s ease-in-out;
-}
-
-.confirmado {
-  right: 1rem;
-  bottom: 1rem;
-}
-
-.no-confirmado {
-  right: -10rem;
-  bottom: 1rem;
-}
-
-.no-satisfecho {
-  background-color: red;
-  color: #fff;
-}
-
-.satisfecho {
-  background-color: green;
-  color: #fff;
 }
 
 @media (width < 1000px) {
