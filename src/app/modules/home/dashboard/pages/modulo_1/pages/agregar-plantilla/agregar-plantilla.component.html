@@ -1,24 +1,22 @@
-<div class="agregar-plantilla-contenido">
+<div class="contenido">
     <h1>Agregar Plantilla</h1>
-    <form action="post">
+    <section>
         
         <mat-form-field>
             <mat-label>Nombre</mat-label>
             <input matInput type="text" name="nombre" id="nombre-documento">
         </mat-form-field>
         
-        <mat-form-field class="agregar-plantilla-content-text-area">
+        <mat-form-field class="content-text-area">
             <mat-label>Descripcion</mat-label>
             <textarea matInput></textarea>
         </mat-form-field>
         
-        <div class="agregar-plantilla-form-contenedor-input-file">
-            <input type="file" name="" id="">
-        </div>
+        <app-drop-area [horizontal]="false" [vertical]="true"></app-drop-area>
         
-        <div class="agregar-plantilla-form-contenedor-button">
+        <div class="form-contenedor-button">
             <button mat-raised-button color="warn">Cancelar</button>
             <button mat-raised-button color="primary" type="submit">Guardar</button>
         </div>
-    </form>
+    </section>
 </div>
