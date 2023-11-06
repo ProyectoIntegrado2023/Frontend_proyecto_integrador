@@ -7,7 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { NotificacionComponent } from 'src/app/shared/components/notificacion/notificacion.component';
 import { DropAreaComponent } from 'src/app/shared/components/drop-area/drop-area.component';
-
+import { Storage as StorageFirebase } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,9 @@ import { DropAreaComponent } from 'src/app/shared/components/drop-area/drop-area
     NotificacionComponent,
     MatButtonModule,
     FormsModule
-  ]
+  ],
+  providers: [
+    { provide: StorageFirebase, useValue: StorageFirebase } // Proporciona StorageFirebase como un proveedor
+  ],
 })
 export class GeneralModule { }

@@ -73,10 +73,10 @@
     <textarea name="descripcion" id="descripcion" cols="30" rows="10" [(ngModel)]="proyecto.descripcion"></textarea>
   </section>
 
-  <app-drop-area class="contenedor-recursos" [horizontal]="true" [vertical]="false"></app-drop-area>
+  <app-drop-area class="contenedor-recursos" [horizontal]="true" [carpeta]="carpetaFire" (fileUrlsEmitter)="onFileUrlsEmitted($event)"></app-drop-area>
 
   <section class="contenedor-btn-acciones">
     <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
-    <button mat-raised-button color="primary" (click)="guardarProyecto()">Guardar</button>
+    <button mat-raised-button color="primary" (click)="subirProyecto()">Guardar</button>
   </section>
 </section>

@@ -5,6 +5,7 @@ import { ProyectoService, CursoArticuladoService, TipoConvenioService,
   CicloService, EstadoService, EscuelaService, SemestreService } from 'src/app/core/index.services';
 import { Proyecto, CursoArticulado, Persona, Escuela, Ciclo, TipoConvenio } from 'src/app/core/model/index.frontend';
 import { generarCodigoProyecto } from 'src/app/shared/function/generarCodigoEscuela';
+import { carpetaProyecto, carpetaRecurso } from 'src/app/core/global/const-carpeta.firebase';
 
 @Component({
   selector: 'app-general',
@@ -13,6 +14,7 @@ import { generarCodigoProyecto } from 'src/app/shared/function/generarCodigoEscu
 })
 export class GeneralComponent implements OnInit {
   urlGuardar: string = '/home/modulo/1/agregar-proyecto/general';
+  carpetaFire: string = '';
   
   persona: Persona = Persona.init();
   proyecto: Proyecto = Proyecto.init();
@@ -71,29 +73,59 @@ export class GeneralComponent implements OnInit {
     })
   }
 
-  public guardarProyecto() {
+  public filtrarCursoPorEscuela(){
+    this.proyecto.curso_articulado = CursoArticulado.init();
+    const nombreEscuela: string = this.proyecto.escuela.nombre ?? 'U P E U';
+    const codigo = generarCodigoProyecto(nombreEscuela, this.listaProyecto);
+    this.carpetaFire = carpetaProyecto + codigo + '/' + carpetaRecurso; // carpeta donde se almacena los recursos del proyecto
+    this.proyecto.codigo = codigo;
+    
+    this.cicloService.getAll().subscribe(data => {
+      this.listarCiclo = data.filter(c => c.escuela.id == this.proyecto.escuela.id);
+    })
+  }
+
+  public filtrarCursoArticulado(){
+    this.cursoArticuladoService.getAll().subscribe(data => {
+      this.listaCursoArticulado = data.filter(c => c.escuela.id == this.proyecto.escuela.id);
+    })
+  }
+
+  public subirProyecto() {
     if(this.router.url === this.urlGuardar){
-      this.proyectoService.save(this.proyecto).subscribe(
-        (res) => {
-          this.notificacion(true,'se guardo corectamente');
-          // localStorage.setItem('proyectoAgregado', JSON.stringify(this.proyecto))
-        },
-        (error) => {
-          this.notificacion(false,'ocurrio un error');
-        }
-      );
+      this.guardarProyecto(this.proyecto);
     } else {
-      this.proyectoService.update(this.proyecto).subscribe(
-        (res) => {
-          this.notificacion(true,'se actualizo corectamente');
-          localStorage.removeItem('proyecto');
-          localStorage.setItem('proyecto', JSON.stringify(this.proyecto))
-        },
-        (error) =>{
-          this.notificacion(false,'ocurrio un error');
-        }
-      );
+      this.editarProyecto(this.proyecto);
     }
+  }
+
+  private guardarProyecto(pry: Proyecto){
+    this.proyectoService.save(pry).subscribe(
+      (res) => {
+        this.notificacion(true,'se guardo corectamente');
+        // localStorage.setItem('proyectoAgregado', JSON.stringify(this.proyecto))
+      },
+      (error) => {
+        this.notificacion(false,'ocurrio un error');
+      }
+    );
+  }
+
+  private editarProyecto(pry: Proyecto){
+    this.proyectoService.update(this.proyecto).subscribe(
+      (res) => {
+        this.notificacion(true,'se actualizo corectamente');
+        localStorage.removeItem('proyecto');
+        localStorage.setItem('proyecto', JSON.stringify(this.proyecto))
+      },
+      (error) =>{
+        this.notificacion(false,'ocurrio un error');
+      }
+    );
+  }
+
+  public onFileUrlsEmitted(fileUrls: string[]){
+    console.log(fileUrls);
   }
 
   private notificacion(satisfecho: boolean, mensaje: string){
@@ -108,21 +140,5 @@ export class GeneralComponent implements OnInit {
     } else {
       this.proyecto = localStorage.getItem('proyecto') ? JSON.parse(localStorage.getItem('proyecto')!) : Proyecto.init();
     }
-  }
-
-  public filtrarCursoPorEscuela(){
-    this.proyecto.curso_articulado = CursoArticulado.init();
-    const nombreEscuela: string = this.proyecto.escuela.nombre ?? 'U P E U';
-    this.proyecto.codigo = generarCodigoProyecto(nombreEscuela, this.listaProyecto);
-    
-    this.cicloService.getAll().subscribe(data => {
-      this.listarCiclo = data.filter(c => c.escuela.id == this.proyecto.escuela.id);
-    })
-  }
-
-  public filtrarCursoArticulado(){
-    this.cursoArticuladoService.getAll().subscribe(data => {
-      this.listaCursoArticulado = data.filter(c => c.escuela.id == this.proyecto.escuela.id);
-    })
   }
 }

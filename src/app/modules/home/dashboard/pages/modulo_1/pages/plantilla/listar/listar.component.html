@@ -6,7 +6,7 @@
                 <input type="checkbox" name="visible" [id]="'visible-' + i">
                 <button>Descargar</button>
                 <button>Eliminar</button>
-                <button>Editar</button>
+                <button (click)="editarPlantilla(plantilla)">Editar</button>
             </div>
         </div>
         <img mat-card-image src="https://static.vecteezy.com/system/resources/thumbnails/005/182/612/small/green-abstract-geometric-shape-background-free-vector.jpg"

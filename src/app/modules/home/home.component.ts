@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private accessService: AccessService,
   ) {}
-
+  
   ngOnInit(): void {
     this.persona = JSON.parse(localStorage.getItem('persona')!);
 
