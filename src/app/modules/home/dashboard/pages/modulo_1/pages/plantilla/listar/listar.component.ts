@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { PlantillaService } from 'src/app/core/index.services';
+import { PlantillaService } from 'src/app/core/services/index.services.https';
 import { Plantilla } from 'src/app/core/model/index.frontend';
 
 @Component({

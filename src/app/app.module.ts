@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { getStorage, provideStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     HttpClientModule,
     BrowserAnimationsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
   ],
   exports: [],
   providers: [],

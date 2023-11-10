@@ -1,10 +1,10 @@
 <section class="form">
-  <app-notificacion [mensaje]="mensaje" [satisfaccion]="satisfaccion" [confirmarEnvioHttp]="confirmarEnvioHttp"></app-notificacion>
   <section class="contenedor-datos-principales">
     <div class="datos-general">
       <h1 class="title-datos-generales">{{proyecto.codigo || 'GENERANDO...'}}</h1>
-      <select name="escuela" id="escuela" (change)="filtrarCursoPorEscuela()" [(ngModel)]="proyecto.escuela">
-        <option *ngFor="let escuela of listaEscuela | async" [ngValue]="escuela" [selected]="escuela.id == 4">{{escuela.nombre}}</option>
+      <select name="escuela" id="escuela" (change)="filtrarCursoPorEscuela()" [(ngModel)]="proyecto.escuela.id">
+        <option value="0" selected disabled *ngIf="!statusUpdate" >Seleccione una opcion</option>
+        <option *ngFor="let escuela of listaEscuela" [ngValue]="escuela.id">{{escuela.nombre}}</option>
       </select>
       <h5>CORDINADOR: {{proyecto.coordinador | uppercase}}</h5>
     </div>
@@ -31,8 +31,9 @@
       <div>
         <div>
           <label for="tipo-convenio">TIPO CONVENIO:</label>
-          <select name="tipo-convenio" id="tipo-convenio" [(ngModel)]="proyecto.tipo_convenio">
-            <option [ngValue]="convenio" *ngFor="let convenio of listaTipoConvenio">{{convenio.nombre}}</option>
+          <select name="tipo-convenio" id="tipo-convenio" [(ngModel)] = "proyecto.tipo_convenio.id">
+            <option value="0" selected disabled *ngIf="!statusUpdate" >Seleccione una opcion</option>
+            <option [ngValue]="convenio.id" *ngFor="let convenio of listaTipoConvenio">{{convenio.nombre}}</option>
           </select>
         </div>
         <div>
@@ -48,16 +49,18 @@
         </div>
         <div>
           <label for="ciclo">CICLO:</label>
-          <select name="ciclo" id="ciclo" (change)="filtrarCursoArticulado()" [(ngModel)]="proyecto.ciclo">
-            <option [ngValue]="ciclo" *ngFor="let ciclo of listarCiclo">{{ciclo.nombre}}</option>
+          <select name="ciclo" id="ciclo" (change)="filtrarCursoArticulado()" [(ngModel)]="proyecto.ciclo.id">
+            <option value="0" selected disabled *ngIf="!statusUpdate" >Seleccione una opcion</option>
+            <option [ngValue]="ciclo.id" *ngFor="let ciclo of listarCiclo">{{ciclo.nombre}}</option>
           </select>
         </div>
       </div>
 
       <div>
         <label for="curso-articulado">CURSO ARTICULADO:</label>
-        <select name="curso-articulado" id="curso-articulado" [(ngModel)]="proyecto.curso_articulado">
-          <option [ngValue]="curso" *ngFor="let curso of listaCursoArticulado">{{curso.nombre}}</option>
+        <select name="curso-articulado" id="curso-articulado" [(ngModel)]="proyecto.curso_articulado.id">
+          <option value="0" selected disabled *ngIf="!statusUpdate" >Seleccione una opcion</option>
+          <option [ngValue]="curso.id" *ngFor="let curso of listaCursoArticulado">{{curso.nombre}}</option>
         </select>
       </div>
     </div>
@@ -73,7 +76,7 @@
     <textarea name="descripcion" id="descripcion" cols="30" rows="10" [(ngModel)]="proyecto.descripcion"></textarea>
   </section>
 
-  <app-drop-area class="contenedor-recursos" [horizontal]="true" [carpeta]="carpetaFire" (fileUrlsEmitter)="onFileUrlsEmitted($event)"></app-drop-area>
+  <app-drop-area class="contenedor-recursos" [horizontal]="true" (fileUrlsEmitter)="onFileUrlsEmitted($event)"></app-drop-area>
 
   <section class="contenedor-btn-acciones">
     <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>

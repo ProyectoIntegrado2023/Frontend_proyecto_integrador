@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ActividadRoutingModule } from './actividad-routing.module';
 import { ActividadComponent } from './actividad.component';
 import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     ActividadRoutingModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ]
 })
 export class ActividadModule { }

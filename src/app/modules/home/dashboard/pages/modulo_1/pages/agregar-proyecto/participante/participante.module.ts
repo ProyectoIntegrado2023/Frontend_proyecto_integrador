@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ParticipanteRoutingModule } from './participante-routing.module';
 import { ParticipanteComponent } from './participante.component';
 import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     ParticipanteRoutingModule,
+    FormsModule,
     MatButtonModule
   ]
 })

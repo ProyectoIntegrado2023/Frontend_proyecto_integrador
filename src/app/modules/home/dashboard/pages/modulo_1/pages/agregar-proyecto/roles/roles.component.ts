@@ -1,4 +1,6 @@
+import { RolNegocioService } from '../../../../../../../../core/services/https/rol-negocio.service';
 import { Component, OnInit } from '@angular/core';
+import { RolNegocio, RolProyecto } from 'src/app/core/model/index.frontend';
 
 @Component({
   selector: 'app-roles',
@@ -6,53 +8,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./roles.component.css']
 })
 export class RolesComponent implements OnInit {
-  listaRolNegocio: any[] = []
-  listaRolProyecto: any[] = []
+  listaRolNegocio: RolNegocio[] = []
+  listaRolProyecto: RolProyecto[] = []
+
+  constructor(
+    private rolNegocioService: RolNegocioService
+  ) {}
 
   ngOnInit(): void {
-      this.listaRolNegocio = [
-        {
-          id: 1,
-          nombre: 'Encargado'
-        },
-        {
-          id: 2,
-          nombre: 'Lider'
-        },
-        {
-          id: 3,
-          nombre: 'Colaborador'
-        },
-        {
-          id: 4,
-          nombre: 'Supervisor'
-        },
-        {
-          id: 5,
-          nombre: 'Administrador'
-        },
-        {
-          id: 6,
-          nombre: 'Coordinador'
-        },
-        {
-          id: 7,
-          nombre: 'Director'
-        },
-        {
-          id: 8,
-          nombre: 'Gerente'
-        }
-      ]
+      this.rolNegocioService.getAll().subscribe(data => {
+        this.listaRolNegocio = data
+      })
   }
 
-  public agregarRol(id: number) {
-    const noExisteRolProyecto: boolean = !this.listaRolProyecto.some(rol => rol.id == id);
+  public agregarRol(rolNegocio: RolNegocio) {
+    const noExisteRolProyecto: boolean = !this.listaRolProyecto.some(rp => rp.rol_negocio.id == rolNegocio.id);
 
     if( noExisteRolProyecto ){
-      this.listaRolProyecto.push( this.listaRolNegocio.find(rol => rol.id == id) );
+      let rolProyecto: RolProyecto = RolProyecto.init();
+      rolProyecto.rol_negocio = rolNegocio;
+      this.listaRolProyecto.push( rolProyecto );
     } else {
-      this.listaRolProyecto = this.listaRolProyecto.filter(rol => rol.id != id);
+      this.listaRolProyecto = this.listaRolProyecto.filter(rp => rp.rol_negocio.id != rolNegocio.id);
     }
   }  
+
+  public enviarObjecto(){
+    console.log(this.listaRolProyecto);
+  }
 }

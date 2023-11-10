@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs'
-import { ProyectoService, CursoArticuladoService, TipoConvenioService, 
-  CicloService, EstadoService, EscuelaService, SemestreService } from 'src/app/core/index.services';
+
+import { UpdateEffectProjectService } from 'src/app/core/services/index.services.status';
+import { generarCodigoProyecto } from 'src/app/core/function/generarCodigoEscuela';
 import { Proyecto, CursoArticulado, Persona, Escuela, Ciclo, TipoConvenio } from 'src/app/core/model/index.frontend';
-import { generarCodigoProyecto } from 'src/app/shared/function/generarCodigoEscuela';
-import { carpetaProyecto, carpetaRecurso } from 'src/app/core/global/const-carpeta.firebase';
+import { ProyectoService, CursoArticuladoService, TipoConvenioService, CicloService, EstadoService, EscuelaService, SemestreService } from 'src/app/core/services/index.services.https';
+import { notificacionCon_titulo_cuerpo_icono } from 'src/app/core/function/SweetAlertDeterminado';
 
 @Component({
   selector: 'app-general',
@@ -13,37 +13,48 @@ import { carpetaProyecto, carpetaRecurso } from 'src/app/core/global/const-carpe
   styleUrls: ['./general.component.css']
 })
 export class GeneralComponent implements OnInit {
-  urlGuardar: string = '/home/modulo/1/agregar-proyecto/general';
-  carpetaFire: string = '';
+  statusUpdate: boolean = false;
   
   persona: Persona = Persona.init();
   proyecto: Proyecto = Proyecto.init();
 
   listarCiclo: Ciclo[] = []
-  listaEscuela: BehaviorSubject<Escuela[]> = new BehaviorSubject<Escuela[]>([])
-  proyectoEscuela: BehaviorSubject<Escuela> = new BehaviorSubject<Escuela>(Escuela.init())
+  listaEscuela: Escuela[] = []
   listaProyecto: Proyecto[] = []
   listaTipoConvenio: TipoConvenio[] = []
   listaCursoArticulado: CursoArticulado[] = []
-  
-  mensaje: string = ''
-  satisfaccion: boolean = false;
-  confirmarEnvioHttp: boolean = false;
 
   constructor(
     private router: Router,
-    private proyectoService: ProyectoService,
-    private cursoArticuladoService: CursoArticuladoService,
-    private escuelaService: EscuelaService,
     private cicloService: CicloService,
     private estadoService: EstadoService,
+    private escuelaService: EscuelaService,
+    private proyectoService: ProyectoService,
+    private semestreService: SemestreService,
     private tipoConvenioService: TipoConvenioService,
-    private semestreService: SemestreService
+    private cursoArticuladoService: CursoArticuladoService,
+    private _updateEffectProject: UpdateEffectProjectService,
   ){}
 
   ngOnInit ():void {
-    if(this.router.url === this.urlGuardar) {
-      localStorage.removeItem('proyecto');
+    this._updateEffectProject.get().subscribe(update =>{
+      this.statusUpdate = update;
+      this.cargarProyecto(update);
+    })
+
+    this.escuelaService.getAll().subscribe(data => {
+      this.listaEscuela = data
+    })
+    this.tipoConvenioService.getAll().subscribe(data => {
+      this.listaTipoConvenio = data
+    })
+    this.proyectoService.getAll().subscribe(data => {
+      this.listaProyecto = data
+    })
+  }
+
+  private cargarProyecto(willBeUpdate: boolean){
+    if(!willBeUpdate){
       this.persona = JSON.parse(localStorage.getItem('persona')!);      
       this.proyecto.coordinador = this.persona.nombre;
 
@@ -56,32 +67,22 @@ export class GeneralComponent implements OnInit {
 
     } else {
       this.proyecto = localStorage.getItem('proyecto') ? JSON.parse(localStorage.getItem('proyecto')!) : Proyecto.init();
-      this.proyectoEscuela.next(this.proyecto.escuela);
       this.cursoArticuladoService.getAll().subscribe(data => {
         this.listaCursoArticulado = data.filter(c => c.escuela.nombre == this.proyecto.escuela.nombre)
       })
     }
-
-    this.escuelaService.getAll().subscribe(data => {
-      this.listaEscuela.next(data)
-    })
-    this.tipoConvenioService.getAll().subscribe(data => {
-      this.listaTipoConvenio = data
-    })
-    this.proyectoService.getAll().subscribe(data => {
-      this.listaProyecto = data
-    })
   }
 
   public filtrarCursoPorEscuela(){
-    this.proyecto.curso_articulado = CursoArticulado.init();
-    const nombreEscuela: string = this.proyecto.escuela.nombre ?? 'U P E U';
+    const idEscuela = this.proyecto.escuela.id;
+    const nombreEscuela: string = this.listaEscuela.find(e => e.id == idEscuela)?.nombre ?? 'U P E U';
     const codigo = generarCodigoProyecto(nombreEscuela, this.listaProyecto);
-    this.carpetaFire = carpetaProyecto + codigo + '/' + carpetaRecurso; // carpeta donde se almacena los recursos del proyecto
     this.proyecto.codigo = codigo;
+    console.log(codigo);
     
     this.cicloService.getAll().subscribe(data => {
       this.listarCiclo = data.filter(c => c.escuela.id == this.proyecto.escuela.id);
+      this.proyecto.curso_articulado = CursoArticulado.init();
     })
   }
 
@@ -92,7 +93,7 @@ export class GeneralComponent implements OnInit {
   }
 
   public subirProyecto() {
-    if(this.router.url === this.urlGuardar){
+    if(!this.statusUpdate){
       this.guardarProyecto(this.proyecto);
     } else {
       this.editarProyecto(this.proyecto);
@@ -102,43 +103,37 @@ export class GeneralComponent implements OnInit {
   private guardarProyecto(pry: Proyecto){
     this.proyectoService.save(pry).subscribe(
       (res) => {
-        this.notificacion(true,'se guardo corectamente');
-        // localStorage.setItem('proyectoAgregado', JSON.stringify(this.proyecto))
+        notificacionCon_titulo_cuerpo_icono('¡Guardado!', 'Se guardo Correctamente', 'success');
+        localStorage.setItem('proyectoCreado', JSON.stringify(this.proyecto));
       },
       (error) => {
-        this.notificacion(false,'ocurrio un error');
+        notificacionCon_titulo_cuerpo_icono('Error', 'Ocurrio un error', 'error');
       }
     );
   }
 
   private editarProyecto(pry: Proyecto){
-    this.proyectoService.update(this.proyecto).subscribe(
+    this.proyectoService.update(pry).subscribe(
       (res) => {
-        this.notificacion(true,'se actualizo corectamente');
+        notificacionCon_titulo_cuerpo_icono('¡Actualizado!', 'se actualizo corectamente', 'success');
         localStorage.removeItem('proyecto');
-        localStorage.setItem('proyecto', JSON.stringify(this.proyecto))
+        localStorage.setItem('proyecto', JSON.stringify(pry))
       },
       (error) =>{
-        this.notificacion(false,'ocurrio un error');
+        notificacionCon_titulo_cuerpo_icono('Error', 'Ocurrio un error', 'error');
       }
     );
   }
 
-  public onFileUrlsEmitted(fileUrls: string[]){
-    console.log(fileUrls);
-  }
-
-  private notificacion(satisfecho: boolean, mensaje: string){
-    this.mensaje = mensaje;
-    this.satisfaccion = satisfecho;
-    this.confirmarEnvioHttp = true
-  }
-
   public cancelar() {
-    if(this.router.url === this.urlGuardar){
+    if(!this.statusUpdate){
       this.proyecto = Proyecto.init();
     } else {
       this.proyecto = localStorage.getItem('proyecto') ? JSON.parse(localStorage.getItem('proyecto')!) : Proyecto.init();
     }
+  }
+
+  public onFileUrlsEmitted(fileUrls: string[]){
+    console.log(fileUrls);
   }
 }

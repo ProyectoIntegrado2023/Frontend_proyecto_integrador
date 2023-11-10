@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PlantillaService, TipoConvenioService } from 'src/app/core/index.services';
+import { PlantillaService, TipoConvenioService } from 'src/app/core/services/index.services.https';
 import { Plantilla } from 'src/app/core/model/index.frontend';
 import { carpetaPlantilla } from 'src/app/core/global/const-carpeta.firebase';
+import { notificacionCon_titulo_cuerpo_icono } from 'src/app/core/function/SweetAlertDeterminado';
 
 @Component({
   selector: 'app-agregar-plantilla',
@@ -12,10 +13,6 @@ import { carpetaPlantilla } from 'src/app/core/global/const-carpeta.firebase';
 export class AgregarPlantillaComponent implements OnInit {
   urlGuardar: string = '/home/modulo/1/agregar-plantilla';
   carpetaFire: string = carpetaPlantilla;
-
-  mensaje: string = '';
-  satisfaccion: boolean = false;
-  confirmarEnvioHttp: boolean = false;
 
   plantilla: Plantilla = Plantilla.init();
 
@@ -51,20 +48,20 @@ export class AgregarPlantillaComponent implements OnInit {
   private editarPlantilla(plantilla: Plantilla){
     this.plantillaService.update(plantilla).subscribe(
       (res) => {
-        this.enviado('Se edito correctamente', true);
+        notificacionCon_titulo_cuerpo_icono('¡Actualizado!', 'se actualizo corectamente', 'success');
       },
       (error) => {
-        this.enviado('Ocurrio un error', false);
+        notificacionCon_titulo_cuerpo_icono('Error', 'Ocurrio un error', 'error');
       }
     );
   }
   private guardarPlantilla(plantilla: Plantilla){
     this.plantillaService.save(plantilla).subscribe(
       (res) => {
-        this.enviado('Se guardo correctamente', true);
+        notificacionCon_titulo_cuerpo_icono('¡Guardado!', 'Se guardo correctamente', 'success');
       },
       (error) => {
-        this.enviado('Ocurrio un error', false);
+        notificacionCon_titulo_cuerpo_icono('Error', 'Ocurrio un error', 'error');
       }
     );
   }
@@ -73,10 +70,5 @@ export class AgregarPlantillaComponent implements OnInit {
     console.log(fileUrls);
   }
 
-  public enviado(msj: string, stf: boolean){
-    this.mensaje = msj;
-    this.satisfaccion = stf;
-    this.confirmarEnvioHttp = true;
-  }
 
 }

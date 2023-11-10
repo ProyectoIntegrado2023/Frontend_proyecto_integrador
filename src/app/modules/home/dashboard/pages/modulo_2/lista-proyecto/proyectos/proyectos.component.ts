@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Acceso } from 'src/app/core/model/index.frontend';
-import { AccessService } from 'src/app/core/index.services';
+import { AccessService } from 'src/app/core/services/index.services.https';
 
 @Component({
   selector: 'app-proyectos',

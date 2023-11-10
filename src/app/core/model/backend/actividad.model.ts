@@ -1,5 +1,7 @@
 import { Actividad } from "../index.frontend";
-import { ActividadParticipanteModel, EncargadoModel, ProyectoModel } from "../index.backend";
+import { ActividadParticipanteModel } from "../index.backend";
+import { ProyectoUniqueModel } from "../unico/backend-unique/proyecto.unique.model";
+import { EncargadoUniqueModel } from "../unico/backend-unique/encargado.unique.model";
 
 export class ActividadModel {
   
@@ -8,19 +10,19 @@ export class ActividadModel {
       0,
       '',
       '',
-      ProyectoModel.init(),
-      EncargadoModel.init(),
+      ProyectoUniqueModel.init(),
+      EncargadoUniqueModel.init(),
       []
     )
   }
 
-  static fromFrontend(obj: Actividad) {
+  static fromFrontend(obj: Actividad): ActividadModel {
     return obj != null ? new this(
       obj.id,
       obj.nombre,
       obj.fecha,
-      ProyectoModel.fromFrontend(obj.proyecto),
-      EncargadoModel.fromFrontend(obj.encargado),
+      ProyectoUniqueModel.fromFrontend(obj.proyecto),
+      EncargadoUniqueModel.fromFrontend(obj.encargado),
       []
     ) : this.init()
   }
@@ -29,9 +31,9 @@ export class ActividadModel {
     public id_actividad          : number                     | null,
     public nombre                : string                     | null,
     public fecha                 : string                     | null,
-    public proyecto              : ProyectoModel              ,
-    public encargado             : EncargadoModel             ,
-    public actividad_partcipante : ActividadParticipanteModel | null[]
+    public proyecto              : ProyectoUniqueModel              ,
+    public encargado             : EncargadoUniqueModel             ,
+    public actividad_partcipante : ActividadParticipanteModel[]
   ){}
   
   

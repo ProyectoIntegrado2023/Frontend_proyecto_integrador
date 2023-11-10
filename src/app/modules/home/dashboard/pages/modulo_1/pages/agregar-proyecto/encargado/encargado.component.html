@@ -12,13 +12,13 @@
                 <span>Encargado</span>
             </header>
             <section>
-                <p>
-                    <span>202312322</span>
-                    <span>Luis Lucero</span>
-                    <span>FIA</span>
-                    <span>Ing de Sistemas</span>
-                    <span>IV</span>
-                    <span>I</span>
+                <p *ngFor="let participante of listaParticipante">
+                    <span>{{participante.estudiante.codigo}}</span>
+                    <span>{{participante.persona.nombre}}</span>
+                    <span>{{participante.estudiante.ciclo.escuela.facultad.nombre}}</span>
+                    <span>{{participante.estudiante.ciclo.escuela.nombre}}</span>
+                    <span>{{participante.estudiante.ciclo.nombre}}</span>
+                    <span>{{participante.estudiante.grupo_universitario.nombre}}</span>
                     <span>
                         <label class="container">
                             <input type="checkbox" id="encargado" name="encargado">

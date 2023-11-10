@@ -1,5 +1,5 @@
 import { Estudiante } from "../index.frontend";
-import { CicloModel, GrupoUniversitarioModel, ParticipanteModel } from '../index.backend';
+import { CicloModel, GrupoUniversitarioModel, ParticipanteModel, PersonaModel } from '../index.backend';
 
 export class EstudianteModel {
 
@@ -10,6 +10,7 @@ export class EstudianteModel {
             0,
             GrupoUniversitarioModel.init(),
             CicloModel.init(),
+            PersonaModel.init(),
             []
         )
     }
@@ -22,6 +23,7 @@ export class EstudianteModel {
             obj.horas_totales,
             GrupoUniversitarioModel.fromFrontend(obj.grupo_universitario),
             CicloModel.fromFrontend(obj.ciclo),
+            PersonaModel.fromFrontend(obj.persona),
             []
         ) : this.init();
     }
@@ -32,6 +34,7 @@ export class EstudianteModel {
         public horas_totales   : number                     | null,
         public id_grupo_univ   : GrupoUniversitarioModel    ,
         public id_ciclo        : CicloModel                 ,
+        public id_persona      : PersonaModel               ,
         public participante    : ParticipanteModel[]        ,
     ){}
 

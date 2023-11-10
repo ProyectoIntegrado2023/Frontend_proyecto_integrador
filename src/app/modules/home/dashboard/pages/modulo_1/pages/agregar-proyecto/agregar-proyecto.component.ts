@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccessService } from 'src/app/core/index.services';
+import { AccessService } from 'src/app/core/services/index.services.https';
 import { Acceso, Proyecto } from 'src/app/core/model/index.frontend';
 
 @Component({
@@ -12,18 +12,18 @@ export class AgregarProyectoComponent implements OnInit {
 
   listAccesso: Acceso[] = []
   proyecto!: Proyecto
-  
-  constructor(private accessService: AccessService, 
-              private router: Router){}
+  statusUpdate:boolean = false;
+  constructor(
+    private router: Router,
+    private accessService: AccessService, 
+  ){}
 
   ngOnInit(): void {
     const currentUrl = this.router.url;
-    
+
     this.accessService.getAll().subscribe(data => {
-      
       const idPadre = this.findAccessIdByURL(data, currentUrl);
       this.listAccesso = data.filter(v => v.id_acceso_padre === idPadre);
-      
     });
   }
 
@@ -40,8 +40,7 @@ export class AgregarProyectoComponent implements OnInit {
           idPadre = access.id_acceso_padre;
           break;
         }
-      }
-  
+      }  
       return idPadre;
   }
 

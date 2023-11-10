@@ -64,6 +64,6 @@
           </tr>
         </table>
       
-        <mat-paginator [pageSizeOptions]="arrayPaginator" aria-label="Select page of users"></mat-paginator>
+        <mat-paginator [pageSizeOptions]="arrayPaginator" aria-label="Select page of users" [pageSize]="pageDefine" (page)="definePaginador($event)"></mat-paginator>
       </div>
 </div>
