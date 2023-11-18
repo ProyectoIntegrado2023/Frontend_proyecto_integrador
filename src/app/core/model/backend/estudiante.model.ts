@@ -8,15 +8,15 @@ export class EstudianteModel {
             0,
             '',
             0,
-            GrupoUniversitarioModel.init(),
-            CicloModel.init(),
-            PersonaModel.init(),
+            null,
+            null,
+            null,
             []
         )
     }
 
 
-    static fromFrontend(obj: Estudiante): EstudianteModel{
+    static fromFrontend(obj: Estudiante | null): EstudianteModel | null{
         return obj != null ? new this(
             obj.id,
             obj.codigo,
@@ -25,16 +25,16 @@ export class EstudianteModel {
             CicloModel.fromFrontend(obj.ciclo),
             PersonaModel.fromFrontend(obj.persona),
             []
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id_estudiante   : number                     | null,
-        public codigo          : string                     | null,
-        public horas_totales   : number                     | null,
-        public id_grupo_univ   : GrupoUniversitarioModel    ,
-        public id_ciclo        : CicloModel                 ,
-        public id_persona      : PersonaModel               ,
+        public id_estudiante   : number,
+        public codigo          : string,
+        public horas_totales   : number,
+        public id_grupo_univ   : GrupoUniversitarioModel    | null,
+        public id_ciclo        : CicloModel                 | null,
+        public id_persona      : PersonaModel               | null,
         public participante    : ParticipanteModel[]        ,
     ){}
 

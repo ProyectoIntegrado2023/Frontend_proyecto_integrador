@@ -1,6 +1,9 @@
 <div class="contenedor">
     <div class="contenedor-btn-acceso">
-        <button mat-raised-button color="primary" *ngFor="let btn of listAccesso" (click)="navegar(btn)">{{btn.titulo}}</button>
+        <button mat-raised-button color="primary" 
+        *ngFor="let btn of listAccesso; let i = index"
+        (click)="navegar(btn)"
+        [disabled]="!validarAcceso(i)">{{btn.titulo}}</button>
     </div>
     <main>
         <router-outlet></router-outlet>

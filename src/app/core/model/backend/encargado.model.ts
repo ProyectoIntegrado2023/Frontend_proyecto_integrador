@@ -7,14 +7,14 @@ export class EncargadoModel {
         return new this(
             0,
             '',
-            RolSistemaAccesoModel.init(),
-            ParticipanteModel.init(),
+            null,
+            null,
             [],
             []
         )
     }
 
-    static fromFrontend(obj: Encargado): EncargadoModel{
+    static fromFrontend(obj: Encargado | null): EncargadoModel | null{
         return obj != null ? new this(
             obj.id,
             obj.nombre,
@@ -22,14 +22,14 @@ export class EncargadoModel {
             ParticipanteModel.fromFrontend(obj.participante),
             [],
             []
-        ) : this.init()
+        ) : null;
     }
 
     constructor(
-        public id_encargado            : number                         | null,
-        public nombre                  : string                         | null,
-        public rol                     : RolSistemaAccesoModel          ,
-        public id_participante         : ParticipanteModel              ,
+        public id_encargado            : number,
+        public nombre                  : string,
+        public rol                     : RolSistemaAccesoModel          | null,
+        public id_participante         : ParticipanteModel              | null,
         public rol_proyecto_encargado  : RolProyectoEncargadoModel[]    ,
         public actividadd              : ActividadModel[]               ,
     ){}

@@ -5,10 +5,17 @@ import { Ciclo, GrupoUniversitario } from "../index.frontend"
 export class Estudiante {
 
     static init(): Estudiante{
-        return new Estudiante(0, '', 0, GrupoUniversitario.init(), Ciclo.init(), Persona.init());
+        return new this(
+            0,
+            '',
+            0,
+            null,
+            null,
+            null,
+        );
     }
     
-    static fromBackend(obj: EstudianteModel): Estudiante{
+    static fromBackend(obj: EstudianteModel | null): Estudiante | null{
         return obj != null ? new this(
             obj.id_estudiante,
             obj.codigo,
@@ -16,16 +23,16 @@ export class Estudiante {
             GrupoUniversitario.fromBackend(obj.id_grupo_univ),
             Ciclo.fromBackend(obj.id_ciclo),
             Persona.fromBackend(obj.id_persona)
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id                      : number             | null,
-        public codigo                  : string             | null,
-        public horas_totales           : number             | null,
-        public grupo_universitario     : GrupoUniversitario ,
-        public ciclo                   : Ciclo              ,
-        public persona                 : Persona
+        public id                      : number,
+        public codigo                  : string,
+        public horas_totales           : number,
+        public grupo_universitario     : GrupoUniversitario | null,
+        public ciclo                   : Ciclo              | null,
+        public persona                 : Persona            | null,
     ){}
 
 }

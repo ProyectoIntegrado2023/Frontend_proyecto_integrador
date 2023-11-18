@@ -18,33 +18,33 @@ export class ParticipanteService {
 
   getAll(): Observable<Participante[]> {
     return this.http.get<ParticipanteModel[]>(this.url + '/list').pipe(
-      map(v => v.map(s => Participante.fromBackend(s)))
+      map(v => v.map(s => Participante.fromBackend(s)!))
     );
   }
 
   getById(id: number): Observable<Participante> {
     return this.http.get<ParticipanteModel>(this.url + '/get/' + id).pipe(
-      map(v => Participante.fromBackend(v))
+      map(v => Participante.fromBackend(v)!)
     );
   }
 
   save(participante: Participante): Observable<Participante> {
-    const participanteModel: ParticipanteModel = ParticipanteModel.fromFrontend(participante);
+    const participanteModel: ParticipanteModel = ParticipanteModel.fromFrontend(participante)!;
     return this.http.post<ParticipanteModel>(this.url + '/agregar', participanteModel).pipe(
-      map(v => Participante.fromBackend(v))
+      map(v => Participante.fromBackend(v)!)
     )
   }
 
   update(participante: Participante): Observable<Participante> {
-    const participanteModel: ParticipanteModel = ParticipanteModel.fromFrontend(participante);
+    const participanteModel: ParticipanteModel = ParticipanteModel.fromFrontend(participante)!;
     return this.http.put<ParticipanteModel>(this.url + '/editar/' + participante.id, participanteModel).pipe(
-      map(v => Participante.fromBackend(v))
+      map(v => Participante.fromBackend(v)!)
     )
   }
 
   delete(participanteId: number): Observable<Participante> {
     return this.http.delete<ParticipanteModel>(this.url + '/eliminar/' + participanteId).pipe(
-      map(v => Participante.fromBackend(v))
+      map(v => Participante.fromBackend(v)!)
     )
   }
 }

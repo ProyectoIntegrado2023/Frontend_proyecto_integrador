@@ -18,33 +18,33 @@ export class CicloService {
 
   getAll(): Observable<Ciclo[]> {
     return this.http.get<CicloModel[]>(this.url + '/list').pipe(
-      map(v => v.map(s => Ciclo.fromBackend(s)))
+      map(v => v.map(s => Ciclo.fromBackend(s)!))
     )
   }
 
   getById(id: number): Observable<Ciclo> {
     return this.http.get<CicloModel>(this.url + '/get/' + id).pipe(
-      map(v => Ciclo.fromBackend(v))
+      map(v => Ciclo.fromBackend(v)!)
     )
   }
 
   save(ciclo: Ciclo): Observable<Ciclo> {
-    const cicloModel: CicloModel = CicloModel.fromFrontend(ciclo);
+    const cicloModel: CicloModel = CicloModel.fromFrontend(ciclo)!;
     return this.http.post<CicloModel>(this.url + '/agregar', cicloModel).pipe(
-      map(v => Ciclo.fromBackend(v))
+      map(v => Ciclo.fromBackend(v)!)
     )
   }
 
   update(ciclo: Ciclo): Observable<Ciclo> {
-    const cicloModel: CicloModel = CicloModel.fromFrontend(ciclo);
+    const cicloModel: CicloModel = CicloModel.fromFrontend(ciclo)!;
     return this.http.put<CicloModel>(this.url + '/editar/' + ciclo.id, cicloModel).pipe(
-      map(v => Ciclo.fromBackend(v))
+      map(v => Ciclo.fromBackend(v)!)
     )
   }
 
   delete(cicloId: number): Observable<Ciclo> {
     return this.http.delete<CicloModel>(this.url + '/eliminar/' + cicloId).pipe(
-      map(v => Ciclo.fromBackend(v))
+      map(v => Ciclo.fromBackend(v)!)
     )
   }
 }

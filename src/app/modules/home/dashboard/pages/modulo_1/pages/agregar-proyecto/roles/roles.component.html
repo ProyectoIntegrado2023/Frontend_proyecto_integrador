@@ -5,7 +5,7 @@
             <ul>
                 <li *ngFor="let rolNegocio of listaRolNegocio">
                     <label class="container">
-                        <input type="checkbox" [id]="'rol-' + rolNegocio.id" (click)="agregarRol(rolNegocio)">
+                        <input type="checkbox" [id]="'rol-' + rolNegocio.id" (click)="agregarRol(rolNegocio)" [checked]="verificarRolNegocio(rolNegocio)">
                         <div class="checkmark"></div>
                     </label>
                     <label for="rol-{{rolNegocio.id}}" (click)="agregarRol(rolNegocio)">{{rolNegocio.nombre}}</label>
@@ -20,9 +20,9 @@
             </thead>
             <tbody>
                 <tr *ngFor="let rolProyecto of listaRolProyecto">
-                    <td>{{rolProyecto.rol_negocio.nombre}}</td>
+                    <td>{{rolProyecto.rol_negocio?.nombre}}</td>
                     <td>
-                        <input type="text" name="hora" id="hora" [(ngModel)]="rolProyecto.hora">
+                        <input type="number" name="hora" id="hora" [(ngModel)]="rolProyecto.hora">
                     </td>
                     <td>
                         <input type="text" name="descripcion" id="descripcion" [(ngModel)]="rolProyecto.descripcion">
@@ -32,7 +32,7 @@
         </table>
     </div>
     <section class="contenedor-btn-acciones">
-        <button mat-raised-button color="warn">Cancelar</button>
+        <button mat-raised-button color="warn" (click)="cancelarCambios()">Cancelar</button>
         <button type="submit" mat-raised-button color="primary" (click)="enviarObjecto()">Guardar</button>
     </section>
 </section>

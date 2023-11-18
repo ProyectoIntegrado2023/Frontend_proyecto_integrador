@@ -6,16 +6,14 @@ export class ProyectoUnique {
     return new ProyectoUnique(0)
   }
   
-  static fromBackend(obj: ProyectoUniqueModel): ProyectoUnique {
-    
+  static fromBackend(obj: ProyectoUniqueModel | null): ProyectoUnique | null {
     return obj != null ? new this(
       obj.id_proyecto
-    ) : this.init();
-
+    ) : null;
   } 
 
   constructor(
-    public id                    : number           | null,
+    public id : number,
   ){}
 
 }

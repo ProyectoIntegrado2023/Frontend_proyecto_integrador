@@ -3,19 +3,22 @@ import { GrupoUniversitarioModel } from "../index.backend";
 export class GrupoUniversitario {
     
     static init(): GrupoUniversitario {
-        return new GrupoUniversitario(0, '')
+        return new this(
+            0,
+            ''
+        )
     }
 
-    static fromBackend(obj: GrupoUniversitarioModel): GrupoUniversitario {
+    static fromBackend(obj: GrupoUniversitarioModel | null): GrupoUniversitario | null {
         return obj != null ? new this(
             obj.id_grupo_univ,
             obj.nombre
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id       : number | null,
-        public nombre   : string | null,
+        public id       : number,
+        public nombre   : string,
     ){}
 
 }

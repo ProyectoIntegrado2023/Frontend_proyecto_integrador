@@ -8,7 +8,6 @@ import { MatInputModule } from '@angular/material/input';
 import { DropAreaComponent } from 'src/app/shared/components/drop-area/drop-area.component';
 import { FormsModule } from '@angular/forms';
 import { NotificacionComponent } from 'src/app/shared/components/notificacion/notificacion.component';
-import { Storage as StorageFirebase } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -23,8 +22,6 @@ import { Storage as StorageFirebase } from '@angular/fire/storage';
     FormsModule,
     NotificacionComponent,
   ],
-  providers: [
-    { provide: StorageFirebase, useValue: StorageFirebase } // Proporciona StorageFirebase como un proveedor
-  ],
+  providers: [],
 })
 export class AgregarPlantillaModule { }

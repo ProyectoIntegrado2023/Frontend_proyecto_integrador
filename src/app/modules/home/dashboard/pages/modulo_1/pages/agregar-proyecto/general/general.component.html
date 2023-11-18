@@ -2,7 +2,7 @@
   <section class="contenedor-datos-principales">
     <div class="datos-general">
       <h1 class="title-datos-generales">{{proyecto.codigo || 'GENERANDO...'}}</h1>
-      <select name="escuela" id="escuela" (change)="filtrarCursoPorEscuela()" [(ngModel)]="proyecto.escuela.id">
+      <select name="escuela" id="escuela" (change)="filtrarCicloPorEscuela(); generaracionCodigoProyecto()" [(ngModel)]="escuelaSeleccionada.id">
         <option value="0" selected disabled *ngIf="!statusUpdate" >Seleccione una opcion</option>
         <option *ngFor="let escuela of listaEscuela" [ngValue]="escuela.id">{{escuela.nombre}}</option>
       </select>
@@ -31,7 +31,7 @@
       <div>
         <div>
           <label for="tipo-convenio">TIPO CONVENIO:</label>
-          <select name="tipo-convenio" id="tipo-convenio" [(ngModel)] = "proyecto.tipo_convenio.id">
+          <select name="tipo-convenio" id="tipo-convenio" [(ngModel)]="tipoConvenioSeleccionada.id">
             <option value="0" selected disabled *ngIf="!statusUpdate" >Seleccione una opcion</option>
             <option [ngValue]="convenio.id" *ngFor="let convenio of listaTipoConvenio">{{convenio.nombre}}</option>
           </select>
@@ -45,11 +45,11 @@
       <div>
         <div>
           <label for="presupuesto">PRESUPUESTO:</label>
-          <input type="text" name="presupuesto" id="presupuesto" [(ngModel)]="proyecto.presupuesto">
+          <input type="number" name="presupuesto" id="presupuesto" [(ngModel)]="proyecto.presupuesto">
         </div>
         <div>
           <label for="ciclo">CICLO:</label>
-          <select name="ciclo" id="ciclo" (change)="filtrarCursoArticulado()" [(ngModel)]="proyecto.ciclo.id">
+          <select name="ciclo" id="ciclo" (change)="filtrarCursoPorCiclo()" [(ngModel)]="cicloSeleccionada.id">
             <option value="0" selected disabled *ngIf="!statusUpdate" >Seleccione una opcion</option>
             <option [ngValue]="ciclo.id" *ngFor="let ciclo of listarCiclo">{{ciclo.nombre}}</option>
           </select>
@@ -58,7 +58,7 @@
 
       <div>
         <label for="curso-articulado">CURSO ARTICULADO:</label>
-        <select name="curso-articulado" id="curso-articulado" [(ngModel)]="proyecto.curso_articulado.id">
+        <select name="curso-articulado" id="curso-articulado" [(ngModel)]="cursoArticuladoSeleccionada.id">
           <option value="0" selected disabled *ngIf="!statusUpdate" >Seleccione una opcion</option>
           <option [ngValue]="curso.id" *ngFor="let curso of listaCursoArticulado">{{curso.nombre}}</option>
         </select>
@@ -79,6 +79,7 @@
   <app-drop-area class="contenedor-recursos" [horizontal]="true" (fileUrlsEmitter)="onFileUrlsEmitted($event)"></app-drop-area>
 
   <section class="contenedor-btn-acciones">
+    <button mat-raised-button style="background: #fedc1b;" *ngIf="!statusUpdate" (click)="limpiar()">Limpiar</button>
     <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
     <button mat-raised-button color="primary" (click)="subirProyecto()">Guardar</button>
   </section>

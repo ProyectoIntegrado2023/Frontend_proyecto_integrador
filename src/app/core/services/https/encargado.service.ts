@@ -18,33 +18,33 @@ export class EncargadoService {
 
   getAll(): Observable<Encargado[]> {
     return this.http.get<EncargadoModel[]>(this.url + '/list').pipe(
-      map(v => v.map(s => Encargado.fromBackend(s)))
+      map(v => v.map(s => Encargado.fromBackend(s)!))
     )
   }
 
   getById(id: number): Observable<Encargado> {
     return this.http.get<EncargadoModel>(this.url + '/get/' + id).pipe(
-      map(v => Encargado.fromBackend(v))
+      map(v => Encargado.fromBackend(v)!)
     )
   }
 
   save(encargado: Encargado): Observable<Encargado> {
-    const encargadoModel: EncargadoModel = EncargadoModel.fromFrontend(encargado);
+    const encargadoModel: EncargadoModel = EncargadoModel.fromFrontend(encargado)!;
     return this.http.post<EncargadoModel>(this.url + '/agregar', encargadoModel).pipe(
-      map(v => Encargado.fromBackend(v))
+      map(v => Encargado.fromBackend(v)!)
     )
   }
 
   update(encargado: Encargado): Observable<Encargado> {
-    const encargadoModel: EncargadoModel = EncargadoModel.fromFrontend(encargado);
+    const encargadoModel: EncargadoModel = EncargadoModel.fromFrontend(encargado)!;
     return this.http.put<EncargadoModel>(this.url + '/editar/' + encargado.id, encargadoModel).pipe(
-      map(v => Encargado.fromBackend(v))
+      map(v => Encargado.fromBackend(v)!)
     )
   }
 
   delete(encargadoId: number): Observable<Encargado> {
     return this.http.delete<EncargadoModel>(this.url + '/eliminar/' + encargadoId).pipe(
-      map(v => Encargado.fromBackend(v))
+      map(v => Encargado.fromBackend(v)!)
     )
   }
 }

@@ -7,14 +7,14 @@ export class ProyectoUniqueModel {
     return new this(0)
   }
 
-  static fromFrontend(obj: ProyectoUnique): ProyectoUniqueModel{
+  static fromFrontend(obj: ProyectoUnique | null): ProyectoUniqueModel | null{
     return obj != null ? new this(
       obj.id
-    ) : this.init();
+    ) : null;
   }
 
   constructor(
-    public id_proyecto           : number                 | null,
+    public id_proyecto : number,
   ){}
 
   }

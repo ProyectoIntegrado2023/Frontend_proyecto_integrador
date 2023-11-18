@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Storage , ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.firebase';
 
 
 
@@ -31,9 +30,7 @@ export class DropAreaComponent implements OnInit {
   dragText = 'Arrastra el documento y suelta';
   imageList: any[] = [];
 
-  constructor(
-    private storageFirebase: Storage
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
     // this.getImages();
@@ -45,20 +42,20 @@ export class DropAreaComponent implements OnInit {
     }
   }
   getImages(){
-    const imgsRef = ref(this.storageFirebase, 'img');
+    // const imgsRef = ref(this.storageFirebase, 'img');
 
-    listAll(imgsRef)
-      .then(res => {
+    // listAll(imgsRef)
+    //   .then(res => {
 
-        res.items.forEach(async item => {
-          const url = await getDownloadURL(item);
-          console.log(url);
-        })
+    //     res.items.forEach(async item => {
+    //       const url = await getDownloadURL(item);
+    //       console.log(url);
+    //     })
 
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    //   })
+    //   .catch(error => {
+    //     console.log(error)
+    //   })
   }
 
   public onButtonClick() {
@@ -72,7 +69,7 @@ export class DropAreaComponent implements OnInit {
     this.files = event.target.files[0];
     console.log(this.files)
     console.log(environment.firebase)
-    this.locationRef = ref(this.storageFirebase, '');
+    // this.locationRef = ref(this.storageFirebase, '');
     console.log(this.locationRef)
     const link = this.showFiles(this.files);
   }
@@ -80,14 +77,14 @@ export class DropAreaComponent implements OnInit {
   private showFiles(files:any):any {
     if (files) {
       return new Promise((resolve,reject)=>{
-        uploadBytes(this.locationRef,files).then(()=>{
-          const startRef = ref(this.storageFirebase,'');
-          getDownloadURL(startRef).then((data)=>{
-            this.url = data;
-            console.log(this.url)
-            resolve(this.url);
-          })
-        })
+        // uploadBytes(this.locationRef,files).then(()=>{
+        //   const startRef = ref(this.storageFirebase,'');
+        //   getDownloadURL(startRef).then((data)=>{
+        //     this.url = data;
+        //     console.log(this.url)
+        //     resolve(this.url);
+        //   })
+        // })
       })
     }
   }
@@ -116,9 +113,9 @@ export class DropAreaComponent implements OnInit {
 
   private sumitFile(nombreArchivo: string, file: File) {
     // this.fileUrlsEmitter.emit(this.imageList);
-    const docRef = ref(this.storageFirebase, this.carpeta + nombreArchivo); //falta nombre
-    uploadBytes(docRef, file)
-      .then(res => console.log(res))
-      .catch(error => console.log(error));
+    // const docRef = ref(this.storageFirebase, this.carpeta + nombreArchivo); //falta nombre
+    // uploadBytes(docRef, file)
+    //   .then(res => console.log(res))
+    //   .catch(error => console.log(error));
   }
 }

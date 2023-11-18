@@ -18,33 +18,33 @@ export class PersonaService {
 
   getAll(): Observable<Persona[]> {
     return this.http.get<PersonaModel[]>(this.url + '/list').pipe(
-      map(v => v.map(s => Persona.fromBackend(s)))
+      map(v => v.map(s => Persona.fromBackend(s)!))
     );
   }
 
   getById(id: number): Observable<Persona> {
     return this.http.get<PersonaModel>(this.url + '/get/' + id).pipe(
-      map(v => Persona.fromBackend(v))
+      map(v => Persona.fromBackend(v)!)
     );
   }
 
   save(persona: Persona): Observable<Persona> {
-    const personaModel: PersonaModel = PersonaModel.fromFrontend(persona);
+    const personaModel: PersonaModel = PersonaModel.fromFrontend(persona)!;
     return this.http.post<PersonaModel>(this.url + '/agregar', personaModel).pipe(
-      map(v => Persona.fromBackend(v))
+      map(v => Persona.fromBackend(v)!)
     );
   }
 
   update(persona: Persona): Observable<Persona> {
-    const personaModel: PersonaModel = PersonaModel.fromFrontend(persona);
+    const personaModel: PersonaModel = PersonaModel.fromFrontend(persona)!;
     return this.http.put<PersonaModel>(this.url + '/editar/' + persona.id, personaModel).pipe(
-      map(v => Persona.fromBackend(v))
+      map(v => Persona.fromBackend(v)!)
     );
   }
 
   delete(personaId: number): Observable<Persona> {
     return this.http.delete<PersonaModel>(this.url + '/eliminar/' + personaId).pipe(
-      map(v => Persona.fromBackend(v))
+      map(v => Persona.fromBackend(v)!)
     )
   }
 }

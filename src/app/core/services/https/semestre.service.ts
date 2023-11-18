@@ -18,33 +18,33 @@ export class SemestreService {
 
   getAll(): Observable<Semestre[]> {
     return this.http.get<SemestreModel[]>(this.url + '/list').pipe(
-      map(v => v.map(s => Semestre.fromBackend(s)))
+      map(v => v.map(s => Semestre.fromBackend(s)!))
     );
   }
 
   getById(id: number): Observable<Semestre> {
     return this.http.get<SemestreModel>(this.url + '/get/' + id).pipe(
-      map(v => Semestre.fromBackend(v))
+      map(v => Semestre.fromBackend(v)!)
     );
   }
 
   save(semestre: Semestre): Observable<Semestre> {
-    const semestreModel: SemestreModel = SemestreModel.fromFrontend(semestre);
+    const semestreModel: SemestreModel = SemestreModel.fromFrontend(semestre)!;
     return this.http.post<SemestreModel>(this.url + '/agregar', semestreModel).pipe(
-      map(v => Semestre.fromBackend(v))
+      map(v => Semestre.fromBackend(v)!)
     )
   }
 
   update(semestre: Semestre): Observable<Semestre> {
-    const semestreModel: SemestreModel = SemestreModel.fromFrontend(semestre);
+    const semestreModel: SemestreModel = SemestreModel.fromFrontend(semestre)!;
     return this.http.put<SemestreModel>(this.url + '/editar/' + semestre.id, semestreModel).pipe(
-      map(v => Semestre.fromBackend(v))
+      map(v => Semestre.fromBackend(v)!)
     )
   }
 
   delete(semestreId: number): Observable<Semestre> {
     return this.http.delete<SemestreModel>(this.url + '/eliminar/' + semestreId).pipe(
-      map(v => Semestre.fromBackend(v))
+      map(v => Semestre.fromBackend(v)!)
     )
   }
 }

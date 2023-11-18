@@ -12,7 +12,7 @@
             <textarea matInput [(ngModel)]="plantilla.descripcion"></textarea>
         </mat-form-field>
         
-        <app-drop-area [vertical]="true" [horizontal]="false" [carpeta]="carpetaFire" (fileUrlsEmitter)="onFileUrlsEmitted($event)"></app-drop-area>
+        <app-drop-area [vertical]="true" [horizontal]="false" (fileUrlsEmitter)="onFileUrlsEmitted($event)"></app-drop-area>
         
         <div class="form-contenedor-button">
             <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>

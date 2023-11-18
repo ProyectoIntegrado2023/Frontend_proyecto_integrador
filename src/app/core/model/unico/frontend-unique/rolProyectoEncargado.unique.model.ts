@@ -6,14 +6,14 @@ export class RolProyectoEncargadoUnique {
         return new this(0)
     }
     
-    static fromBackend(obj: RolProyectoEncargadoModelUnique): RolProyectoEncargadoUnique {
+    static fromBackend(obj: RolProyectoEncargadoModelUnique | null): RolProyectoEncargadoUnique | null {
         return obj != null ? new this(
             obj.id_rol_proyecto_encargado,
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id            : number           | null,
+        public id : number,
     ){}
 
 }

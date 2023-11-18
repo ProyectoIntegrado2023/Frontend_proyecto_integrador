@@ -10,13 +10,13 @@ export class ActividadModel {
       0,
       '',
       '',
-      ProyectoUniqueModel.init(),
-      EncargadoUniqueModel.init(),
+      null,
+      null,
       []
     )
   }
 
-  static fromFrontend(obj: Actividad): ActividadModel {
+  static fromFrontend(obj: Actividad | null): ActividadModel | null {
     return obj != null ? new this(
       obj.id,
       obj.nombre,
@@ -28,11 +28,11 @@ export class ActividadModel {
   }
 
   constructor(
-    public id_actividad          : number                     | null,
-    public nombre                : string                     | null,
-    public fecha                 : string                     | null,
-    public proyecto              : ProyectoUniqueModel              ,
-    public encargado             : EncargadoUniqueModel             ,
+    public id_actividad          : number,
+    public nombre                : string,
+    public fecha                 : string,
+    public id_proyecto           : ProyectoUniqueModel  | null,
+    public encargado             : EncargadoUniqueModel | null,
     public actividad_partcipante : ActividadParticipanteModel[]
   ){}
   

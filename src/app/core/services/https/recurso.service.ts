@@ -18,33 +18,33 @@ export class RecursoService {
 
   getAll(): Observable<Recurso[]> {
     return this.http.get<RecursoModel[]>(this.url + '/list').pipe(
-      map(v => v.map(s => Recurso.fromBackend(s)))
+      map(v => v.map(s => Recurso.fromBackend(s)!))
     );
   }
 
   getById(id: number): Observable<Recurso> {
     return this.http.get<RecursoModel>(this.url + '/get/' + id).pipe(
-      map(v => Recurso.fromBackend(v))
+      map(v => Recurso.fromBackend(v)!)
     );
   }
 
   save(recurso: Recurso): Observable<Recurso> {
-    const recursoModel: RecursoModel = RecursoModel.fromFrontend(recurso);
+    const recursoModel: RecursoModel = RecursoModel.fromFrontend(recurso)!;
     return this.http.post<RecursoModel>(this.url + '/agregar', recursoModel).pipe(
-      map(v => Recurso.fromBackend(v))
+      map(v => Recurso.fromBackend(v)!)
     )
   }
 
   update(recurso: Recurso): Observable<Recurso> {
-    const recursoModel: RecursoModel = RecursoModel.fromFrontend(recurso);
+    const recursoModel: RecursoModel = RecursoModel.fromFrontend(recurso)!;
     return this.http.put<RecursoModel>(this.url + '/editar/' + recurso.id, recursoModel).pipe(
-      map(v => Recurso.fromBackend(v))
+      map(v => Recurso.fromBackend(v)!)
     )
   }
 
   delete(recursoId: number): Observable<Recurso> {
     return this.http.delete<RecursoModel>(this.url + '/eliminar/' + recursoId).pipe(
-      map(v => Recurso.fromBackend(v))
+      map(v => Recurso.fromBackend(v)!)
     )
   }
 }

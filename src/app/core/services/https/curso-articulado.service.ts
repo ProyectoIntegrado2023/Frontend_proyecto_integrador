@@ -18,33 +18,33 @@ export class CursoArticuladoService {
 
   getAll(): Observable<CursoArticulado[]>{
     return this.http.get<CursoArticuladoModel[]>(this.url + '/list').pipe(
-      map(v => v.map(s => CursoArticulado.fromBackend(s)))
+      map(v => v.map(s => CursoArticulado.fromBackend(s)!))
     )
   }
 
   getById(id: number): Observable<CursoArticulado> {
     return this.http.get<CursoArticuladoModel>(this.url + '/get/' + id).pipe(
-      map(v => CursoArticulado.fromBackend(v))
+      map(v => CursoArticulado.fromBackend(v)!)
     )
   }
 
   save(cursoArticulado: CursoArticulado): Observable<CursoArticulado>{
-    const cursoArticuladoModel: CursoArticuladoModel = CursoArticuladoModel.fromFrontend(cursoArticulado);
+    const cursoArticuladoModel: CursoArticuladoModel = CursoArticuladoModel.fromFrontend(cursoArticulado)!;
     return this.http.post<CursoArticuladoModel>(this.url + '/agregar', cursoArticuladoModel).pipe(
-      map(v => CursoArticulado.fromBackend(v))
+      map(v => CursoArticulado.fromBackend(v)!)
     )
   }
 
   update(cursoArticulado: CursoArticulado): Observable<CursoArticulado>{
-    const cursoArticuladoModel: CursoArticuladoModel = CursoArticuladoModel.fromFrontend(cursoArticulado);
+    const cursoArticuladoModel: CursoArticuladoModel = CursoArticuladoModel.fromFrontend(cursoArticulado)!;
     return this.http.patch<CursoArticuladoModel>(this.url + '/' + cursoArticulado.id, cursoArticuladoModel).pipe(
-      map(v => CursoArticulado.fromBackend(v))
+      map(v => CursoArticulado.fromBackend(v)!)
     )
   }
 
   delete(cursoArticuladoId: number): Observable<CursoArticulado>{
     return this.http.delete<CursoArticuladoModel>(this.url + '/eliminar/' + cursoArticuladoId).pipe(
-      map(v => CursoArticulado.fromBackend(v))
+      map(v => CursoArticulado.fromBackend(v)!)
     )
   }
 }

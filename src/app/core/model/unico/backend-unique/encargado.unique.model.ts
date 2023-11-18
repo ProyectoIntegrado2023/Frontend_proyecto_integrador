@@ -8,14 +8,14 @@ export class EncargadoUniqueModel {
         )
     }
 
-    static fromFrontend(obj: EncargadoUnique): EncargadoUniqueModel{
+    static fromFrontend(obj: EncargadoUnique | null): EncargadoUniqueModel | null{
         return obj != null ? new this(
             obj.id,
-        ) : this.init()
+        ) : null
     }
 
     constructor(
-        public id_encargado            : number                         | null,
+        public id_encargado : number,
     ){}
     
 }

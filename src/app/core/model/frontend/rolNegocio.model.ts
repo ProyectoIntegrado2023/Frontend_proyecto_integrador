@@ -3,19 +3,22 @@ import { RolNegocioModel } from "../index.backend";
 export class RolNegocio {
 
     static init(): RolNegocio {
-        return new RolNegocio(0, '');
+        return new RolNegocio(
+            0,
+            ''
+        );
     }
     
-    static fromBackend(obj: RolNegocioModel): RolNegocio {
+    static fromBackend(obj: RolNegocioModel | null): RolNegocio | null {
         return obj != null ? new this(
             obj.id_rol_negocio,
             obj.nombre
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id      : number | null,
-        public nombre  : string | null,
+        public id      : number,
+        public nombre  : string,
     ){}
 
 }

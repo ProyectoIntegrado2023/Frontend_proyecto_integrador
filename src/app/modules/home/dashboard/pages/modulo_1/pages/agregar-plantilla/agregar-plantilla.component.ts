@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+
 import { PlantillaService, TipoConvenioService } from 'src/app/core/services/index.services.https';
 import { Plantilla } from 'src/app/core/model/index.frontend';
-import { carpetaPlantilla } from 'src/app/core/global/const-carpeta.firebase';
-import { notificacionCon_titulo_cuerpo_icono } from 'src/app/core/function/SweetAlertDeterminado';
+import { notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { recopilarPlantilla } from 'src/app/core/function/localStorage/recopilarLocalStorage';
+import { UpdateEffectPlantillaService } from 'src/app/core/services/index.services.status';
 
 @Component({
   selector: 'app-agregar-plantilla',
@@ -11,57 +12,61 @@ import { notificacionCon_titulo_cuerpo_icono } from 'src/app/core/function/Sweet
   styleUrls: ['./agregar-plantilla.component.css']
 })
 export class AgregarPlantillaComponent implements OnInit {
-  urlGuardar: string = '/home/modulo/1/agregar-plantilla';
-  carpetaFire: string = carpetaPlantilla;
-
+  
+  update: boolean = false;
   plantilla: Plantilla = Plantilla.init();
 
   constructor(
-    private router: Router,
     private plantillaService: PlantillaService,
-    private tipoConvenioService: TipoConvenioService
+    private tipoConvenioService: TipoConvenioService,
+    private _updateEffectPlantilla: UpdateEffectPlantillaService
   ){}
 
   ngOnInit(): void {
-    if(this.urlGuardar == this.router.url){
-      this.tipoConvenioService.getAll().subscribe(data => {
-        this.plantilla.tipo_convenio = data[0];
-      }) 
-      this.plantilla.url = '';
+    this._updateEffectPlantilla.get().subscribe(result =>{
+      this.update = result;
+      this.iniciarPlantilla();
+    })
+  }
+
+  private iniciarPlantilla(){
+    if(this.update){
+      this.plantilla = recopilarPlantilla('plantilla');
     } else {
-      this.plantilla = localStorage.getItem('plantilla') ? JSON.parse(localStorage.getItem('plantilla')!) : Plantilla.init();
+      this.tipoConvenioService.getAll().subscribe(arrayConvenio => this.plantilla.tipo_convenio = arrayConvenio[0]) ;
+      this.plantilla.url = '';
     }
   }
 
-  cancelar(){
+  public cancelar(){
     this.plantilla = Plantilla.init();
   }
 
   public enviarObjecto(){
-    if(this.urlGuardar == this.router.url){
-      this.guardarPlantilla(this.plantilla);
-    } else {
+    if(this.update){
       this.editarPlantilla(this.plantilla);
+    } else {
+      this.guardarPlantilla(this.plantilla);
     }
   }
 
   private editarPlantilla(plantilla: Plantilla){
     this.plantillaService.update(plantilla).subscribe(
       (res) => {
-        notificacionCon_titulo_cuerpo_icono('¡Actualizado!', 'se actualizo corectamente', 'success');
+        notificacionSimpleDinamico('¡Actualizado!', 'se actualizo corectamente', 'success');
       },
       (error) => {
-        notificacionCon_titulo_cuerpo_icono('Error', 'Ocurrio un error', 'error');
+        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
       }
     );
   }
   private guardarPlantilla(plantilla: Plantilla){
     this.plantillaService.save(plantilla).subscribe(
       (res) => {
-        notificacionCon_titulo_cuerpo_icono('¡Guardado!', 'Se guardo correctamente', 'success');
+        notificacionSimpleDinamico('¡Guardado!', 'Se guardo correctamente', 'success');
       },
       (error) => {
-        notificacionCon_titulo_cuerpo_icono('Error', 'Ocurrio un error', 'error');
+        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
       }
     );
   }
@@ -69,6 +74,4 @@ export class AgregarPlantillaComponent implements OnInit {
   public onFileUrlsEmitted(fileUrls: string[]) {
     console.log(fileUrls);
   }
-
-
 }

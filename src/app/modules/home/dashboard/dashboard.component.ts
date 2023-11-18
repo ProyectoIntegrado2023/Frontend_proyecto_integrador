@@ -1,12 +1,12 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { determinarUrl } from 'src/app/core/function/determinarUrl';
+import { determinarUrl } from 'src/app/core/function/recopilarUrl/determinarUrl';
 
 import { NOMBRE_PAGINA_WEB } from 'src/app/core/global/const-global';
 import { Acceso } from 'src/app/core/model/index.frontend';
 import { AccessService } from 'src/app/core/services/index.services.https';
-import { UpdateEffectProjectService, SelectEffectAccessService, SelectEffectModuleService } from 'src/app/core/services/index.services.status';
+import { UpdateEffectProjectService, SelectEffectAccessService, SelectEffectModuleService, UpdateEffectPlantillaService } from 'src/app/core/services/index.services.status';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private _statusProject: UpdateEffectProjectService,
     private _selectAccess: SelectEffectAccessService,
     private _selecctModule: SelectEffectModuleService,
+    private _updateEffectPlantilla: UpdateEffectPlantillaService,
   ){}
 
   ngOnInit(): void {
@@ -39,6 +40,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.resetear();
     if(this.subscriptionSeleccionAcceso){
       this._selectAccess.reset();
       this.subscriptionSeleccionAcceso.unsubscribe();
@@ -73,19 +75,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public navegar(acceso: Acceso) {
     if(acceso.id != null) {
-      localStorage.removeItem('proyecto');
-      localStorage.removeItem('proyectoCreado');
       this._selectAccess.emit(acceso.id);
-      this._statusProject.reset();
+      this.resetear();
       this.router.navigate([acceso.url]); 
     }
   }
 
+  private resetear() {
+    localStorage.removeItem('proyecto');
+    localStorage.removeItem('plantilla');
+    this._statusProject.reset();
+    this._updateEffectPlantilla.reset();
+  }
   public effectSidebar(){
     this.statusSidebar = ! this.statusSidebar;
   }
 
   public regresarHome(): void {
+    this.resetear();
     this.router.navigate(['/home']);
   }
 

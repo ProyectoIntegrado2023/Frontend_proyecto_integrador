@@ -36,7 +36,7 @@ main.contenedor-tabla-data > header {
 
 main.contenedor-tabla-data > section {
   overflow-y: scroll;
-  max-height: 10rem;
+  max-height: 20rem;
   display: grid;
   gap: 0.2rem;
 
@@ -60,6 +60,12 @@ main.data-estudiante > header,
 main.data-estudiante > section > p {
   align-items: center;
   grid-template-columns: 1fr 2fr 1fr 2fr 1fr 1fr 1fr;
+}
+
+#lista-vacio {
+  padding: 1rem;
+  text-align: center;
+  font-size: x-large;
 }
 
 /*input checkbox  -------------------------------------------*/

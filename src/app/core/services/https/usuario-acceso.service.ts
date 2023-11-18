@@ -18,33 +18,33 @@ export class UsuarioAccesoService {
 
   getAll(): Observable<UsuarioAcceso[]> {
     return this.http.get<UsuarioAccesoModel[]>(this.url + '/list').pipe(
-      map(v => v.map(s => UsuarioAcceso.fromBackend(s)))
+      map(v => v.map(s => UsuarioAcceso.fromBackend(s)!))
     );
   }
 
   getById(id: number): Observable<UsuarioAcceso> {
     return this.http.get<UsuarioAccesoModel>(this.url + '/get/' + id).pipe(
-      map(v => UsuarioAcceso.fromBackend(v))
+      map(v => UsuarioAcceso.fromBackend(v)!)
     );
   }
 
   save(usuarioAcceso: UsuarioAcceso): Observable<UsuarioAcceso> {
-    const usuarioAccesoModel: UsuarioAccesoModel = UsuarioAccesoModel.fromFrontend(usuarioAcceso);
+    const usuarioAccesoModel: UsuarioAccesoModel = UsuarioAccesoModel.fromFrontend(usuarioAcceso)!;
     return this.http.post<UsuarioAccesoModel>(this.url + '/agregar', usuarioAccesoModel).pipe(
-      map(v => UsuarioAcceso.fromBackend(v))
+      map(v => UsuarioAcceso.fromBackend(v)!)
     );
   }
 
   update(usuarioAcceso: UsuarioAcceso): Observable<UsuarioAcceso> {
-    const usuarioAccesoModel: UsuarioAccesoModel = UsuarioAccesoModel.fromFrontend(usuarioAcceso);
+    const usuarioAccesoModel: UsuarioAccesoModel = UsuarioAccesoModel.fromFrontend(usuarioAcceso)!;
     return this.http.put<UsuarioAccesoModel>(this.url + '/editar/' + usuarioAcceso.id, usuarioAccesoModel).pipe(
-      map(v => UsuarioAcceso.fromBackend(v))
+      map(v => UsuarioAcceso.fromBackend(v)!)
     );
   }
 
   delete(usuarioAccesoId: number): Observable<UsuarioAcceso> {
     return this.http.delete<UsuarioAccesoModel>(this.url + '/eliminar/' + usuarioAccesoId).pipe(
-      map(v => UsuarioAcceso.fromBackend(v))
+      map(v => UsuarioAcceso.fromBackend(v)!)
     );
   }
 }

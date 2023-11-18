@@ -6,12 +6,12 @@ export class UsuarioAccesoModel {
     static init(): UsuarioAccesoModel {
         return new this(
             0,
-            UsuarioModel.init(),
-            AccesoModel.init(),
+            null,
+            null,
         )
     }
     
-    static fromFrontend(obj: UsuarioAcceso): UsuarioAccesoModel{
+    static fromFrontend(obj: UsuarioAcceso | null): UsuarioAccesoModel | null{
         return obj != null ? new this(
             obj.id,
             UsuarioModel.fromFrontend(obj.usuario),
@@ -20,9 +20,9 @@ export class UsuarioAccesoModel {
     }
 
     constructor(
-        public id_usuario_accesos  : number         | null,
-        public id_usuario          : UsuarioModel   ,
-        public id_accesos          : AccesoModel    ,
+        public id_usuario_accesos  : number,
+        public id_usuario          : UsuarioModel   | null,
+        public id_accesos          : AccesoModel    | null,
     ){}
 
 }

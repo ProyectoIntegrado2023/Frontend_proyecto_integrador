@@ -18,33 +18,33 @@ export class FacultadService {
 
   getAll(): Observable<Facultad[]> {
     return this.http.get<FacultadModel[]>(this.url + '/list').pipe(
-      map(v => v.map(s => Facultad.fromBackend(s)))
+      map(v => v.map(s => Facultad.fromBackend(s)!))
     );
   }
 
   getById(id: number): Observable<Facultad> {
     return this.http.get<FacultadModel>(this.url + '/get/' + id).pipe(
-      map(v => Facultad.fromBackend(v))
+      map(v => Facultad.fromBackend(v)!)
     );
   }
 
   save(facultad: Facultad): Observable<Facultad> {
-    const facultadModel: FacultadModel = FacultadModel.fromFrontend(facultad);
+    const facultadModel: FacultadModel = FacultadModel.fromFrontend(facultad)!;
     return this.http.post<FacultadModel>(this.url + '/agregar', facultadModel).pipe(
-      map(v => Facultad.fromBackend(v))
+      map(v => Facultad.fromBackend(v)!)
     )
   }
 
   update(facultad: Facultad): Observable<Facultad> {
-    const facultadModel: FacultadModel = FacultadModel.fromFrontend(facultad);
+    const facultadModel: FacultadModel = FacultadModel.fromFrontend(facultad)!;
     return this.http.put<FacultadModel>(this.url + '/editar/' + facultad.id, facultadModel).pipe(
-      map(v => Facultad.fromBackend(v))
+      map(v => Facultad.fromBackend(v)!)
     )
   }
 
   delete(facultadId: number): Observable<Facultad> {
     return this.http.delete<FacultadModel>(this.url + '/eliminar/' + facultadId).pipe(
-      map(v => Facultad.fromBackend(v))
+      map(v => Facultad.fromBackend(v)!)
     )
   }
 }

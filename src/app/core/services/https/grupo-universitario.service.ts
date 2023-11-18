@@ -18,33 +18,33 @@ export class GrupoUniversitarioService {
 
   getAll(): Observable<GrupoUniversitario[]> {
     return this.http.get<GrupoUniversitarioModel[]>(this.url + '/list').pipe(
-      map(v => v.map(s => GrupoUniversitario.fromBackend(s)))
+      map(v => v.map(s => GrupoUniversitario.fromBackend(s)!))
     )
   }
 
   getById(id: number): Observable<GrupoUniversitario> {
     return this.http.get<GrupoUniversitarioModel>(this.url + '/get/' + id).pipe(
-      map(v => GrupoUniversitario.fromBackend(v))
+      map(v => GrupoUniversitario.fromBackend(v)!)
     )
   }
 
   save(grupoUniversitario: GrupoUniversitario): Observable<GrupoUniversitario> {
-    const grupoUniversitarioModel: GrupoUniversitarioModel = GrupoUniversitarioModel.fromFrontend(grupoUniversitario);
+    const grupoUniversitarioModel: GrupoUniversitarioModel = GrupoUniversitarioModel.fromFrontend(grupoUniversitario)!;
     return this.http.post<GrupoUniversitarioModel>(this.url + '/agregar', grupoUniversitarioModel).pipe(
-      map(v => GrupoUniversitario.fromBackend(v))
+      map(v => GrupoUniversitario.fromBackend(v)!)
     )
   }
 
   update(grupoUniversitario: GrupoUniversitario): Observable<GrupoUniversitario> {
-    const grupoUniversitarioModel: GrupoUniversitarioModel = GrupoUniversitarioModel.fromFrontend(grupoUniversitario);
+    const grupoUniversitarioModel: GrupoUniversitarioModel = GrupoUniversitarioModel.fromFrontend(grupoUniversitario)!;
     return this.http.put<GrupoUniversitarioModel>(this.url + '/editar/' + grupoUniversitario.id, grupoUniversitarioModel).pipe(
-      map(v => GrupoUniversitario.fromBackend(v))
+      map(v => GrupoUniversitario.fromBackend(v)!)
     )
   }
 
   delete(grupoUniversitarioId: number): Observable<GrupoUniversitario> {
     return this.http.delete<GrupoUniversitarioModel>(this.url + '/eliminar/' + grupoUniversitarioId).pipe(
-      map(v => GrupoUniversitario.fromBackend(v))
+      map(v => GrupoUniversitario.fromBackend(v)!)
     )
   }
 }

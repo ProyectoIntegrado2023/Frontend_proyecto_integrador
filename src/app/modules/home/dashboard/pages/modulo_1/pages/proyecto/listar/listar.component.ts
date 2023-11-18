@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Proyecto } from 'src/app/core/model/index.frontend'
 import { ProyectoService } from 'src/app/core/services/index.services.https';
 import { UpdateEffectProjectService } from 'src/app/core/services/index.services.status';
+import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
 
 @Component({
   selector: 'app-listar',
@@ -54,12 +55,26 @@ export class ListarComponent implements OnInit  {
     }
   }
 
-  public eliminar(id: number){
-    this.proyectoService.delete(id).subscribe(data => {
-      this.listaProyecto = this.listaProyecto.filter(v => v.id != id);
-      this.dataSource = new MatTableDataSource(this.listaProyecto);
-      this.paginatorAndSort();
+  public confirmarEliminar(id: number){
+    notificacionConfirmacionEliminar('¿Desea eliminar el proyecto?', true, 'Si, eliminar', true, 'No, cancelar').then((result) => {
+      if (result) {
+        this.eliminar(id);
+      }
     })
+  }
+
+  public eliminar(id: number){
+    this.proyectoService.delete(id).subscribe(
+      (res) => {
+        notificacionSimpleDinamico('Proyecto eliminado','', 'success');
+        this.listaProyecto = this.listaProyecto.filter(v => v.id != id);
+        this.dataSource = new MatTableDataSource(this.listaProyecto);
+        this.paginatorAndSort();
+      },
+      (error) => {
+        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+      }
+    )
   }
  
   public navegar(proyecto: Proyecto){

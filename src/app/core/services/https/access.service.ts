@@ -11,39 +11,39 @@ import { environment_api } from 'src/environments/environment.spring';
 })
 export class AccessService {
 
-  private url: string = environment_api +'acceso' //'../../../assets/json/Accesos.json'
+  private url: string = environment_api +'acceso'
 
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Acceso[]> {
-    return this.http.get<AccesoModel[]>(this.url + '/list').pipe( //+ '/list'
-      map(v => { return v.map(Acceso.fromBackend) })
+    return this.http.get<AccesoModel[]>(this.url + '/list').pipe(
+      map(v => v.map(s => Acceso.fromBackend(s)!))
     )
   }
 
   getById(id: number): Observable<Acceso> {
     return this.http.get<AccesoModel>(this.url + '/get/' + id).pipe(
-      map(v => Acceso.fromBackend(v))
+      map(v => Acceso.fromBackend(v)!)
     )
   }
 
   save(acceso: Acceso): Observable<Acceso> {
-    const accesoModel: AccesoModel = AccesoModel.fromFrontend(acceso);
+    const accesoModel: AccesoModel = AccesoModel.fromFrontend(acceso)!;
     return this.http.post<AccesoModel>(this.url + '/agregar', accesoModel).pipe(
-      map(v => Acceso.fromBackend(v))
+      map(v => Acceso.fromBackend(v)!)
     )
   }
 
   update(acceso: Acceso): Observable<Acceso> {
-    const accesoModel: AccesoModel = AccesoModel.fromFrontend(acceso);
+    const accesoModel: AccesoModel = AccesoModel.fromFrontend(acceso)!;
     return this.http.put<AccesoModel>(this.url + '/editar/' + acceso.id, accesoModel).pipe(
-      map(v => Acceso.fromBackend(v))
+      map(v => Acceso.fromBackend(v)!)
     )
   }
 
   delete(accesoId: number): Observable<Acceso> {
     return this.http.delete<AccesoModel>(this.url + '/eliminar/' + accesoId).pipe(
-      map(v => Acceso.fromBackend(v))
+      map(v => Acceso.fromBackend(v)!)
     )
   }
 }

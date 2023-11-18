@@ -8,16 +8,16 @@ export class Participante {
     static init(): Participante {
         return new this(
             0,
-            Persona.init(),
-            RolProyectoEncargadoUnique.init(),
-            Docente.init(),
-            Estudiante.init(),
-            ProyectoUnique.init(),
-            RolSistema.init()
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
         )
     }
 
-    static fromBackend(obj: ParticipanteModel): Participante {
+    static fromBackend(obj: ParticipanteModel | null): Participante | null {
         return obj != null ? new this(
             obj.id_participante,
             Persona.fromBackend(obj.id_persona),
@@ -26,17 +26,17 @@ export class Participante {
             Estudiante.fromBackend(obj.id_estudiante),
             ProyectoUnique.fromBackend(obj.id_proyecto),
             RolSistema.fromBackend(obj.id_rol_sistema),
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id                          :   number               | null,
-        public persona                     :   Persona              ,
-        public rol_proyecto_encargado      :   RolProyectoEncargadoUnique ,
-        public docente                     :   Docente              ,
-        public estudiante                  :   Estudiante           ,
-        public proyecto                    :   ProyectoUnique             ,
-        public rol_sistema                 :   RolSistema           ,
+        public id                          :   number,
+        public persona                     :   Persona                      | null,
+        public rol_proyecto_encargado      :   RolProyectoEncargadoUnique   | null,
+        public docente                     :   Docente                      | null,
+        public estudiante                  :   Estudiante                   | null,
+        public proyecto                    :   ProyectoUnique               | null,
+        public rol_sistema                 :   RolSistema                   | null,
     ){}
 
 }

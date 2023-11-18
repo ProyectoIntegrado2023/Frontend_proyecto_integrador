@@ -5,7 +5,7 @@
             <div class="content-action-card">
                 <input type="checkbox" name="visible" [id]="'visible-' + i">
                 <button>Descargar</button>
-                <button>Eliminar</button>
+                <button (click)="eliminarPlantilla(plantilla.id!)">Eliminar</button>
                 <button (click)="editarPlantilla(plantilla)">Editar</button>
             </div>
         </div>
@@ -14,8 +14,8 @@
         <div class="card-contenido">
             <mat-card-title>{{plantilla.nombre}}</mat-card-title>
             <mat-card-subtitle>{{plantilla.descripcion}}</mat-card-subtitle>
-            <div class="card-badge" [ngClass]="plantilla.tipo_convenio.nombre == 'especifico' ? 'especifico':'macro' ">
-                {{plantilla.tipo_convenio.nombre}}
+            <div class="card-badge" [ngClass]="plantilla.tipo_convenio?.nombre == 'especifico' ? 'especifico':'macro' ">
+                {{plantilla.tipo_convenio?.nombre}}
             </div>
         </div>
     </mat-card>

@@ -9,16 +9,16 @@ export class SemestreModel {
     )
   }
   
-  static fromFrontend(obj: Semestre): SemestreModel {
+  static fromFrontend(obj: Semestre | null): SemestreModel | null {
     return obj != null ? new this(
       obj.id,
       obj.nombre
-    ) : this.init();
+    ) : null;
   }
 
   constructor(
-    public id_semestre:    number | null,
-    public nombre:         string | null,
+    public id_semestre:    number,
+    public nombre:         string,
   ){}
 
 }

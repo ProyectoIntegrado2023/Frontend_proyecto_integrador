@@ -9,16 +9,16 @@ export class GrupoUniversitarioModel {
         )
     }
 
-    static fromFrontend(obj: GrupoUniversitario): GrupoUniversitarioModel{
+    static fromFrontend(obj: GrupoUniversitario | null): GrupoUniversitarioModel | null{
         return obj != null ? new this(
             obj.id,
             obj.nombre
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id_grupo_univ : number   | null,
-        public nombre        : string   | null,
+        public id_grupo_univ : number,
+        public nombre        : string,
     ){}
 
 }

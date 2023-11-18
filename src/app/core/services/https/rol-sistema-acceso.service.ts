@@ -18,33 +18,33 @@ export class RolSistemaAccesoService {
 
   getAll(): Observable<RolSistemaAcceso[]> {
     return this.http.get<RolSistemaAccesoModel[]>(this.url + '/list').pipe(
-      map(v => v.map(s => RolSistemaAcceso.fromBackend(s)))
+      map(v => v.map(s => RolSistemaAcceso.fromBackend(s)!))
     );
   }
 
   getById(id: number): Observable<RolSistemaAcceso> {
     return this.http.get<RolSistemaAccesoModel>(this.url + '/get/' + id).pipe(
-      map(v => RolSistemaAcceso.fromBackend(v))
+      map(v => RolSistemaAcceso.fromBackend(v)!)
     )
   }
 
   save(rolSistemaAcceso: RolSistemaAcceso): Observable<RolSistemaAcceso> {
-    const rolSistemaAccesoModel: RolSistemaAccesoModel = RolSistemaAccesoModel.fromFrontend(rolSistemaAcceso);
+    const rolSistemaAccesoModel: RolSistemaAccesoModel = RolSistemaAccesoModel.fromFrontend(rolSistemaAcceso)!;
     return this.http.post<RolSistemaAccesoModel>(this.url + '/agregar', rolSistemaAccesoModel).pipe(
-      map(v => RolSistemaAcceso.fromBackend(v))
+      map(v => RolSistemaAcceso.fromBackend(v)!)
     )
   }
 
   update(rolSistemaAcceso: RolSistemaAcceso): Observable<RolSistemaAcceso> {
-    const rolSistemaAccesoModel: RolSistemaAccesoModel = RolSistemaAccesoModel.fromFrontend(rolSistemaAcceso);
+    const rolSistemaAccesoModel: RolSistemaAccesoModel = RolSistemaAccesoModel.fromFrontend(rolSistemaAcceso)!;
     return this.http.put<RolSistemaAccesoModel>(this.url + '/editar/' + rolSistemaAcceso.id, rolSistemaAccesoModel).pipe(
-      map(v => RolSistemaAcceso.fromBackend(v))
+      map(v => RolSistemaAcceso.fromBackend(v)!)
     )
   }
 
   delete(rolSistemaAccesoId: number): Observable<RolSistemaAcceso> {
     return this.http.delete<RolSistemaAccesoModel>(this.url + '/eliminar/' + rolSistemaAccesoId).pipe(
-      map(v => RolSistemaAcceso.fromBackend(v))
+      map(v => RolSistemaAcceso.fromBackend(v)!)
     )
   }
 }

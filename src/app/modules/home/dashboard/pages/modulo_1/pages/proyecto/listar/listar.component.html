@@ -20,7 +20,7 @@
       
           <ng-container matColumnDef="tipo">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </th>
-            <td mat-cell *matCellDef="let row"> {{row.tipo_convenio.nombre ?? ''}} </td> 
+            <td mat-cell *matCellDef="let row"> {{row?.tipo_convenio?.nombre ?? ''}} </td> 
           </ng-container>
       
           <ng-container matColumnDef="coordinador">
@@ -30,7 +30,7 @@
 
           <ng-container matColumnDef="semestre">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Semestre </th>
-            <td mat-cell *matCellDef="let row"> {{row?.semestre.nombre ?? ''}} </td>
+            <td mat-cell *matCellDef="let row"> {{row?.semestre?.nombre ?? ''}} </td>
           </ng-container>
 
           <ng-container matColumnDef="lugar">
@@ -40,18 +40,18 @@
 
           <ng-container matColumnDef="escuela">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Escuela </th>
-            <td mat-cell *matCellDef="let row"> {{row?.escuela.nombre?? ''}} </td>
+            <td mat-cell *matCellDef="let row"> {{row?.escuela?.nombre?? ''}} </td>
           </ng-container>
 
           <ng-container matColumnDef="estado">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
-            <td mat-cell *matCellDef="let row"> {{row?.estado.nombre?? ''}} </td>
+            <td mat-cell *matCellDef="let row"> {{row?.estado?.nombre?? ''}} </td>
           </ng-container>
 
           <ng-container matColumnDef="accion">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Accion </th>
             <td mat-cell *matCellDef="let row">
-              <i class="material-symbols-outlined" style="color: red;" (click)="eliminar(row.id)">delete</i>
+              <i class="material-symbols-outlined" style="color: red;" (click)="confirmarEliminar(row.id)">delete</i>
               <i class="material-symbols-outlined" style="color: blue;" (click)="navegar(row)">edit</i>
             </td>
           </ng-container>

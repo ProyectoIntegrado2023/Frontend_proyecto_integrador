@@ -9,16 +9,16 @@ export class RolNegocioModel {
         )
     }
 
-    static fromFrontend(obj: RolNegocio): RolNegocioModel{
+    static fromFrontend(obj: RolNegocio  | null): RolNegocioModel  | null{
         return obj != null ? new this(
             obj.id,
             obj.nombre
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id_rol_negocio    : number | null,
-        public nombre            : string | null,
+        public id_rol_negocio    : number,
+        public nombre            : string,
     ){}
 
 }

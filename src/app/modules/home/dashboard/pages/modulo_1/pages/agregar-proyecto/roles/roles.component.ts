@@ -1,6 +1,11 @@
+import { RolProyectoService } from './../../../../../../../../core/services/https/rol-proyecto.service';
 import { RolNegocioService } from '../../../../../../../../core/services/https/rol-negocio.service';
 import { Component, OnInit } from '@angular/core';
+import { recopilarProyecto } from 'src/app/core/function/localStorage/recopilarLocalStorage';
 import { RolNegocio, RolProyecto } from 'src/app/core/model/index.frontend';
+import { forkJoin } from 'rxjs';
+import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { obtenerIdsAEliminar } from 'src/app/core/function/generacion/obtenerIdsEliminados';
 
 @Component({
   selector: 'app-roles',
@@ -10,30 +15,98 @@ import { RolNegocio, RolProyecto } from 'src/app/core/model/index.frontend';
 export class RolesComponent implements OnInit {
   listaRolNegocio: RolNegocio[] = []
   listaRolProyecto: RolProyecto[] = []
+  listaRolProyectoCopia: RolProyecto[] = []
 
   constructor(
-    private rolNegocioService: RolNegocioService
+    private rolNegocioService: RolNegocioService,
+    private rolProyectoService: RolProyectoService
   ) {}
 
   ngOnInit(): void {
       this.rolNegocioService.getAll().subscribe(data => {
         this.listaRolNegocio = data
       })
+      this.recopilarRolProyecto();
+  }
+
+  private recopilarRolProyecto() {
+    this.rolProyectoService.getAll().subscribe(data => {
+      this.listaRolProyecto = data.filter(rp => rp.proyecto?.id == recopilarProyecto('proyecto').id); 
+      this.listaRolProyectoCopia = this.listaRolProyecto; 
+    })
   }
 
   public agregarRol(rolNegocio: RolNegocio) {
-    const noExisteRolProyecto: boolean = !this.listaRolProyecto.some(rp => rp.rol_negocio.id == rolNegocio.id);
+    const noExisteRolProyecto: boolean = !this.listaRolProyecto.some(rp => rp.rol_negocio?.id == rolNegocio.id);
 
     if( noExisteRolProyecto ){
       let rolProyecto: RolProyecto = RolProyecto.init();
       rolProyecto.rol_negocio = rolNegocio;
       this.listaRolProyecto.push( rolProyecto );
     } else {
-      this.listaRolProyecto = this.listaRolProyecto.filter(rp => rp.rol_negocio.id != rolNegocio.id);
+      this.listaRolProyecto = this.listaRolProyecto.filter(rp => rp.rol_negocio?.id != rolNegocio.id);
     }
   }  
 
+  public verificarRolNegocio(rolNegocio: RolNegocio): boolean {
+    return this.listaRolProyecto.some(rp => rp.rol_negocio?.id == rolNegocio.id);
+  }
+
   public enviarObjecto(){
-    console.log(this.listaRolProyecto);
+    const idEliminados = obtenerIdsAEliminar(this.listaRolProyecto, this.listaRolProyectoCopia);
+    if(idEliminados.length > 0) {
+      notificacionConfirmacionEliminar('Existe algunos elementos que se eliminaran',false, 'Eliminar y continuar', true, '')
+      .then((result) => {
+        if(result) this.eliminarElementos(idEliminados);
+      })
+    } else {
+      this.guardarCambios();
+    }
+  }
+
+  private eliminarElementos(ids: number[]) {
+    const observables = ids.map(id => {
+      return this.rolProyectoService.delete(id);
+    })
+
+    forkJoin(observables).subscribe(
+      (resultados) => {
+        this.guardarCambios();
+      },
+      (error) => {
+        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+      }
+    )
+  }
+
+  private guardarCambios(){
+    const observables = this.listaRolProyecto.map(rp => {
+      rp.proyecto = recopilarProyecto('proyecto');
+      const existe = this.listaRolProyectoCopia.some(rpCopia => rpCopia.id = rp.id);
+      if(existe) {
+        return this.rolProyectoService.update(rp);  
+      } else {
+        return this.rolProyectoService.save(rp);
+      }
+    });
+
+    forkJoin(observables).subscribe(
+      (resultados) => {
+        this.listaRolProyecto = resultados;
+        this.listaRolProyectoCopia = resultados;
+        notificacionSimpleDinamico('¡Guardado!', 'Se guardo todo correctamente', 'success');
+      },
+      (error) => {
+        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+      }
+    );
+  }
+
+  public cancelarCambios() {
+    notificacionConfirmacionEliminar('¿Desea eliminar sus cambios?',false, 'Si, continuar', true, '').then((result) => {
+      if (result) {
+        this.recopilarRolProyecto();
+      }
+    })
   }
 }

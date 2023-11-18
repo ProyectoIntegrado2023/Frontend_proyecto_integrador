@@ -18,33 +18,33 @@ export class TipoConvenioService {
 
   getAll(): Observable<TipoConvenio[]> {
     return this.http.get<TipoConvenioModel[]>(this.url + '/list').pipe(
-      map(v => v.map(s => TipoConvenio.fromBackend(s)))
+      map(v => v.map(s => TipoConvenio.fromBackend(s)!))
     );
   }
 
   getById(id: number): Observable<TipoConvenio> {
     return this.http.get<TipoConvenioModel>(this.url + '/get/' + id).pipe(
-      map(v => TipoConvenio.fromBackend(v))
+      map(v => TipoConvenio.fromBackend(v)!)
     )
   }
 
   save(tipoConvenio: TipoConvenio): Observable<TipoConvenio> {
-    const tipoConvenioModel: TipoConvenioModel = TipoConvenioModel.fromFrontend(tipoConvenio);
+    const tipoConvenioModel: TipoConvenioModel = TipoConvenioModel.fromFrontend(tipoConvenio)!;
     return this.http.post<TipoConvenioModel>(this.url + '/agregar', tipoConvenioModel).pipe(
-      map(v => TipoConvenio.fromBackend(v))
+      map(v => TipoConvenio.fromBackend(v)!)
     )
   }
 
   update(tipoConvenio: TipoConvenio): Observable<TipoConvenio> {
-    const tipoConvenioModel: TipoConvenioModel = TipoConvenioModel.fromFrontend(tipoConvenio);
+    const tipoConvenioModel: TipoConvenioModel = TipoConvenioModel.fromFrontend(tipoConvenio)!;
     return this.http.put<TipoConvenioModel>(this.url + '/editar/' + tipoConvenio.id, tipoConvenioModel).pipe(
-      map(v => TipoConvenio.fromBackend(v))
+      map(v => TipoConvenio.fromBackend(v)!)
     )
   }
 
   delete(tipoConvenioId: number): Observable<TipoConvenio> {
     return this.http.delete<TipoConvenioModel>(this.url + '/eliminar/' + tipoConvenioId).pipe(
-      map(v => TipoConvenio.fromBackend(v))
+      map(v => TipoConvenio.fromBackend(v)!)
     )
   }
 }

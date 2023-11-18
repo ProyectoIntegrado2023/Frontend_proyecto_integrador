@@ -18,33 +18,33 @@ export class RolSistemaService {
 
   getAll(): Observable<RolSistema[]> {
     return this.http.get<RolSistemaModel[]>(this.url + '/list').pipe(
-      map(v => v.map(s => RolSistema.fromBackend(s)))
+      map(v => v.map(s => RolSistema.fromBackend(s)!))
     );
   }
 
   getById(id: number): Observable<RolSistema> {
     return this.http.get<RolSistemaModel>(this.url + '/get/' + id).pipe(
-      map(v => RolSistema.fromBackend(v))
+      map(v => RolSistema.fromBackend(v)!)
     )
   }
 
   save(rolSistema: RolSistema): Observable<RolSistema> {
-    const rolSistemaModel: RolSistemaModel = RolSistemaModel.fromFrontend(rolSistema);
+    const rolSistemaModel: RolSistemaModel = RolSistemaModel.fromFrontend(rolSistema)!;
     return this.http.post<RolSistemaModel>(this.url + '/agregar', rolSistemaModel).pipe(
-      map(v => RolSistema.fromBackend(v))
+      map(v => RolSistema.fromBackend(v)!)
     )
   }
 
   update(rolSistema: RolSistema): Observable<RolSistema> {
-    const rolSistemaModel: RolSistemaModel = RolSistemaModel.fromFrontend(rolSistema);
+    const rolSistemaModel: RolSistemaModel = RolSistemaModel.fromFrontend(rolSistema)!;
     return this.http.put<RolSistemaModel>(this.url + '/editar/' + rolSistema.id, rolSistemaModel).pipe(
-      map(v => RolSistema.fromBackend(v))
+      map(v => RolSistema.fromBackend(v)!)
     )
   }
 
   delete(rolSistemaId: number): Observable<RolSistema> {
     return this.http.delete<RolSistemaModel>(this.url + '/eliminar/' + rolSistemaId).pipe(
-      map(v => RolSistema.fromBackend(v))
+      map(v => RolSistema.fromBackend(v)!)
     )
   }
 }
