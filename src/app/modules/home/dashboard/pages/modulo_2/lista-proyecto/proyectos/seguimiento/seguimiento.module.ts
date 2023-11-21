@@ -6,6 +6,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { SeguimientoRoutingModule } from './seguimiento-routing.module';
 import { SeguimientoComponent } from './seguimiento.component';
 
+import { MatTableModule } from '@angular/material/table';
+
 @NgModule({
   declarations: [
     SeguimientoComponent
@@ -16,6 +18,7 @@ import { SeguimientoComponent } from './seguimiento.component';
     MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
+    MatTableModule,
   ]
 })
 export class SeguimientoModule { }
