@@ -10,7 +10,6 @@ import { environment_api } from 'src/environments/environment.spring';
   providedIn: 'root'
 })
 export class ProyectoService {
-  
   public url: string = environment_api + 'proyecto'
   constructor(
     private http: HttpClient
