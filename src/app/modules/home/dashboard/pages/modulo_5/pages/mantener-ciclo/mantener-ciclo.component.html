@@ -8,15 +8,17 @@
                 <thead>
                     <th>#</th>
                     <th>Nombre</th>
+                    <th>Escuela</th>
                     <th>Accion</th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>CICLO I</td>
+                    <tr *ngFor="let ciclo of listaCiclo; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{ciclo.nombre}}</td>
+                        <td>{{ciclo.escuela?.nombre}}</td>
                         <td>
-                            <i class="material-symbols-outlined material-icons text-primary">edit</i>
-                            <i class="material-symbols-outlined material-icons text-danger">delete</i>
+                            <i class="material-symbols-outlined material-icons text-primary" (click)="editar(ciclo)">edit</i>
+                            <i class="material-symbols-outlined material-icons text-danger" (click)="eliminar(ciclo.id)">delete</i>
                         </td>
                     </tr>
                 </tbody>
@@ -27,11 +29,18 @@
                 <h3 class="text-center">Agregar ciclo</h3>
                 <div class="mb-3">
                     <label for="nombre" class="form-label">nombre</label>
-                    <input type="text" class="form-control" id="nombre">
+                    <input type="text" class="form-control" id="nombre" [(ngModel)]="ciclo.nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="escuela" class="form-label">Escuela</label>
+                    <select class="form-select" name="escuela" [(ngModel)]="ciclo.escuela!.id">
+                        <option value="0" disabled>Seleccione una opcion</option>
+                        <option [value]="escuela.id"*ngFor="let escuela of listaEscuela">{{escuela.nombre}}</option>
+                    </select>
                 </div>
                 <div class="d-flex gap-1 justify-content-end">
-                    <button class="btn btn-outline-danger">Cancelar</button>
-                    <button class="btn btn-primary">Agregar</button>
+                    <button class="btn btn-outline-danger" (click)="inicialiarCiclo()">Cancelar</button>
+                    <button class="btn btn-primary" (click)="guardar()">Agregar</button>
                 </div>
             </div>
         </article>

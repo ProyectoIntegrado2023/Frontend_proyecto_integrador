@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MantenerCursoArticuladoRoutingModule } from './mantener-curso-articulado-routing.module';
 import { MantenerCursoArticuladoComponent } from './mantener-curso-articulado.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { MantenerCursoArticuladoComponent } from './mantener-curso-articulado.co
   ],
   imports: [
     CommonModule,
+    FormsModule,
     MantenerCursoArticuladoRoutingModule
   ]
 })
