@@ -1,1 +1,132 @@
-<p>grupos works!</p>
+<div class="contenedor">
+
+  <div class="contenedorgrupos">
+    <div class="grupo1">
+      <h1 class="titulolider">Joshua Pedraza</h1>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource1">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="Rol">
+            <th mat-header-cell *matHeaderCellDef> Rol </th>
+            <td mat-cell *matCellDef="let element"> {{element.Rol}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="Nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"><input type="text" name="Nombre" id="Nombre"> </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+
+      </div>
+
+
+    </div>
+
+    <div class="grupo2">
+      <h1 class="titulolider">Esau Morales</h1>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource1">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="Rol">
+            <th mat-header-cell *matHeaderCellDef> Rol </th>
+            <td mat-cell *matCellDef="let element"> {{element.Rol}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="Nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"><input type="text" name="Nombre" id="Nombre"> </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+
+      </div>
+
+
+    </div>
+
+    <div class="grupo3">
+      <h1 class="titulolider">Aylan Mostacero</h1>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource1">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="Rol">
+            <th mat-header-cell *matHeaderCellDef> Rol </th>
+            <td mat-cell *matCellDef="let element"> {{element.Rol}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="Nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"><input type="text" name="Nombre" id="Nombre"> </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <!-- Estudent Column -->
+  <div>
+    <div class="participantes">
+      <h1 class="titulolider">Participantes</h1>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource2">
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="Nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre y Apellidos</th>
+            <td mat-cell *matCellDef="let element"> {{element.Nombre}} </td>
+          </ng-container>
+
+          <!-- Control Column -->
+          <ng-container matColumnDef="Control">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element"> <input type="checkbox" name="Control" id="Control"> </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<section class="contenedor-btn-acciones">
+  <button mat-raised-button color="warn">Cancelar</button>
+  <button type="submit" mat-raised-button color="primary">Guardar</button>
+</section>

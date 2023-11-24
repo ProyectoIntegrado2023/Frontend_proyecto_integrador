@@ -43,7 +43,7 @@
   },
   {
       "id_accesos": 7,
-      "nombre": "Proyecto",
+      "nombre": "Lista proyecto",
       "url": "home/modulo/2/lista-proyecto",
       "id_accesos_padre": 2,
       "estado": "ACTIVO"
@@ -155,21 +155,21 @@
   },
   {
       "id_accesos": 24,
-      "nombre": "Seguimiento",
+      "nombre": "SEGUIMIENTO",
       "url": "home/modulo/2/lista-proyecto/proyecto/seguimiento",
       "id_accesos_padre": 7,
       "estado": "ACTIVO"
   },
   {
       "id_accesos": 25,
-      "nombre": "Asignar-Horas",
+      "nombre": "ASIGNAR-HORAS",
       "url": "home/modulo/2/lista-proyecto/proyecto/asignar-horas",
       "id_accesos_padre": 7,
       "estado": "ACTIVO"
   },
   {
       "id_accesos": 26,
-      "nombre": "Informe-Final",
+      "nombre": "INFORME FINAL",
       "url": "home/modulo/2/lista-proyecto/proyecto/informe-final",
       "id_accesos_padre": 7,
       "estado": "ACTIVO"
