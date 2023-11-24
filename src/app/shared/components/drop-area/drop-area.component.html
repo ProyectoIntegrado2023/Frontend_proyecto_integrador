@@ -1,0 +1,27 @@
+<section [ngClass]="{
+  'horizontal': horizontal,
+  'vertical': vertical
+  }">
+    <div class="drop-area"
+        [ngClass]="{
+            'active': activate
+        }"
+        (dragover)="onDragOver($event)"
+        (dragleave)="onDragLeave($event)"
+        (drop)="onDrop($event)">
+      <h2>{{ dragText }}</h2>
+      <span>O</span>
+      <button (click)="onButtonClick()">Selecciona tus archivos</button>
+      <input type="file" name="documento" id="input-file" hidden multiple (change)="onFileChange($event)">
+    </div>
+    <div id="preview">
+      <div *ngFor="let image of imageList" class="file-container">
+        <img [src]="image.src" [alt]="image.alt">
+        <div class="status">
+          <span class="file-name">{{ image.alt }}</span>
+          <span class="status-text">{{ image.status }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  

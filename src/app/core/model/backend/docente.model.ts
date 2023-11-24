@@ -6,24 +6,24 @@ export class DocenteModel {
     static init(): DocenteModel {
         return new this(
             0,
-            PersonaModel.init(),
+            null,
             [],
             []
         )
     }
 
-    static fromFrontend(obj: Docente): DocenteModel{
+    static fromFrontend(obj: Docente | null): DocenteModel | null{
         return obj != null ? new this(
             obj.id,
             PersonaModel.fromFrontend(obj.persona),
             [],
             []
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id_docente          : number                     | null,
-        public id_persona          : PersonaModel               ,
+        public id_docente          : number,
+        public id_persona          : PersonaModel               | null,
         public participante        : ParticipanteModel[]        ,
         public curso_articulado    : CursoArticuladoModel[]     ,
     ){}

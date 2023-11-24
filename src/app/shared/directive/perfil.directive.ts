@@ -5,7 +5,7 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 })
 export class PerfilDirective {
 
-  url: string = './../../../assets/img/perfil.png';
+  url: string = './../../../assets/img/directive/perfil.png';
   constructor(
     private elementRef: ElementRef
   ){}

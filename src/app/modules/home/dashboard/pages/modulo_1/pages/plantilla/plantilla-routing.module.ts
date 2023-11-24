@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PlantillaComponent } from './plantilla.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: PlantillaComponent
+    redirectTo: 'listar',
+    pathMatch: 'full'
+  },
+  {
+    path: 'listar',
+    loadChildren: () => import('./listar/listar.module').then(m => m.ListarModule)
+  },
+  {
+    path: 'editar',
+    loadChildren: () => import('./editar/editar.module').then(m => m.EditarModule)
   }
 ];
 

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccessService } from 'src/app/core/index.services';
+import { AccessService } from 'src/app/core/services/index.services.https';
 import { Acceso, Proyecto } from 'src/app/core/model/index.frontend';
+import { UpdateEffectProjectService } from 'src/app/core/services/index.services.status';
+import { existeItemLocalStorage } from 'src/app/core/function/localStorage/validarLocalStorage';
 
 @Component({
   selector: 'app-agregar-proyecto',
@@ -12,22 +14,20 @@ export class AgregarProyectoComponent implements OnInit {
 
   listAccesso: Acceso[] = []
   proyecto!: Proyecto
-  
-  constructor(private accessService: AccessService, 
-              private router: Router){}
+  constructor(
+    private router: Router,
+    private accessService: AccessService,
+  ){}
 
   ngOnInit(): void {
     const currentUrl = this.router.url;
-    
     this.accessService.getAll().subscribe(data => {
-      
       const idPadre = this.findAccessIdByURL(data, currentUrl);
       this.listAccesso = data.filter(v => v.id_acceso_padre === idPadre);
-      
     });
   }
 
-  findAccessIdByURL(data: Acceso[], currentUrl: string): number | null {
+  private findAccessIdByURL(data: Acceso[], currentUrl: string): number | null {
       const parts = currentUrl.split('/');
       let idPadre = null;
   
@@ -40,12 +40,21 @@ export class AgregarProyectoComponent implements OnInit {
           idPadre = access.id_acceso_padre;
           break;
         }
-      }
-  
+      }  
       return idPadre;
   }
 
-  navegar(acceso: Acceso){
+  public navegar(acceso: Acceso){
     this.router.navigate([acceso.url]);
+  }
+
+  public validarAcceso(index: number): boolean {
+    let validado = false;
+    if(index != 0) {
+      validado = existeItemLocalStorage('proyecto');
+    } else {
+      validado = true;
+    }
+    return validado;
   }
 }

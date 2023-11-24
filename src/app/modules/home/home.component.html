@@ -13,7 +13,7 @@
         <div class="perfil">
             <img appPerfil class="img-perfil" src="" alt="perfil del usuario">
             <h3>{{persona.nombre}}</h3>
-            <span>{{persona.rol_sistema.nombre}}</span>
+            <span>{{persona.rol_sistema?.nombre}}</span>
         </div>
         <button mat-raised-button color="warn" (click)="cerrarSesion()">Cerrar Sesion</button>
     </div>

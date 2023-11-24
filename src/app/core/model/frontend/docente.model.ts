@@ -4,19 +4,22 @@ import { Persona } from "../index.frontend"
 export class Docente {
 
     static init(): Docente {
-        return new Docente(0, Persona.init())
+        return new this(
+            0,
+            null,
+        );
     }
 
-    static fromBackend(obj: DocenteModel): Docente {
+    static fromBackend(obj: DocenteModel | null): Docente | null {
         return obj != null ? new this(
             obj.id_docente,
             Persona.fromBackend(obj.id_persona),
-        ) : this.init();
+        ) : null;
     }
     
     constructor(
-        public id           : number   | null,
-        public persona      : Persona  ,
+        public id           : number,
+        public persona      : Persona | null,
     ){}
 
 }

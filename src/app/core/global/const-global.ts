@@ -1,1 +1,1 @@
-export const NOMBRE_PAGINA_WEB = 'OverSky'
+export const NOMBRE_PAGINA_WEB = 'SGPS'

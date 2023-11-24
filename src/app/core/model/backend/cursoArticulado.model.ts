@@ -7,14 +7,14 @@ export class CursoArticuladoModel {
         return new this(
             0,
             '',
-            PersonaModel.init(),
-            EscuelaModel.init(),
-            DocenteModel.init(),
+            null,
+            null,
+            null,
             []
-        )
+        );
     }
 
-    static fromFrontend(obj: CursoArticulado): CursoArticuladoModel{
+    static fromFrontend(obj: CursoArticulado | null): CursoArticuladoModel | null{
         return obj != null ? new this(
             obj.id,
             obj.nombre,
@@ -22,15 +22,15 @@ export class CursoArticuladoModel {
             EscuelaModel.fromFrontend(obj.escuela),
             DocenteModel.fromFrontend(obj.docente),
             []
-        ) : this.init();
+        ) : null;
     }
     
     constructor(
-        public id_curso_articulado : number             | null,
-        public nombre              : string             | null,
-        public id_persona          : PersonaModel       ,
-        public id_escuela          : EscuelaModel       ,
-        public id_docente          : DocenteModel       ,
+        public id_curso_articulado : number,
+        public nombre              : string,
+        public id_persona          : PersonaModel   | null,
+        public id_escuela          : EscuelaModel   | null,
+        public id_docente          : DocenteModel   | null,
         public proyecto            : ProyectoModel[]    
     ){}
     

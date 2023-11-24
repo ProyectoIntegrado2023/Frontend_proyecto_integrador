@@ -8,24 +8,24 @@ export class RecursoModel {
             0,
             '',
             '',
-            ProyectoModel.init()
+            null,
         )
     }
 
-    static fromFrontend(obj: Recurso): RecursoModel{
+    static fromFrontend(obj: Recurso | null): RecursoModel | null{
         return obj != null ? new this(
             obj.id,
             obj.url,
             obj.nombre,
             ProyectoModel.fromFrontend(obj.proyecto)
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id_recurso      : number         | null,
-        public url             : string         | null,
-        public nombre          : string         | null,
-        public id_proyecto     : ProyectoModel  ,
+        public id_recurso      : number,
+        public url             : string,
+        public nombre          : string,
+        public id_proyecto     : ProyectoModel  | null,
     ){}
 
 }

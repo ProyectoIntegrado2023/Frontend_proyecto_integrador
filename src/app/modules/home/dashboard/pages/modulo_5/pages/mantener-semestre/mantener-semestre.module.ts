@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MantenerSemestreRoutingModule } from './mantener-semestre-routing.module';
 import { MantenerSemestreComponent } from './mantener-semestre.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { MantenerSemestreComponent } from './mantener-semestre.component';
   ],
   imports: [
     CommonModule,
-    MantenerSemestreRoutingModule
+    MantenerSemestreRoutingModule,
+    FormsModule
   ]
 })
 export class MantenerSemestreModule { }

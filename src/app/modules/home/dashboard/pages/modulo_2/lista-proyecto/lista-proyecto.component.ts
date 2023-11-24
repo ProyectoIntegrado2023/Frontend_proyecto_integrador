@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Proyecto } from 'src/app/core/model/index.frontend';
-import { ProyectoService } from 'src/app/core/index.services';
+import { ProyectoService } from 'src/app/core/services/index.services.https';
 
 @Component({
   selector: 'app-lista-proyecto',

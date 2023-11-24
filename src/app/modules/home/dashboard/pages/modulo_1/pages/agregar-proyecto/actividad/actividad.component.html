@@ -1,19 +1,26 @@
 <section>
     <div>
+        <header>
+            <button class="btn-agregar"  mat-raised-button color="primary" (click)="agregarActividad()">Agregar</button>
+        </header>
         <table>
             <thead>
                 <th>#</th>
                 <th>Actividad</th>
                 <th>Fecha</th>
+                <th>Accion</th>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
+                <tr *ngFor="let actividad of listaActividad; let i = index">
+                    <td>{{ i + 1 }}</td>
                     <td>
-                        <input type="text" name="actividad" id="actividad">
+                        <input type="text" name="nombre-actividad" id="nombre-actividad-{{i}}" [(ngModel)]="actividad.nombre">
                     </td>
                     <td>
-                        <input type="date" name="fecha" id="fecha">
+                        <input type="date" name="fecha" id="fecha-{{i}}" [(ngModel)]="actividad.fecha">
+                    </td>
+                    <td>
+                        <i class="material-symbols-outlined" style="color: red; cursor: pointer;" (click)="eliminarActividad(actividad)">delete</i>
                     </td>
                 </tr>
             </tbody>
@@ -21,6 +28,6 @@
     </div>
     <section class="contenedor-btn-acciones">
         <button mat-raised-button color="warn">Cancelar</button>
-        <button type="submit" mat-raised-button color="primary">Guardar</button>
+        <button type="submit" mat-raised-button color="primary" (click)="enviarObjecto()">Guardar</button>
     </section>
 </section>

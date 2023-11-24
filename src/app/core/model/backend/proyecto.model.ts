@@ -18,12 +18,12 @@ export class ProyectoModel {
       '',
       '',
       '',
-      CursoArticuladoModel.init(),
-      TipoConvenioModel.init(),
-      EstadoModel.init(),
-      CicloModel.init(),
-      EscuelaModel.init(),
-      SemestreModel.init(),
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
       [],
       [],
       [],
@@ -31,7 +31,7 @@ export class ProyectoModel {
     )
   }
 
-  static fromFrontend(obj: Proyecto): ProyectoModel{
+  static fromFrontend(obj: Proyecto | null): ProyectoModel | null{
     return obj != null ? new this(
       obj.id,
       obj.nombre,
@@ -54,27 +54,27 @@ export class ProyectoModel {
       [],
       [],
       []
-    ) : this.init();
+    ) : null;
   }
 
   constructor(
-    public id_proyecto           : number                 | null,
-    public nombre                : string                 | null,
-    public codigo                : string                 | null,
-    public coordinador           : string                 | null,
-    public fecha_inicio          : string                 | null,
-    public fecha_fin             : string                 | null,
-    public lugar                 : string                 | null,
-    public presupuesto           : number                 | null,
-    public descripcion           : string                 | null,
-    public objetivos             : string                 | null,
-    public informe_final         : string                 | null,
-    public id_curso_articulado   : CursoArticuladoModel   ,
-    public id_tipo_de_convenio   : TipoConvenioModel      ,
-    public id_estado             : EstadoModel            ,
-    public id_ciclo              : CicloModel             ,
-    public id_escuela            : EscuelaModel           ,
-    public id_semestre           : SemestreModel          ,
+    public id_proyecto           : number,
+    public nombre                : string,
+    public codigo                : string,
+    public coordinador           : string,
+    public fecha_inicio          : string,
+    public fecha_fin             : string,
+    public lugar                 : string,
+    public presupuesto           : number,
+    public descripcion           : string,
+    public objetivos             : string,
+    public informe_final         : string,
+    public id_curso_articulado   : CursoArticuladoModel   | null,
+    public id_tipo_de_convenio   : TipoConvenioModel      | null,
+    public id_estado             : EstadoModel            | null,
+    public id_ciclo              : CicloModel             | null,
+    public id_escuela            : EscuelaModel           | null,
+    public id_semestre           : SemestreModel          | null,
     public actividades           : ActividadModel[]       ,
     public recurso               : RecursoModel[]         ,
     public participante          : ParticipanteModel[]    ,

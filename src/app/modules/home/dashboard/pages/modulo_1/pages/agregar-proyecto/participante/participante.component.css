@@ -98,13 +98,13 @@ main.contenedor-tabla-data > section > p,
 main.data-estudiante > header,
 main.data-estudiante > section > p,
 .resultado-estudiante {
-    grid-template-columns: 1fr 2fr 1fr 2fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 2fr 2fr 0.5fr 0.5fr 0.5fr;
 }
 
 main.data-docente > header,
 main.data-docente > section > p,
 .resultado-docente {
-    grid-template-columns: 1fr 2fr 1fr 2fr 2fr 1fr;
+    grid-template-columns: 1fr 1fr 2fr 2fr 2fr 0.5fr;
 }
 
 main.contenedor-tabla-data > section button,

@@ -6,19 +6,21 @@
         <div class="d-grid justify-content-center align-items-start">
             <table class="table h5">
                 <thead>
-                    <th>#</th>
-                    <th>nombre</th>
-                    <th>Facultad</th>
-                    <th>Accion</th>
+                    <tr>
+                        <th>#</th>
+                        <th>nombre</th>
+                        <th>Facultad</th>
+                        <th>Accion</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Ingenieria de Sistemas</td>
-                        <td>FIA</td>
+                    <tr *ngFor="let escuela of listaEscuela; let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{escuela.nombre}}</td>
+                        <td>{{escuela.facultad?.nombre}}</td>
                         <td>
-                            <i class="material-symbols-outlined material-icons text-primary">edit</i>
-                            <i class="material-symbols-outlined material-icons text-danger">delete</i>
+                            <i class="material-symbols-outlined material-icons text-primary" (click)="editar(escuela)">edit</i>
+                            <i class="material-symbols-outlined material-icons text-danger" (click)="eliminar(escuela.id)">delete</i>
                         </td>
                     </tr>
                 </tbody>
@@ -29,18 +31,18 @@
                 <h3 class="text-center">Agregar escuela</h3>
                 <div class="mb-3">
                     <label for="escuela" class="form-label">nombre</label>
-                    <input type="text" class="form-control" id="escuela">
+                    <input type="text" class="form-control" id="escuela" [(ngModel)]="escuela.nombre">
                 </div>
                 <div class="mb-3">
                     <label for="facultad" class="form-label">Facultad</label>
-                    <select class="form-control" id="facultad">
-                        <option value="FIA">FIA</option>
-                        <option value="FIA">FCED</option>
+                    <select class="form-control" id="facultad" [(ngModel)]="facultad.id">
+                        <option value="0" selected disabled>---Seleccione una opcion---</option>
+                        <option [value]="facultad.id" *ngFor="let facultad of listaFacultad">{{facultad.nombre}}</option>
                     </select>
                 </div>
                 <div class="d-flex gap-1 justify-content-end">
-                    <button class="btn btn-outline-danger">Cancelar</button>
-                    <button class="btn btn-primary">Agregar</button>
+                    <button class="btn btn-outline-danger" (click)="cancelar()">Cancelar</button>
+                    <button class="btn btn-primary" (click)="guardar()">Agregar</button>
                 </div>
             </div>
         </article>

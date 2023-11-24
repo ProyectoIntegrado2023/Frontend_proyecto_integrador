@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ProyectoService, CursoArticuladoService, TipoConvenioService, 
-  CicloService, EstadoService, EscuelaService, SemestreService } from 'src/app/core/index.services';
-import { Proyecto, CursoArticulado, Persona, Escuela, Ciclo, TipoConvenio } from 'src/app/core/model/index.frontend';
+
+import { UpdateEffectProjectService } from 'src/app/core/services/index.services.status';
+import { Proyecto, CursoArticulado, Escuela, Ciclo, TipoConvenio } from 'src/app/core/model/index.frontend';
+import { ProyectoService, CursoArticuladoService, TipoConvenioService, CicloService, EscuelaService } from 'src/app/core/services/index.services.https';
+
+import { generarCodigoProyecto } from 'src/app/core/function/generacion/generarCodigoEscuela';
+import { notificacionConfirmacionLimpieza, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { recopilarPersona, recopilarProyecto } from 'src/app/core/function/localStorage/recopilarLocalStorage';
+import { existeItemLocalStorage } from 'src/app/core/function/localStorage/validarLocalStorage';
 
 @Component({
   selector: 'app-general',
@@ -10,152 +15,160 @@ import { Proyecto, CursoArticulado, Persona, Escuela, Ciclo, TipoConvenio } from
   styleUrls: ['./general.component.css']
 })
 export class GeneralComponent implements OnInit {
-  urlGuardar: string = '/home/modulo/1/agregar-proyecto/general';
+  statusUpdate: boolean = false;
   
-  persona: Persona = Persona.init();
   proyecto: Proyecto = Proyecto.init();
+
+  cicloSeleccionada: Ciclo = Ciclo.init();
+  escuelaSeleccionada: Escuela = Escuela.init();
+  tipoConvenioSeleccionada: TipoConvenio = TipoConvenio.init();
+  cursoArticuladoSeleccionada: CursoArticulado = CursoArticulado.init();
 
   listarCiclo: Ciclo[] = []
   listaEscuela: Escuela[] = []
   listaProyecto: Proyecto[] = []
   listaTipoConvenio: TipoConvenio[] = []
   listaCursoArticulado: CursoArticulado[] = []
-  
-  mensaje: string = ''
-  satisfaccion: boolean = false;
-  confirmarEnvioHttp: boolean = false;
 
   constructor(
-    private router: Router,
-    private proyectoService: ProyectoService,
-    private cursoArticuladoService: CursoArticuladoService,
-    private escuelaService: EscuelaService,
     private cicloService: CicloService,
-    private estadoService: EstadoService,
+    private escuelaService: EscuelaService,
+    private proyectoService: ProyectoService,
     private tipoConvenioService: TipoConvenioService,
-    private semestreService: SemestreService
+    private cursoArticuladoService: CursoArticuladoService,
+    private _updateEffectProject: UpdateEffectProjectService,
   ){}
 
   ngOnInit ():void {
-    if(this.router.url === this.urlGuardar) {
-      localStorage.removeItem('proyecto');
-      this.persona = JSON.parse(localStorage.getItem('persona')!);
-      this.proyecto.coordinador = this.persona.nombre;
+    this._updateEffectProject.get().subscribe(update =>{
+      this.statusUpdate = update;
+      this.cargarProyecto();
+    })
 
-      this.tipoConvenioService.getAll().subscribe(data => {
-        this.listaTipoConvenio = data
-      })
-      this.estadoService.getAll().subscribe(data => { // mejorar esto 
-        this.proyecto.estado = data[0]
-      })
-      this.semestreService.getAll().subscribe(data => { // mejorar esto 
-        this.proyecto.semestre = data[0]
-      })
-      this.escuelaService.getAll().subscribe(data => {
-        this.listaEscuela = data
-      })
+    this.escuelaService.getAll().subscribe(arrayEscuelas => this.listaEscuela = arrayEscuelas)
+    this.tipoConvenioService.getAll().subscribe(arrayConvenios => this.listaTipoConvenio = arrayConvenios)
+    this.proyectoService.getAll().subscribe(arrayProyectos => this.listaProyecto = arrayProyectos)
+  }
 
+  private cargarProyecto(){
+    if(!this.statusUpdate){
+      this.obtenerProyectoCreado(existeItemLocalStorage('proyecto'));
     } else {
-      this.proyecto = localStorage.getItem('proyecto') ? JSON.parse(localStorage.getItem('proyecto')!) : Proyecto.init();
-      this.proyectoService.getAll().subscribe(data => {
-        this.listaProyecto = data
-      })
-      this.cursoArticuladoService.getAll().subscribe(data => {
-        this.listaCursoArticulado = data.filter(c => c.escuela.nombre == this.proyecto.escuela.nombre)
-      })
+      this.recopilarDatosProyecto();
+    }
+    this.filtrarCicloPorEscuela();
+    this.filtrarCursoPorCiclo();
+  }
+
+  private obtenerProyectoCreado(creado: boolean) {
+    if(creado){
+      this.recopilarDatosProyecto();
+    } else {
+      this.proyecto = Proyecto.init();
+      this.proyecto.coordinador = recopilarPersona('persona').nombre;
     }
   }
 
-  public guardarProyecto() {
-    if(this.router.url === this.urlGuardar){
-      this.proyectoService.save(this.proyecto).subscribe(
+  private recopilarDatosProyecto(){
+    this.proyecto = recopilarProyecto('proyecto');
+    this.cicloSeleccionada = this.proyecto.ciclo != null ? this.proyecto.ciclo : Ciclo.init();
+    this.escuelaSeleccionada = this.proyecto.escuela != null ? this.proyecto.escuela : Escuela.init();
+    this.tipoConvenioSeleccionada = this.proyecto.tipo_convenio != null ? this.proyecto.tipo_convenio : TipoConvenio.init();
+    this.cursoArticuladoSeleccionada = this.proyecto.curso_articulado != null ? this.proyecto.curso_articulado : CursoArticulado.init();
+  }
+
+  public generaracionCodigoProyecto(){
+    const idEscuela = this.escuelaSeleccionada.id;
+    if(this.escuelaSeleccionada.id != 0) {
+      this.proyecto.escuela = this.escuelaSeleccionada;
+    }
+    const nombreEscuela: string = this.listaEscuela.find(e => e.id == idEscuela)?.nombre ?? 'U P E U';
+    this.proyecto.codigo = generarCodigoProyecto(nombreEscuela, this.listaProyecto);
+  }
+
+  public filtrarCicloPorEscuela(){
+    this.cicloService.getAll().subscribe(arrayCiclos => {
+      this.listarCiclo = arrayCiclos.filter(c => c.escuela?.id == this.proyecto.escuela?.id);
+    })
+  }
+
+  public filtrarCursoPorCiclo(){
+    this.cursoArticuladoService.getAll().subscribe(arrayCursos => {
+      this.listaCursoArticulado = arrayCursos.filter(c => c.escuela?.id == this.proyecto.escuela?.id);
+    })
+  }
+
+  public subirProyecto() {
+    if(this.cicloSeleccionada.id != 0) this.proyecto.ciclo = this.cicloSeleccionada;
+    if(this.tipoConvenioSeleccionada.id != 0) this.proyecto.tipo_convenio = this.tipoConvenioSeleccionada;
+    if(this.cursoArticuladoSeleccionada.id != 0) this.proyecto.curso_articulado = this.cursoArticuladoSeleccionada;
+
+    if(!this.statusUpdate){
+      this.guardarProyecto(this.proyecto);
+    } else {
+      this.editarProyecto(this.proyecto);
+    }
+  }
+
+  private guardarProyecto(pry: Proyecto){
+    if(!existeItemLocalStorage('proyecto')) {
+      this.proyectoService.save(pry).subscribe(
         (res) => {
-          this.mensaje = 'se guardo corectamente'
-          this.satisfaccion = true
-          // this.proyecto = Proyecto.init()
+          notificacionSimpleDinamico('¡Guardado!', 'Se guardo Correctamente', 'success');
+          this.proyecto = res;
+          localStorage.removeItem('proyecto');
+          localStorage.setItem('proyecto', JSON.stringify(res));
         },
         (error) => {
-          this.mensaje = 'ocurrio un error'
-          this.satisfaccion = false
+          notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
         }
       );
     } else {
-      this.proyectoService.update(this.proyecto).subscribe(
+      this.proyectoService.update(pry).subscribe(
         (res) => {
-          this.mensaje = 'se actualizo corectamente'
-          this.satisfaccion = true
+          notificacionSimpleDinamico('¡Cambio guardado!', 'Se guardo Correctamente los ultimos cambios', 'success');
+          this.proyecto = res;
           localStorage.removeItem('proyecto');
-          localStorage.setItem('proyecto', JSON.stringify(this.proyecto))
+          localStorage.setItem('proyecto', JSON.stringify(res));
         },
         (error) =>{
-          this.mensaje = 'ocurrio un error'
-          this.satisfaccion = false
+          notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
         }
       );
     }
-    this.confirmarEnvioHttp = true
+  }
+
+  private editarProyecto(pry: Proyecto){
+    this.proyectoService.update(pry).subscribe(
+      (res) => {
+        notificacionSimpleDinamico('¡Actualizado!', 'se actualizo corectamente', 'success');
+        localStorage.removeItem('proyecto');
+        localStorage.setItem('proyecto', JSON.stringify(res))
+      },
+      (error) =>{
+        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+      }
+    );
   }
 
   public cancelar() {
-    if(this.router.url === this.urlGuardar){
-      this.proyecto = Proyecto.init();
+    if(!this.statusUpdate){
+      this.cargarProyecto();
     } else {
-      this.proyecto = localStorage.getItem('proyecto') ? JSON.parse(localStorage.getItem('proyecto')!) : Proyecto.init();
+      this.proyecto = recopilarProyecto('proyecto');
     }
   }
 
-  public cerrarConfirmacion() {
-    this.confirmarEnvioHttp = false
-    this.satisfaccion = false
-    this.mensaje = ''
-  }
-
-  public generarCodigoProyecto(escuela: string) {
-    const año = new Date().getFullYear();
-    const abreviacion = this.obtenerAbreviacionEscuela(escuela);
-    const numeroProyectos = this.obtenerNumeroProyectos(año + abreviacion); //mejorar no cuenta los proyecto creados anteriormente para aumentar
-    const numeroProyectosStr = numeroProyectos.toString().padStart(2, '0'); //formateado para dos numeros revisar si funciona como deberia
-    const codigoProyecto = año + abreviacion + numeroProyectosStr;
-
-    return codigoProyecto;
-  }
-
-  public obtenerAbreviacionEscuela(escuela: string) {
-    const palabras = escuela.split(' ');
-    let iniciales = '';
-    for (let palabra of palabras) {
-      iniciales += palabra.charAt(0);
-    }
-    return iniciales.toUpperCase();
-  }
-
-  public obtenerNumeroProyectos(codigo: string) {
-    let contadorCodigo: number = 0;
-    this.listaProyecto.filter(p => {
-      if(p.codigo != null) {
-        const parteInicial = p.codigo.match(/^\d+[A-Z]+/)![0]; //buscar las letras del codigo y los separa del resto del codigo
-        if(parteInicial == codigo) {
-          contadorCodigo++;
-        }
+  public limpiar(){
+    notificacionConfirmacionLimpieza().then((result) => {
+      if(result) {
+        localStorage.removeItem('proyecto');
+        this.cargarProyecto();
       }
-    });
-    return contadorCodigo + 1;
-  }
-
-  public filtrarCursoPorEscula(){
-    this.proyecto.curso_articulado = CursoArticulado.init();
-    const nombreEscuela: string = this.proyecto.escuela.nombre ?? 'U P E U';
-    this.proyecto.codigo = this.generarCodigoProyecto(nombreEscuela);
-    
-    this.cicloService.getAll().subscribe(data => {
-      this.listarCiclo = data.filter(c => c.escuela.id == this.proyecto.escuela.id);
     })
   }
 
-  public filtrarCursoArticulado(){
-    this.cursoArticuladoService.getAll().subscribe(data => {
-      this.listaCursoArticulado = data.filter(c => c.escuela.id == this.proyecto.escuela.id);
-    })
+  public onFileUrlsEmitted(fileUrls: string[]){
+    console.log(fileUrls);
   }
-
 }

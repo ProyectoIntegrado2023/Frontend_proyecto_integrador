@@ -6,25 +6,25 @@ export class RolProyectoEncargadoModel {
     static init(): RolProyectoEncargadoModel {
         return new this(
             0,
-            RolProyectoModel.init(),
-            EncargadoModel.init(),
+            null,
+            null,
             []
         )
     }
     
-    static fromFrontend(obj: RolProyectoEncargado): RolProyectoEncargadoModel {
+    static fromFrontend(obj: RolProyectoEncargado | null): RolProyectoEncargadoModel | null {
         return obj != null ? new this(
             obj.id,
             RolProyectoModel.fromFrontend(obj.rol_proyecto),
             EncargadoModel.fromFrontend(obj.encargado),
             []
-        ) : this.init()
+        ) : null;
     }
 
     constructor(
-        public id_rol_proyecto_encargado   : number             | null,
-        public id_rol_proyecto             : RolProyectoModel   ,
-        public id_encargado                : EncargadoModel     ,
+        public id_rol_proyecto_encargado   : number,
+        public id_rol_proyecto             : RolProyectoModel   | null,
+        public id_encargado                : EncargadoModel     | null,
         public participante                : ParticipanteModel[],
     ){}
 

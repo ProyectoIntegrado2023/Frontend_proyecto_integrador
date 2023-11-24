@@ -9,16 +9,16 @@ export class TipoConvenioModel {
         )
     }
     
-    static fromFrontend(obj: TipoConvenio): TipoConvenioModel{
+    static fromFrontend(obj: TipoConvenio | null): TipoConvenioModel | null{
         return obj != null ? new this(
             obj.id,
             obj.nombre
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id_tipo_de_convenio:    number   | null,
-        public nombre:                 string   | null,
+        public id_tipo_de_convenio:    number,
+        public nombre:                 string,
     ){}
 
 }

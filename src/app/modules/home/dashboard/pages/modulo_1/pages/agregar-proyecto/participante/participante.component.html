@@ -3,14 +3,14 @@
         <div class="contenedor-estudiante">
             <h2>Asignar estudiante</h2>
             <div>
-                <select name="facultad" id="facultad">
-                    <option value="1">FIA</option>
+                <select name="facultad" id="facultad" (change)="filtrarEscuelaEstudiante()" [(ngModel)]="facultadSeleccionadoEstudiante.id">
+                    <option [ngValue]="facultad.id" *ngFor="let facultad of listaFacultadEstudiante">{{facultad.nombre}}</option>
                 </select>
-                <select name="escuela" id="escuela">
-                    <option value="1">Ingenieria de sistema</option>
+                <select name="escuela" id="escuela" (change)="filtrarCicloEstudiante()" [(ngModel)]="escuelaSeleccionadoEstudiante.id">
+                    <option [ngValue]="escuela.id" *ngFor="let escuela of listaEscuelaEstudiante">{{escuela.nombre}}</option>
                 </select>
-                <select name="ciclo" id="ciclo">
-                    <option value="1">IV</option>
+                <select name="ciclo" id="ciclo" (ngModelChange)="filtrarEstudiante()" [(ngModel)]="cicloSeleccionadoEstudiante.id">
+                    <option [ngValue]="ciclo.id" *ngFor="let ciclo of listaCicloEstudiante">{{ciclo.nombre}}</option>
                 </select>
             </div>
             <main class="contenedor-tabla-data data-estudiante">
@@ -24,51 +24,61 @@
                     <span>Accion</span>
                 </header>
                 <section>
-                    <p>
-                        <span>202312322</span>
-                        <span>Luis Lucero</span>
-                        <span>FIA</span>
-                        <span>Ing de Sistemas</span>
-                        <span>IV</span>
-                        <span>I</span>
-                        <span>
-                            <button>Quitar</button>
-                        </span>
-                    </p>
+                    <ng-container *ngIf="listaEstudiante.length > 0; else vacioEstudiante">
+                        <p *ngFor="let estudiante of listaEstudiante">
+                            <span>{{estudiante.codigo}}</span>
+                            <span>{{estudiante.persona?.nombre}}</span>
+                            <span>{{estudiante.ciclo?.escuela?.facultad?.nombre}}</span>
+                            <span>{{estudiante.ciclo?.escuela?.nombre}}</span>
+                            <span>{{estudiante.ciclo?.nombre}}</span>
+                            <span>{{estudiante.grupo_universitario?.nombre}}</span>
+                            <span>
+                                <button (click)="quitarEstudiante(estudiante)">Quitar</button>
+                            </span>
+                        </p>
+                    </ng-container>
+                    <ng-template #vacioEstudiante>
+                        vacio
+                    </ng-template>
                 </section>
             </main>
             <div class="contenedor-busqueda">
                 <div>
                     <label for="buscar-estudiante">Estudiante externo:</label>
                     <div>
-                        <input type="text" name="externo-estudiante" id="buscar-estudiante">
-                        <input type="submit" value="Buscar">
+                        <input type="text" name="externo-estudiante" id="buscar-estudiante" placeholder="codigo" [(ngModel)]="codigo">
+                        <input type="submit" value="Buscar" (click)="buscarEstudiante()">
                     </div>
                 </div>
                 <article class="resultado-busqueda resultado-estudiante">
-                    <span>Codigo</span>
-                    <span>Estudiante</span>
-                    <span>Facultad</span>
-                    <span>Escuela</span>
-                    <span>Ciclo</span>
-                    <span>Grupo</span>
-                    <span>
-                        <button>Agregar</button>
-                    </span>
+                    <ng-container *ngIf="estudianteEncontrado.id != 0, else estudianteNoEncontrado">
+                        <span>{{estudianteEncontrado.codigo}}</span>
+                        <span>{{estudianteEncontrado.persona?.nombre}}</span>
+                        <span>{{estudianteEncontrado.ciclo?.escuela?.facultad?.nombre}}</span>
+                        <span>{{estudianteEncontrado.ciclo?.escuela?.nombre}}</span>
+                        <span>{{estudianteEncontrado.ciclo?.nombre}}</span>
+                        <span>{{estudianteEncontrado.grupo_universitario?.nombre}}</span>
+                        <span>
+                            <button (click)="agregarEstudiante(estudianteEncontrado)">Agregar</button>
+                        </span>
+                    </ng-container>
+                    <ng-template #estudianteNoEncontrado>
+                        no se encontro
+                    </ng-template>
                 </article>
             </div>
         </div>
         <div class="contenedor-docente">
             <h2>Asignar docente</h2>
             <div>
-                <select name="facultad" id="facultad">
-                    <option value="1">FIA</option>
+                <select name="facultad" id="facultad" (change)="filtrarEscuelaDocente()" [(ngModel)]="facultadSeleccionadoDocente.id">
+                    <option [ngValue]="facultad.id" *ngFor="let facultad of listaFacultadDocente">{{facultad.nombre}}</option>
                 </select>
-                <select name="escuela" id="escuela">
-                    <option value="1">Ingenieria de sistema</option>
+                <select name="escuela" id="escuela" (change)="filtrarCursoArticuladoDocente()" [(ngModel)]="escuelaSeleccionadoDocente.id">
+                    <option [ngValue]="escuela.id" *ngFor="let escuela of listaEscuelaDocente">{{escuela.nombre}}</option>
                 </select>
-                <select name="curso" id="curso-articulado">
-                    <option value="1">ADS</option>
+                <select name="curso" id="curso-articulado" (change)="filtrarDocente()" [(ngModel)]="cursoArticuladoSeleccionadoDocente.id">
+                    <option [ngValue]="curso.id" *ngFor="let curso of listaCursoArticuladoDocente">{{curso.nombre}}</option>
                 </select>
             </div>
             <main class="contenedor-tabla-data data-docente">
@@ -81,41 +91,51 @@
                     <span>Accion</span>
                 </header>
                 <section>
-                    <p>
-                        <span>71952458</span>
-                        <span>Diana Sanchez</span>
-                        <span>FIA</span>
-                        <span>Ingenieria de Sistemas</span>
-                        <span>ADS</span>
-                        <span>
-                            <button>Quitar</button>
-                        </span>
-                    </p>
+                    <ng-container *ngIf="listaCursoArticulado_vistaDocente.length > 0, else vacioDocente">
+                        <p *ngFor="let vista_docente of listaCursoArticulado_vistaDocente">
+                            <span>{{vista_docente.persona?.dni}}</span>
+                            <span>{{vista_docente.persona?.nombre}}</span>
+                            <span>{{vista_docente.escuela?.facultad?.nombre}}</span>
+                            <span>{{vista_docente.escuela?.nombre}}</span>
+                            <span>{{vista_docente.nombre}}</span>
+                            <span>
+                                <button (click)="quitarDocente(vista_docente)">Quitar</button>
+                            </span>
+                        </p>
+                    </ng-container>
+                    <ng-template #vacioDocente>
+                        vacio
+                    </ng-template>
                 </section>
             </main>
             <div class="contenedor-busqueda">
                 <div>
                     <label for="">docente externo:</label>
                     <div>
-                        <input type="text" name="externo-docente" id="buscar-docente">
-                        <input type="submit" value="Buscar">
+                        <input type="text" name="externo-docente" id="buscar-docente" placeholder="dni" [(ngModel)]="dni">
+                        <input type="submit" value="Buscar" (click)="buscarDocente()">
                     </div>
                 </div>
-                <article class="resultado-busqueda resultado-docente">
-                    <span>71905709</span>
-                    <span>Diana Sanchez</span>
-                    <span>FIA</span>
-                    <span>Ingenieria de Sistemas</span>
-                    <span>ADS</span>
-                    <span>
-                        <button>Agregar</button>
-                    </span>
+                <article class="resultado-busqueda resultado-docente" *ngFor="let vista_docente2 of cursoArticuladoEncontrado_vistaDocente">
+                    <ng-container *ngIf="cursoArticuladoEncontrado_vistaDocente.length > 0, else docenteNoEncontrado">
+                        <span>{{vista_docente2.persona?.dni}}</span>
+                        <span>{{vista_docente2.persona?.nombre}}</span>
+                        <span>{{vista_docente2.escuela?.facultad?.nombre}}</span>
+                        <span>{{vista_docente2.escuela?.nombre}}</span>
+                        <span>{{vista_docente2.nombre}}</span>
+                        <span>
+                            <button (click)="agregarDocente(vista_docente2)">Agregar</button>
+                        </span>
+                    </ng-container>
+                    <ng-template #docenteNoEncontrado>
+                        no se encontro
+                    </ng-template>
                 </article>
             </div>
         </div>
     </div>
     <section class="contenedor-btn-acciones">
         <button mat-raised-button color="warn">Cancelar</button>
-        <button type="submit" mat-raised-button color="primary">Guardar</button>
+        <button type="submit" mat-raised-button color="primary" (click)="guardarParticipante()">Guardar</button>
     </section>
 </section>

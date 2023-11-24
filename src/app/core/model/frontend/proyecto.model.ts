@@ -4,14 +4,14 @@ import { Semestre, Ciclo, Escuela, TipoConvenio, Estado, CursoArticulado } from 
 export class Proyecto {
 
   static init(): Proyecto {
-    return new Proyecto(
+    return new this(
       0,
-      CursoArticulado.init(),
-      TipoConvenio.init(),
-      Estado.init(), 
-      Ciclo.init(),
-      Escuela.init(),
-      Semestre.init(),
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
       '',
       '',
       '',
@@ -25,7 +25,7 @@ export class Proyecto {
       )
   }
   
-  static fromBackend(obj: ProyectoModel): Proyecto {
+  static fromBackend(obj: ProyectoModel | null): Proyecto | null {
     
     return obj != null ? new this(
       obj.id_proyecto,
@@ -45,28 +45,28 @@ export class Proyecto {
       obj.descripcion,
       obj.objetivos,
       obj.informe_final
-    ) : this.init();
+    ) : null;
 
   } 
 
   constructor(
-    public id                    : number           | null,
-    public curso_articulado      : CursoArticulado  ,
-    public tipo_convenio         : TipoConvenio     ,
-    public estado                : Estado           ,
-    public ciclo                 : Ciclo            ,
-    public escuela               : Escuela          ,
-    public semestre              : Semestre         ,
-    public nombre                : string           | null,
-    public codigo                : string           | null,
-    public coordinador           : string           | null,
-    public lugar                 : string           | null,
-    public fecha_inicio          : string           | null,
-    public presupuesto           : number           | null,
-    public fecha_fin             : string           | null,
-    public descripcion           : string           | null,
-    public objetivos             : string           | null,
-    public informe_final         : string           | null,
+    public id                    : number,
+    public curso_articulado      : CursoArticulado  | null,
+    public tipo_convenio         : TipoConvenio     | null,
+    public estado                : Estado           | null,
+    public ciclo                 : Ciclo            | null,
+    public escuela               : Escuela          | null,
+    public semestre              : Semestre         | null,
+    public nombre                : string,
+    public codigo                : string,
+    public coordinador           : string,
+    public lugar                 : string,
+    public fecha_inicio          : string,
+    public presupuesto           : number,
+    public fecha_fin             : string,
+    public descripcion           : string,
+    public objetivos             : string,
+    public informe_final         : string,
   ){}
 
 }

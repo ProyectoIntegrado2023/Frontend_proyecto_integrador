@@ -7,25 +7,25 @@ export class PlantillaModel {
         return new this(
             0,
             '',
-            TipoConvenioModel.init(),
-            ''
+            '',
+            null,
         )
     }
     
-    static fromFrontend(obj: Plantilla): PlantillaModel{
+    static fromFrontend(obj: Plantilla | null): PlantillaModel | null{
         return obj != null ? new this(
             obj.id,
             obj.nombre,
+            obj.url,
             TipoConvenioModel.fromFrontend(obj.tipo_convenio),
-            obj.url
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id_plantilla        : number             | null,
-        public nombre              : string             | null,
-        public id_tipo_de_convenio : TipoConvenioModel  ,
-        public url                 : string             | null,
+        public id_plantilla        : number,
+        public nombre              : string,
+        public url                 : string,
+        public id_tipo_de_convenio : TipoConvenioModel  | null,
     ){}
 
 }

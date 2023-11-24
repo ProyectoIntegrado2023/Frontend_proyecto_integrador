@@ -5,21 +5,25 @@ import { Acceso, Usuario } from "../index.frontend"
 export class UsuarioAcceso {
 
     static init(): UsuarioAcceso {
-        return new UsuarioAcceso(0, Usuario.init(), Acceso.init())
+        return new this(
+            0,
+            null,
+            null,
+        )
     }
     
-    static fromBackend(obj: UsuarioAccesoModel): UsuarioAcceso {
+    static fromBackend(obj: UsuarioAccesoModel | null): UsuarioAcceso | null {
         return obj != null ? new this(
             obj.id_usuario_accesos,
             Usuario.fromBackend(obj.id_usuario),
             Acceso.fromBackend(obj.id_accesos),
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id      : number     | null,
-        public usuario : Usuario,
-        public accesos : Acceso ,
+        public id      : number,
+        public usuario : Usuario    | null,
+        public accesos : Acceso     | null,
     ){}
 
 }

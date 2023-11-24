@@ -6,23 +6,23 @@ export class RolSistemaAccesoModel {
     static init(): RolSistemaAccesoModel {
         return new this(
             0,
-            RolSistemaModel.init(),
-            AccesoModel.init(),
+            null,
+            null,
         )
     }
 
-    static fromFrontend(obj: RolSistemaAcceso): RolSistemaAccesoModel {
+    static fromFrontend(obj: RolSistemaAcceso | null): RolSistemaAccesoModel | null {
         return obj != null ? new this(
             obj.id,
             RolSistemaModel.fromFrontend(obj.rol_sistema),
             AccesoModel.fromFrontend(obj.accesos),
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id_rol_sistema_accesos      : number             | null,
-        public id_rol_sistema              : RolSistemaModel    ,
-        public id_accesos                  : AccesoModel        ,
+        public id_rol_sistema_accesos      : number             ,
+        public id_rol_sistema              : RolSistemaModel    | null,
+        public id_accesos                  : AccesoModel        | null,
     ){}
 
 }

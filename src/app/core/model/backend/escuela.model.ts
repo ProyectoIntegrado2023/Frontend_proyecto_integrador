@@ -5,29 +5,29 @@ export class EscuelaModel {
     static init(): EscuelaModel {
         return new this(
             0,
-            FacultadModel.init(),
             '',
+            null,
             [],
             [],
             []
         )
     }
 
-    static fromFrontend(obj: Escuela): EscuelaModel{
+    static fromFrontend(obj: Escuela | null): EscuelaModel | null{
         return obj != null ? new this(
             obj.id,
-            FacultadModel.fromFrontend(obj.facultad),
             obj.nombre,
+            FacultadModel.fromFrontend(obj.facultad),
             [],
             [],
             []
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id_escuela      : number                 | null,
-        public id_facultad     : FacultadModel          ,
-        public nombre          : string                 | null,
+        public id_escuela      : number,
+        public nombre          : string,
+        public id_facultad     : FacultadModel          | null,
         public Proyecto        : ProyectoModel[]        ,
         public ciclo           : CicloModel[]           ,
         public curso_articulado: CursoArticuladoModel[] ,

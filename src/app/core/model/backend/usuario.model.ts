@@ -8,23 +8,23 @@ export class UsuarioModel {
             0,
             '',
             '',
-            PersonaModel.init()
+            null,
         )
     }
 
-    static fromFrontend(obj: Usuario): UsuarioModel {
+    static fromFrontend(obj: Usuario | null): UsuarioModel | null {
         return obj != null ? new UsuarioModel(
             obj.id,
             obj.username,
             obj.password,
             PersonaModel.fromFrontend(obj.persona)
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id_usuario  : number         | null,
-        public username    : string         | null,
-        public password    : string         | null,
-        public id_persona  : PersonaModel   
+        public id_usuario  : number,
+        public username    : string,
+        public password    : string,
+        public id_persona  : PersonaModel  | null,
     ){}
 }

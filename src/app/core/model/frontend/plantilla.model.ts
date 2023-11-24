@@ -4,25 +4,31 @@ import { TipoConvenio } from "../index.frontend";
 export class Plantilla {
 
     static init(): Plantilla {
-        return new Plantilla(0, '', TipoConvenio.init(), '', '');
+        return new this(
+            0,
+            '',
+            '',
+            '',
+            null,
+        );
     }
     
-    static fromBackend(obj: PlantillaModel): Plantilla {
+    static fromBackend(obj: PlantillaModel | null): Plantilla | null {
         return obj != null ? new this(
             obj.id_plantilla,
             obj.nombre,
-            TipoConvenio.fromBackend(obj.id_tipo_de_convenio),
             'no hay descripcion',
-            obj.url
-        ) : this.init();
+            obj.url,
+            TipoConvenio.fromBackend(obj.id_tipo_de_convenio),
+        ) : null;
     }
 
     constructor(
-        public id              :   number       | null,
-        public nombre          :   string       | null,
-        public tipo_convenio   :   TipoConvenio ,
-        public descripcion     :   string       | null,
-        public url             :   string       | null,
+        public id              :   number,
+        public nombre          :   string,
+        public descripcion     :   string,
+        public url             :   string,
+        public tipo_convenio   :   TipoConvenio | null,
     ){}
 
 }

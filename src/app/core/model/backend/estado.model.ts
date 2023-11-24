@@ -9,16 +9,16 @@ export class EstadoModel {
         )
     }
 
-    static fromFrontend(obj: Estado): EstadoModel{
+    static fromFrontend(obj: Estado | null): EstadoModel | null{
         return obj != null ? new this(
             obj.id,
             obj.nombre
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id_estado:      number | null,
-        public nombre:         string | null,
+        public id_estado:      number,
+        public nombre:         string,
     ){}
 
 }
