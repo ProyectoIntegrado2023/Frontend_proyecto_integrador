@@ -6,29 +6,29 @@ export class CicloModel {
     static init(): CicloModel {
         return new this(
             0,
-            EscuelaModel.init(),
             '',
+            null,
             [],
             []
         )
     }
 
-    static fromFrontend(obj: Ciclo): CicloModel{
+    static fromFrontend(obj: Ciclo  | null): CicloModel  | null{
         return obj != null ? new this(
             obj.id,
-            EscuelaModel.fromFrontend(obj.escuela),
             obj.nombre,
+            EscuelaModel.fromFrontend(obj.escuela),
             [],
             []
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id_ciclo        : number             | null,
-        public id_escuela      : EscuelaModel       ,
-        public nombre          : string             | null,
+        public id_ciclo        : number             ,
+        public nombre          : string             ,
+        public id_escuela      : EscuelaModel       | null,
         public estudiante      : EstudianteModel[]  ,
-        public proyecto        : ProyectoModel[]    
+        public proyecto        : ProyectoModel[]    ,
     ){}
     
 }

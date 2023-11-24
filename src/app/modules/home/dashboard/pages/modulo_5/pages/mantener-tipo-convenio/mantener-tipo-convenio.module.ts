@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MantenerTipoConvenioRoutingModule } from './mantener-tipo-convenio-routing.module';
 import { MantenerTipoConvenioComponent } from './mantener-tipo-convenio.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { MantenerTipoConvenioComponent } from './mantener-tipo-convenio.componen
   ],
   imports: [
     CommonModule,
-    MantenerTipoConvenioRoutingModule
+    MantenerTipoConvenioRoutingModule,
+    FormsModule
   ]
 })
 export class MantenerTipoConvenioModule { }

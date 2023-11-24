@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MantenerEscuelaRoutingModule } from './mantener-escuela-routing.module';
 import { MantenerEscuelaComponent } from './mantener-escuela.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { MantenerEscuelaComponent } from './mantener-escuela.component';
   ],
   imports: [
     CommonModule,
-    MantenerEscuelaRoutingModule
+    MantenerEscuelaRoutingModule,
+    FormsModule
   ]
 })
 export class MantenerEscuelaModule { }

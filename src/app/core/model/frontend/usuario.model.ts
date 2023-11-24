@@ -4,22 +4,27 @@ import { UsuarioModel } from "../index.backend";
 export class Usuario {
 
     static init(): Usuario {
-        return new Usuario(0, '', '', Persona.init());
+        return new this(
+            0,
+            '',
+            '',
+            null,
+        );
     }
     
-    static fromBackend(obj: UsuarioModel): Usuario {
+    static fromBackend(obj: UsuarioModel | null): Usuario | null {
         return obj != null ? new this(
             obj.id_usuario,
             obj.username,
             obj.password,
             Persona.fromBackend(obj.id_persona)
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id          : number     | null,
-        public username    : string     | null,
-        public password    : string     | null,
-        public persona     : Persona
+        public id          : number,
+        public username    : string,
+        public password    : string,
+        public persona     : Persona  | null,
     ){}
 }

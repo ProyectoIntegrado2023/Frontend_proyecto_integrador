@@ -2,7 +2,8 @@ table {
   font-size: medium;
 }
 
-input[type='text'] {
+input[type='text'],
+input[type='number'] {
   outline: none;
   padding: 0.5rem;
   border: solid 0.1rem #0c74d5;

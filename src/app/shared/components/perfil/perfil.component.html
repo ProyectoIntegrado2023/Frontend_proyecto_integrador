@@ -6,7 +6,7 @@
         <div class="contenedor-usuario">
             <div class="perfil">
                 <h3>{{persona.nombre}}</h3>
-                <span>Administrador</span>
+                <span>{{persona.rol_sistema?.nombre}}</span>
             </div>
             <button mat-raised-button color="warn" (click)="cerrarSesion()">Cerrar Sesion</button>
         </div>

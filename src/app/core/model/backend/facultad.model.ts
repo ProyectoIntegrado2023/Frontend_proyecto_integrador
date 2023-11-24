@@ -9,16 +9,16 @@ export class FacultadModel {
         )
     }
 
-    static fromFrontend(obj: Facultad): FacultadModel{
+    static fromFrontend(obj: Facultad | null): FacultadModel | null{
         return obj != null ? new this(
             obj.id,
             obj.nombre
-        ) : this.init();
+        ) : null;
     }
     
     constructor(
-        public id_facultad : number | null,
-        public nombre      : string | null,
+        public id_facultad : number,
+        public nombre      : string,
     ){}
 
 }

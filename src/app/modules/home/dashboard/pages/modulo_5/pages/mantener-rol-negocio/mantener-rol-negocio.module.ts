@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MantenerRolNegocioRoutingModule } from './mantener-rol-negocio-routing.module';
 import { MantenerRolNegocioComponent } from './mantener-rol-negocio.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { MantenerRolNegocioComponent } from './mantener-rol-negocio.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     MantenerRolNegocioRoutingModule
   ]
 })

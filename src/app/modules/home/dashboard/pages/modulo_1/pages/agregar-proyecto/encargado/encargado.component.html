@@ -12,25 +12,34 @@
                 <span>Encargado</span>
             </header>
             <section>
-                <p>
-                    <span>202312322</span>
-                    <span>Luis Lucero</span>
-                    <span>FIA</span>
-                    <span>Ing de Sistemas</span>
-                    <span>IV</span>
-                    <span>I</span>
-                    <span>
-                        <label class="container">
-                            <input type="checkbox" id="encargado" name="encargado">
-                            <div class="checkmark"></div>
-                        </label>
+                <ng-container *ngIf="listaParticipante.length > 0; else vacio">
+                    <p *ngFor="let participante of listaParticipante">
+                        <ng-container *ngIf="participante.estudiante != null && participante.docente== null">
+                            <span>{{participante.estudiante.codigo}}</span>
+                            <span>{{participante.persona!.nombre}}</span>
+                            <span>{{participante.estudiante.ciclo?.escuela?.facultad?.nombre}}</span>
+                            <span>{{participante.estudiante.ciclo?.escuela?.nombre}}</span>
+                            <span>{{participante.estudiante.ciclo?.nombre}}</span>
+                            <span>{{participante.estudiante.grupo_universitario?.nombre}}</span>
+                            <span>
+                                <label class="container">
+                                    <input type="checkbox" name="encargado" (click)="agregarEncargado(participante.id)" [checked]="participante.rol_sistema != null">
+                                    <div class="checkmark"></div>
+                                </label>
+                            </span>
+                        </ng-container>
+                    </p>
+                </ng-container>
+                <ng-template #vacio>
+                    <span id="lista-vacio">
+                        vacio
                     </span>
-                </p>
+                </ng-template>
             </section>
         </main>
     </div>
     <section class="contenedor-btn-acciones">
         <button mat-raised-button color="warn">Cancelar</button>
-        <button type="submit" mat-raised-button color="primary">Guardar</button>
+        <button type="submit" mat-raised-button color="primary" (click)="enviarObjecto()">Guardar</button>
     </section>
 </section>

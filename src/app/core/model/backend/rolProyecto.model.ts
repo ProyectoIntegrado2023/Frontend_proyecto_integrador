@@ -8,27 +8,27 @@ export class RolProyectoModel {
             0,
             '',
             0,
-            ProyectoModel.init(),
-            RolNegocioModel.init()
+            null,
+            null,
         )
     }
 
-    static fromFrontend(obj: RolProyecto): RolProyectoModel{
+    static fromFrontend(obj: RolProyecto  | null): RolProyectoModel  | null{
         return obj != null ? new this(
             obj.id,
             obj.descripcion,
             obj.hora,
             ProyectoModel.fromFrontend(obj.proyecto),
             RolNegocioModel.fromFrontend(obj.rol_negocio),
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id_rol_proyecto     : number             | null,
-        public descripcion         : string             | null,
-        public hora                : number             | null,
-        public id_proyecto         : ProyectoModel      ,
-        public id_rol_negocio      : RolNegocioModel    ,
+        public id_rol_proyecto     : number,
+        public descripcion         : string,
+        public hora                : number,
+        public id_proyecto         : ProyectoModel      | null,
+        public id_rol_negocio      : RolNegocioModel    | null,
     ){}
 
 }

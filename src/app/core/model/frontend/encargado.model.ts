@@ -4,23 +4,28 @@ import { Participante, RolSistemaAcceso } from "../index.frontend"
 export class Encargado {
     
     static init(): Encargado {
-        return new Encargado(0, '', RolSistemaAcceso.init(), Participante.init())
+        return new this(
+            0,
+            '',
+            null,
+            null,
+        )
     }
 
-    static fromBackend(obj: EncargadoModel): Encargado {
+    static fromBackend(obj: EncargadoModel | null): Encargado | null {
         return obj != null ? new this(
             obj.id_encargado,
             obj.nombre,
             RolSistemaAcceso.fromBackend(obj.rol),
             Participante.fromBackend(obj.id_participante),
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id                      : number             | null,
-        public nombre                  : string             | null,
-        public rol                     : RolSistemaAcceso   ,
-        public participante            : Participante       ,
+        public id                      : number,
+        public nombre                  : string,
+        public rol                     : RolSistemaAcceso   | null,
+        public participante            : Participante       | null,
     ){}
 
 }

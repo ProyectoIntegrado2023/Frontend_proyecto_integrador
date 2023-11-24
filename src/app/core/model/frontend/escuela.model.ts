@@ -4,21 +4,25 @@ import { Facultad } from "../index.frontend";
 export class Escuela {
 
     static init(): Escuela {
-        return new Escuela(0, Facultad.init(), '');
+        return new this(
+            0,
+            '',
+            null,
+        );
     }
     
-    static fromBackend(obj: EscuelaModel): Escuela {
+    static fromBackend(obj: EscuelaModel | null): Escuela | null {
         return obj != null ? new this(
             obj.id_escuela,
-            Facultad.fromBackend(obj.id_facultad),
             obj.nombre,
-        ) : this.init();
+            Facultad.fromBackend(obj.id_facultad),
+        ) : null;
     }
 
     constructor(
-        public id              : number   | null,
-        public facultad        : Facultad ,
-        public nombre          : string   | null,
+        public id              : number,
+        public nombre          : string,
+        public facultad        : Facultad | null,
     ){}
 
 }

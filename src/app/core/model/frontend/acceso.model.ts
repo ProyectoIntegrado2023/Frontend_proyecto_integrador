@@ -3,23 +3,28 @@ import { AccesoModel } from "../index.backend";
 export class Acceso {
     
     static init(): Acceso {
-        return new Acceso(0, '', '', 0);
+        return new this(
+            0,
+            '',
+            '',
+            0
+        );
     }
 
-    static fromBackend(obj: AccesoModel) {
-        return obj != null ? new Acceso(
+    static fromBackend(obj: AccesoModel | null): Acceso | null {
+        return obj != null ? new this(
             obj.id_accesos,
             obj.nombre,
             obj.url,
             obj.id_accesos_padre
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id              : number | null,
-        public titulo          : string | null,
-        public url             : string | null,
-        public id_acceso_padre : number | null
+        public id              : number,
+        public titulo          : string,
+        public url             : string,
+        public id_acceso_padre : number,
     ){}
     
 }

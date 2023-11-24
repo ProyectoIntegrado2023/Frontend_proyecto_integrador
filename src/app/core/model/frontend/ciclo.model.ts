@@ -4,21 +4,25 @@ import { Escuela } from "../index.frontend";
 export class Ciclo {
 
     static init(): Ciclo {
-        return new Ciclo(0, Escuela.init(), '')
+        return new this(
+            0,
+            '',
+            null,
+        );
     }
     
-    static fromBackend(obj: CicloModel): Ciclo {
+    static fromBackend(obj: CicloModel | null): Ciclo | null {
         return obj != null ? new this(
             obj.id_ciclo,
+            obj.nombre,
             Escuela.fromBackend(obj.id_escuela),
-            obj.nombre
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id              :   number   | null,
-        public escuela         :   Escuela,
-        public nombre          :   string   | null,
+        public id      : number,
+        public nombre  : string,
+        public escuela : Escuela | null,
     ){}
 
 }

@@ -4,10 +4,11 @@ import { CursoArticuladoModel, DocenteModel, EstudianteModel, ParticipanteModel,
 export class PersonaModel {
 
     static init(): PersonaModel {
-        return new PersonaModel(
+        return new this(
             0,
-            RolSistemaModel.init(),
             '',
+            '',
+            null,
             [],
             [],
             [],
@@ -16,23 +17,25 @@ export class PersonaModel {
         )
     }
 
-    static fromFrontend(obj: Persona): PersonaModel{
+    static fromFrontend(obj: Persona | null): PersonaModel | null{
         return obj != null ? new this(
             obj.id,
-            RolSistemaModel.fromFrontend(obj.rol_sistema),
             obj.nombre,
+            obj.dni,
+            RolSistemaModel.fromFrontend(obj.rol_sistema),
             [],
             [],
             [],
             [],
             []
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id_persona      : number                 | null,
-        public id_rol_sistema  : RolSistemaModel        ,
-        public nombre          : string                 | null,
+        public id_persona      : number,
+        public nombre          : string,
+        public dni             : string,
+        public id_rol_sistema  : RolSistemaModel        | null,
         public estudiantes     : EstudianteModel[]      ,
         public cursoarticualdo : CursoArticuladoModel[] ,
         public participante    : ParticipanteModel[]    ,

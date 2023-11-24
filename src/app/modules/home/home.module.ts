@@ -17,6 +17,6 @@ import { SharedModule } from '../../shared/shared.module';
     MatCardModule,
     MatButtonModule,
     SharedModule
-  ]
+  ],
 })
 export class HomeModule { }

@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
 import { NotificacionComponent } from 'src/app/shared/components/notificacion/notificacion.component';
 import { DropAreaComponent } from 'src/app/shared/components/drop-area/drop-area.component';
 
-
 @NgModule({
   declarations: [
     GeneralComponent
@@ -20,6 +19,7 @@ import { DropAreaComponent } from 'src/app/shared/components/drop-area/drop-area
     NotificacionComponent,
     MatButtonModule,
     FormsModule
-  ]
+  ],
+  providers: [],
 })
 export class GeneralModule { }

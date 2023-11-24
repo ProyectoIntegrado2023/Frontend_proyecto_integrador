@@ -4,21 +4,25 @@ import { Acceso, RolSistema } from "../index.frontend"
 export class RolSistemaAcceso {
 
     static init(): RolSistemaAcceso {
-        return new RolSistemaAcceso(0, RolSistema.init(), Acceso.init())
+        return new this(
+            0,
+            null,
+            null,
+        )
     }
     
-    static fromBackend(obj: RolSistemaAccesoModel): RolSistemaAcceso {
+    static fromBackend(obj: RolSistemaAccesoModel | null): RolSistemaAcceso | null {
         return obj != null ? new this(
             obj.id_rol_sistema_accesos,
             RolSistema.fromBackend(obj.id_rol_sistema),
             Acceso.fromBackend(obj.id_accesos),
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id           : number        | null,
-        public rol_sistema  : RolSistema    ,
-        public accesos      : Acceso        ,
+        public id           : number,
+        public rol_sistema  : RolSistema    | null,
+        public accesos      : Acceso        | null,
     ){}
 
 }

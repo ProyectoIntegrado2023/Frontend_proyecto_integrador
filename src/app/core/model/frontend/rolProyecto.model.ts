@@ -4,25 +4,31 @@ import { Proyecto, RolNegocio } from "../index.frontend";
 export class RolProyecto {
 
     static init(): RolProyecto {
-        return new RolProyecto(0, '', 0, Proyecto.init(), RolNegocio.init())
+        return new this(
+            0,
+            '',
+            0,
+            null,
+            null,
+        );
     }
     
-    static fromBackend(obj: RolProyectoModel): RolProyecto {
+    static fromBackend(obj: RolProyectoModel | null): RolProyecto | null {
         return obj != null ? new this(
             obj.id_rol_proyecto,
             obj.descripcion,
             obj.hora,
             Proyecto.fromBackend(obj.id_proyecto),
             RolNegocio.fromBackend(obj.id_rol_negocio),
-        ) : this.init();
+        ) : null;
     }
 
     constructor(
-        public id            :   number     | null,
-        public descripcion   :   string     | null,
-        public hora          :   number     | null,
-        public proyecto      :   Proyecto   ,
-        public rol_negocio   :   RolNegocio ,
+        public id            :   number,
+        public descripcion   :   string,
+        public hora          :   number,
+        public proyecto      :   Proyecto   | null,
+        public rol_negocio   :   RolNegocio | null,
     ){}
 
 }

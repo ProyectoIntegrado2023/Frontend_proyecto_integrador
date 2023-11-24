@@ -1,10 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+
 import { Proyecto } from 'src/app/core/model/index.frontend'
-import { ProyectoService } from 'src/app/core/index.services';
+import { ProyectoService } from 'src/app/core/services/index.services.https';
+import { UpdateEffectProjectService } from 'src/app/core/services/index.services.status';
+import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
 
 @Component({
   selector: 'app-listar',
@@ -16,17 +20,20 @@ export class ListarComponent implements OnInit  {
   displayedColumns: string[] = ['codigo', 'nombre', 'tipo', 'coordinador','semestre', 'lugar', 'escuela', 'estado', 'accion'];
   dataSource!: MatTableDataSource<Proyecto>;
   arrayPaginator: number[] = [5, 10, 25, 100];
+  pageDefine: number = this.arrayPaginator[0];
 
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   @ViewChild(MatSort) sort: MatSort | any;
 
   constructor(
     private proyectoService: ProyectoService,
-    private router: Router
+    private router: Router,
+    private _updateEffectProject: UpdateEffectProjectService
   ) {}
 
   ngOnInit(): void {
     localStorage.removeItem('proyecto');
+    this.pageDefine = localStorage.getItem('pageSize') ? Number(localStorage.getItem('pageSize')) : this.arrayPaginator[0];
 
     this.proyectoService.getAll().subscribe(data => {
       this.listaProyecto = data;
@@ -48,16 +55,36 @@ export class ListarComponent implements OnInit  {
     }
   }
 
-  public eliminar(id: number){
-    this.proyectoService.delete(id).subscribe(data => {
-      this.listaProyecto = this.listaProyecto.filter(v => v.id != id);
-      this.dataSource = new MatTableDataSource(this.listaProyecto);
-      this.paginatorAndSort();
+  public confirmarEliminar(id: number){
+    notificacionConfirmacionEliminar('¿Desea eliminar el proyecto?', true, 'Si, eliminar', true, 'No, cancelar').then((result) => {
+      if (result) {
+        this.eliminar(id);
+      }
     })
+  }
+
+  public eliminar(id: number){
+    this.proyectoService.delete(id).subscribe(
+      (res) => {
+        notificacionSimpleDinamico('Proyecto eliminado','', 'success');
+        this.listaProyecto = this.listaProyecto.filter(v => v.id != id);
+        this.dataSource = new MatTableDataSource(this.listaProyecto);
+        this.paginatorAndSort();
+      },
+      (error) => {
+        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+      }
+    )
   }
  
   public navegar(proyecto: Proyecto){
+    this._updateEffectProject.emit(true);
     localStorage.setItem('proyecto', JSON.stringify(proyecto));
     this.router.navigate(['/home/modulo/1/proyecto/editar'])
+  }
+
+  public definePaginador($event: any) {
+    const { pageSize } = $event;
+    localStorage.setItem('pageSize', pageSize);
   }
 }
