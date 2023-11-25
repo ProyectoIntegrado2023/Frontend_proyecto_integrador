@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 import { UpdateEffectProjectService } from 'src/app/core/services/index.services.status';
@@ -5,16 +6,17 @@ import { Proyecto, CursoArticulado, Escuela, Ciclo, TipoConvenio } from 'src/app
 import { ProyectoService, CursoArticuladoService, TipoConvenioService, CicloService, EscuelaService } from 'src/app/core/services/index.services.https';
 
 import { generarCodigoProyecto } from 'src/app/core/function/generacion/generarCodigoEscuela';
-import { notificacionConfirmacionLimpieza, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { notificacionConfirmacionEliminar, notificacionConfirmacionLimpieza, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
 import { recopilarPersona, recopilarProyecto } from 'src/app/core/function/localStorage/recopilarLocalStorage';
 import { existeItemLocalStorage } from 'src/app/core/function/localStorage/validarLocalStorage';
+import { deactivateProyecto } from 'src/app/core/guards/deactivate-proyecto.guard';
 
 @Component({
   selector: 'app-general',
   templateUrl: './general.component.html',
   styleUrls: ['./general.component.css']
 })
-export class GeneralComponent implements OnInit {
+export class GeneralComponent implements OnInit, deactivateProyecto {
   statusUpdate: boolean = false;
   
   proyecto: Proyecto = Proyecto.init();
@@ -38,6 +40,11 @@ export class GeneralComponent implements OnInit {
     private cursoArticuladoService: CursoArticuladoService,
     private _updateEffectProject: UpdateEffectProjectService,
   ){}
+
+  canExit() {
+    let exit$: Promise<boolean> = notificacionConfirmacionEliminar('¿Desea abandonar el formulario?',false, 'Si, continuar', true, 'No abandonar')
+    return exit$ ?? false;
+  }
 
   ngOnInit ():void {
     this._updateEffectProject.get().subscribe(update =>{
@@ -65,12 +72,12 @@ export class GeneralComponent implements OnInit {
       this.recopilarDatosProyecto();
     } else {
       this.proyecto = Proyecto.init();
-      this.proyecto.coordinador = recopilarPersona('persona').nombre;
+      this.proyecto.coordinador = recopilarPersona().nombre;
     }
   }
 
   private recopilarDatosProyecto(){
-    this.proyecto = recopilarProyecto('proyecto');
+    this.proyecto = recopilarProyecto();
     this.cicloSeleccionada = this.proyecto.ciclo != null ? this.proyecto.ciclo : Ciclo.init();
     this.escuelaSeleccionada = this.proyecto.escuela != null ? this.proyecto.escuela : Escuela.init();
     this.tipoConvenioSeleccionada = this.proyecto.tipo_convenio != null ? this.proyecto.tipo_convenio : TipoConvenio.init();
@@ -155,7 +162,7 @@ export class GeneralComponent implements OnInit {
     if(!this.statusUpdate){
       this.cargarProyecto();
     } else {
-      this.proyecto = recopilarProyecto('proyecto');
+      this.proyecto = recopilarProyecto();
     }
   }
 

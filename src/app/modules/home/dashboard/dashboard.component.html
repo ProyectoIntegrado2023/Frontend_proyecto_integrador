@@ -9,7 +9,8 @@
     </header>
     <div class="contenedor-principal" [ngClass]="{'contenedor-principal-block': statusSidebar, 'contenedor-principal-none': !statusSidebar}">
         <section class="sidebar" [ngClass]="{'container-sidebar-short': !statusSidebar, 'container-sidebar-large':statusSidebar}">
-            <button *ngFor="let model of accesos" [ngClass]="{'active': model.id == AccesoSeleccionado}" (click)="navegar(model)">{{model.titulo}}</button>
+            <button *ngFor="let model of accesos" 
+             [routerLink]="['/'+model.url]" routerLinkActive="active" (click)="resetear()">{{model.titulo}}</button>
         </section>
         <main>
             <router-outlet></router-outlet>

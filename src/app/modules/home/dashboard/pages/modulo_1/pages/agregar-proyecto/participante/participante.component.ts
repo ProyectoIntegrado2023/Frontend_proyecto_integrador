@@ -67,7 +67,7 @@ export class ParticipanteComponent implements OnInit {
       this.arrayDocente = data;
     })
     this.participanteService.getAll().subscribe(data => {
-      this.listaParticipante = data.filter(p => p.proyecto?.id == recopilarProyecto('proyecto')?.id);
+      this.listaParticipante = data.filter(p => p.proyecto?.id == recopilarProyecto()?.id);
       this.listaParticipanteCopia = this.listaParticipante;
       this.tranformarDocenteEstudiante();
     })
@@ -250,7 +250,7 @@ export class ParticipanteComponent implements OnInit {
     this.combertirParticipante();
 
     const observables = this.listaParticipante.map(rp => {
-      rp.proyecto = recopilarProyecto('proyecto');
+      rp.proyecto = recopilarProyecto();
       const existe = this.listaParticipanteCopia.some(rpCopia => rpCopia.id = rp.id);
       if(existe) {
         return Promise.resolve(rp);
@@ -278,7 +278,7 @@ export class ParticipanteComponent implements OnInit {
         participante.docente = docente_vista.docente;
         participante.persona = docente_vista.persona;
         if(participante?.proyecto?.id == 0) { 
-          participante.proyecto.id = recopilarProyecto('proyecto').id; 
+          participante.proyecto.id = recopilarProyecto().id; 
         }
         this.listaParticipante.push(participante);
       }
@@ -289,7 +289,7 @@ export class ParticipanteComponent implements OnInit {
         participante.estudiante = estudiante;
         participante.persona = estudiante.persona;
         if(participante?.proyecto?.id == 0) { 
-          participante.proyecto.id = recopilarProyecto('proyecto').id; 
+          participante.proyecto.id = recopilarProyecto().id; 
         }
         this.listaParticipante.push(participante);
       }

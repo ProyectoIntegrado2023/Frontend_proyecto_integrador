@@ -25,7 +25,7 @@ export class EncargadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.participanteService.getAll().subscribe(data => {
-      this.listaParticipante = data.filter(p => p.proyecto?.id == recopilarProyecto('proyecto').id);
+      this.listaParticipante = data.filter(p => p.proyecto?.id == recopilarProyecto().id);
       this.listarEscuela();
     });
     this.rolSistemaService.getAll().subscribe(roles => {

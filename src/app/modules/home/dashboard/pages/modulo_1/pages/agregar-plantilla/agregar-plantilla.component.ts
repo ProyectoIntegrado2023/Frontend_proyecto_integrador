@@ -31,7 +31,7 @@ export class AgregarPlantillaComponent implements OnInit {
 
   private iniciarPlantilla(){
     if(this.update){
-      this.plantilla = recopilarPlantilla('plantilla');
+      this.plantilla = recopilarPlantilla();
     } else {
       this.tipoConvenioService.getAll().subscribe(arrayConvenio => this.plantilla.tipo_convenio = arrayConvenio[0]) ;
       this.plantilla.url = '';

@@ -31,7 +31,7 @@ export class RolesComponent implements OnInit {
 
   private recopilarRolProyecto() {
     this.rolProyectoService.getAll().subscribe(data => {
-      this.listaRolProyecto = data.filter(rp => rp.proyecto?.id == recopilarProyecto('proyecto').id); 
+      this.listaRolProyecto = data.filter(rp => rp.proyecto?.id == recopilarProyecto().id); 
       this.listaRolProyectoCopia = this.listaRolProyecto; 
     })
   }
@@ -81,7 +81,7 @@ export class RolesComponent implements OnInit {
 
   private guardarCambios(){
     const observables = this.listaRolProyecto.map(rp => {
-      rp.proyecto = recopilarProyecto('proyecto');
+      rp.proyecto = recopilarProyecto();
       const existe = this.listaRolProyectoCopia.some(rpCopia => rpCopia.id = rp.id);
       if(existe) {
         return this.rolProyectoService.update(rp);  

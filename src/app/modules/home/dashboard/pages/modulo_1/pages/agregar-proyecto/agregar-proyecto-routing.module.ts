@@ -10,11 +10,11 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'general',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'general',
-        loadChildren: () => import('./general/general.module').then(m => m.GeneralModule)
+        loadChildren: () => import('./general/general.module').then(m => m.GeneralModule),
       },
       {
         path: 'roles',
