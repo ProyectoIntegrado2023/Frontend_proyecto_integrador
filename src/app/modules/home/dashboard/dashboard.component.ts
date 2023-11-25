@@ -6,7 +6,7 @@ import { determinarUrl } from 'src/app/core/function/recopilarUrl/determinarUrl'
 import { NOMBRE_PAGINA_WEB } from 'src/app/core/global/const-global';
 import { Acceso } from 'src/app/core/model/index.frontend';
 import { AccessService } from 'src/app/core/services/index.services.https';
-import { UpdateEffectProjectService, SelectEffectAccessService, SelectEffectModuleService, UpdateEffectPlantillaService } from 'src/app/core/services/index.services.status';
+import { UpdateEffectProjectService, SelectEffectModuleService, UpdateEffectPlantillaService } from 'src/app/core/services/index.services.status';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,19 +16,16 @@ import { UpdateEffectProjectService, SelectEffectAccessService, SelectEffectModu
 export class DashboardComponent implements OnInit, OnDestroy {
   
   subscriptionAcceso!: Subscription;
-  subscriptionSeleccionAcceso!: Subscription;
-  modulo: string = ''
-  titulo: string = NOMBRE_PAGINA_WEB
-  
   accesos: Acceso[] = []
   statusSidebar:boolean = true
-  AccesoSeleccionado: number = 0
+  
+  modulo: string = ''
+  titulo: string = NOMBRE_PAGINA_WEB
 
   constructor(
     private router: Router,
     private accessService: AccessService,
     private _statusProject: UpdateEffectProjectService,
-    private _selectAccess: SelectEffectAccessService,
     private _selecctModule: SelectEffectModuleService,
     private _updateEffectPlantilla: UpdateEffectPlantillaService,
   ){}
@@ -41,10 +38,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.resetear();
-    if(this.subscriptionSeleccionAcceso){
-      this._selectAccess.reset();
-      this.subscriptionSeleccionAcceso.unsubscribe();
-    }
     if(this.subscriptionAcceso){
       this.subscriptionAcceso.unsubscribe();
     }
@@ -59,29 +52,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
       this.modulo = accesos.find(m => m.id == idAccesoPadre)?.titulo ?? '';
       this.accesos = accesos.filter(v => v.id_acceso_padre == idAccesoPadre);
-      this.determinarAccesoSeleccionado();
     });
   }
 
-  private determinarAccesoSeleccionado() {
-    this.subscriptionSeleccionAcceso = this._selectAccess.get().subscribe(seleccionado => {
-      if(seleccionado != 0) {
-        this.AccesoSeleccionado = seleccionado;
-      } else {
-        this.AccesoSeleccionado = this.accesos[0].id ?? 0;
-      }
-    })
-  }
-
-  public navegar(acceso: Acceso) {
-    if(acceso.id != null) {
-      this._selectAccess.emit(acceso.id);
-      this.resetear();
-      this.router.navigate([acceso.url]); 
-    }
-  }
-
-  private resetear() {
+  public resetear() {
     localStorage.removeItem('proyecto');
     localStorage.removeItem('plantilla');
     this._statusProject.reset();

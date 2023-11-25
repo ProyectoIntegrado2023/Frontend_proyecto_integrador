@@ -18,7 +18,7 @@ export class ActividadComponent implements OnInit {
   ){}
   ngOnInit(): void {
     this.actividadService.getAll().subscribe(arrayActividades =>{
-      this.listaActividad = arrayActividades.filter(act => act.proyecto?.id == recopilarProyecto('proyecto').id);
+      this.listaActividad = arrayActividades.filter(act => act.proyecto?.id == recopilarProyecto().id);
     })
   }
 
@@ -55,7 +55,7 @@ export class ActividadComponent implements OnInit {
         )
       } else {
         const proyecto: Proyecto = Proyecto.init();
-        proyecto.id = recopilarProyecto('proyecto').id;
+        proyecto.id = recopilarProyecto().id;
         actividad.proyecto = proyecto;
         this.actividadService.save(actividad).subscribe(
           (res) => notificacionSimpleDinamico('Actividad guardada', 'Actividad guardada con exito', 'success'),
