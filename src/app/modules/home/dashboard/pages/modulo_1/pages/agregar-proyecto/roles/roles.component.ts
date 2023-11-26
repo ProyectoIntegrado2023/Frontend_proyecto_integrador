@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { recopilarProyecto } from 'src/app/core/function/localStorage/recopilarLocalStorage';
 import { RolNegocio, RolProyecto } from 'src/app/core/model/index.frontend';
 import { forkJoin } from 'rxjs';
-import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { notificacionPromesa, notificacionSimple } from 'src/app/core/function/SweetAlert/alertDinamic';
 import { obtenerIdsAEliminar } from 'src/app/core/function/generacion/obtenerIdsEliminados';
 
 @Component({
@@ -55,7 +55,7 @@ export class RolesComponent implements OnInit {
   public enviarObjecto(){
     const idEliminados = obtenerIdsAEliminar(this.listaRolProyecto, this.listaRolProyectoCopia);
     if(idEliminados.length > 0) {
-      notificacionConfirmacionEliminar('Existe algunos elementos que se eliminaran',false, 'Eliminar y continuar', true, '')
+      notificacionPromesa('Existe algunos elementos que se eliminaran', 'Eliminar y continuar', false, '', true)
       .then((result) => {
         if(result) this.eliminarElementos(idEliminados);
       })
@@ -74,7 +74,7 @@ export class RolesComponent implements OnInit {
         this.guardarCambios();
       },
       (error) => {
-        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+        notificacionSimple('Error', 'Ocurrio un error', 'error');
       }
     )
   }
@@ -94,16 +94,16 @@ export class RolesComponent implements OnInit {
       (resultados) => {
         this.listaRolProyecto = resultados;
         this.listaRolProyectoCopia = resultados;
-        notificacionSimpleDinamico('¡Guardado!', 'Se guardo todo correctamente', 'success');
+        notificacionSimple('¡Guardado!', 'Se guardo todo correctamente', 'success');
       },
       (error) => {
-        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+        notificacionSimple('Error', 'Ocurrio un error', 'error');
       }
     );
   }
 
   public cancelarCambios() {
-    notificacionConfirmacionEliminar('¿Desea eliminar sus cambios?',false, 'Si, continuar', true, '').then((result) => {
+    notificacionPromesa('¿Desea eliminar sus cambios?', 'Si, continuar', false, '', true).then((result) => {
       if (result) {
         this.recopilarRolProyecto();
       }

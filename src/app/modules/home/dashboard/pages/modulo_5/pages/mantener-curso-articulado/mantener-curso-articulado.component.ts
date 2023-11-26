@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CursoArticuladoService, EscuelaService } from 'src/app/core/services/index.services.https';
 import { CursoArticulado, Escuela } from 'src/app/core/model/index.frontend';
-import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { notificacionPromesa, notificacionSimple } from 'src/app/core/function/SweetAlert/alertDinamic';
 
 @Component({
   selector: 'app-mantener-curso-articulado',
@@ -33,10 +33,10 @@ export class MantenerCursoArticuladoComponent implements OnInit {
         (res) => {
           this.cursoArticulado = CursoArticulado.init();
           this.cursoArticuladoService.getAll().subscribe(res => this.listaCursoArticulado = res);
-          notificacionSimpleDinamico('Actualizado', 'se actualizo el Curso Articulado exitosamente', 'success')
+          notificacionSimple('Actualizado', 'se actualizo el Curso Articulado exitosamente', 'success')
         },
         (err) => {
-          notificacionSimpleDinamico('Error', 'No se pudo actualizar el Curso Articulado', 'error')
+          notificacionSimple('Error', 'No se pudo actualizar el Curso Articulado', 'error')
         }
       )
     } else {
@@ -44,7 +44,7 @@ export class MantenerCursoArticuladoComponent implements OnInit {
         (res) => {
           this.cursoArticulado = CursoArticulado.init();
           this.cursoArticuladoService.getAll().subscribe(res => this.listaCursoArticulado = res);
-          notificacionSimpleDinamico('Agregado', 'se agrego el Curso Articulado exitosamente', 'success')
+          notificacionSimple('Agregado', 'se agrego el Curso Articulado exitosamente', 'success')
         })
     }
   }
@@ -63,16 +63,16 @@ export class MantenerCursoArticuladoComponent implements OnInit {
   }
 
   public eliminar(id: number){
-    notificacionConfirmacionEliminar('¿Estas seguro de eliminar este Curso Articulado?', false, 'izar Curso Articulado', true, '')
+    notificacionPromesa('¿Estas seguro de eliminar este Curso Articulado?', 'izar Curso Articulado', false, '', true)
     .then(res => {
         if(res) {
           this.cursoArticuladoService.delete(id).subscribe(
             (res) => {
               this.cursoArticuladoService.getAll().subscribe(res => this.listaCursoArticulado = res);
-              notificacionSimpleDinamico('Eliminado', 'se elimino el Curso Articulado exitosamente', 'success')
+              notificacionSimple('Eliminado', 'se elimino el Curso Articulado exitosamente', 'success')
             },
             (err) => {
-              notificacionSimpleDinamico('Error', 'No se pudo eliminar el Curso Articulado', 'error')
+              notificacionSimple('Error', 'No se pudo eliminar el Curso Articulado', 'error')
             }
           )
         }

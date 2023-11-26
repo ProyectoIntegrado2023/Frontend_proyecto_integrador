@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { recopilarProyecto } from 'src/app/core/function/localStorage/recopilarLocalStorage';
 import { convertirDocente, convertirEstudiante } from 'src/app/core/function/generacion/convertirParticipante';
-import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { notificacionPromesa, notificacionSimple } from 'src/app/core/function/SweetAlert/alertDinamic';
 import { Ciclo, CursoArticulado, Docente, Escuela, Estudiante, Facultad, Participante } from 'src/app/core/model/index.frontend';
 import { CicloService, DocenteService, EscuelaService, EstudianteService, FacultadService, CursoArticuladoService, ParticipanteService } from 'src/app/core/services/index.services.https';
 
@@ -151,7 +151,7 @@ export class ParticipanteComponent implements OnInit {
   }
 
   public quitarEstudiante(estudiante: Estudiante){
-    notificacionConfirmacionEliminar('Existe algunos elementos que se eliminaran',false, 'Eliminar y continuar', true, '')
+    notificacionPromesa('Existe algunos elementos que se eliminaran', 'Eliminar y continuar', false, '', true)
       .then((result) => {
         if(result) {
           const idEstudiante: number = estudiante?.id ?? 0;
@@ -159,10 +159,10 @@ export class ParticipanteComponent implements OnInit {
             const idParticipante: number = this.listaParticipante.find(p => p.estudiante?.id == idEstudiante)?.id ?? 0;
             this.participanteService.delete(idParticipante).subscribe(
               (res) => {
-                notificacionSimpleDinamico('Participante eliminado', '', 'success');
+                notificacionSimple('Participante eliminado', '', 'success');
                 this.listaEstudiante = this.listaEstudiante.filter(e => e.id != estudiante.id);
               },
-              (error) => notificacionSimpleDinamico('Error', '', 'error')
+              (error) => notificacionSimple('Error', '', 'error')
             );
           }
         }
@@ -197,7 +197,7 @@ export class ParticipanteComponent implements OnInit {
   }
 
   public quitarDocente(vista_docente: CursoArticulado){
-    notificacionConfirmacionEliminar('Existe algunos elementos que se eliminaran',false, 'Eliminar y continuar', true, '')
+    notificacionPromesa('Existe algunos elementos que se eliminaran', 'Eliminar y continuar', false, '', true)
       .then((result) => {
         if(result) {
           const docenteEncontrado = this.cursoArticuladoEncontrado_vistaDocente.some(d => d.docente?.persona?.dni == vista_docente.docente?.persona?.dni);
@@ -209,8 +209,8 @@ export class ParticipanteComponent implements OnInit {
           if(idDocente != 0) {
             const idParticipante: number = this.listaParticipante.find(p => p.docente?.id == idDocente)?.id ?? 0;
             this.participanteService.delete(idParticipante).subscribe(
-              (res) => notificacionSimpleDinamico('Participante eliminado', '', 'success'),
-              (error) => notificacionSimpleDinamico('Error', '', 'error')
+              (res) => notificacionSimple('Participante eliminado', '', 'success'),
+              (error) => notificacionSimple('Error', '', 'error')
             );
           }
         }
@@ -263,10 +263,10 @@ export class ParticipanteComponent implements OnInit {
       (resultados) => {
         this.listaParticipante = resultados;
         this.listaParticipanteCopia = resultados;
-        notificacionSimpleDinamico('¡Guardado!', 'Se guardo todo correctamente', 'success');
+        notificacionSimple('¡Guardado!', 'Se guardo todo correctamente', 'success');
       },
       (error) => {
-        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+        notificacionSimple('Error', 'Ocurrio un error', 'error');
       }
     );
   }

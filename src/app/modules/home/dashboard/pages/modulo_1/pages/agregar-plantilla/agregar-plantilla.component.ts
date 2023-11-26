@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { PlantillaService, TipoConvenioService } from 'src/app/core/services/index.services.https';
 import { Plantilla } from 'src/app/core/model/index.frontend';
-import { notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { notificacionSimple } from 'src/app/core/function/SweetAlert/alertDinamic';
 import { recopilarPlantilla } from 'src/app/core/function/localStorage/recopilarLocalStorage';
 import { UpdateEffectPlantillaService } from 'src/app/core/services/index.services.status';
 
@@ -53,20 +53,20 @@ export class AgregarPlantillaComponent implements OnInit {
   private editarPlantilla(plantilla: Plantilla){
     this.plantillaService.update(plantilla).subscribe(
       (res) => {
-        notificacionSimpleDinamico('¡Actualizado!', 'se actualizo corectamente', 'success');
+        notificacionSimple('¡Actualizado!', 'se actualizo corectamente', 'success');
       },
       (error) => {
-        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+        notificacionSimple('Error', 'Ocurrio un error', 'error');
       }
     );
   }
   private guardarPlantilla(plantilla: Plantilla){
     this.plantillaService.save(plantilla).subscribe(
       (res) => {
-        notificacionSimpleDinamico('¡Guardado!', 'Se guardo correctamente', 'success');
+        notificacionSimple('¡Guardado!', 'Se guardo correctamente', 'success');
       },
       (error) => {
-        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+        notificacionSimple('Error', 'Ocurrio un error', 'error');
       }
     );
   }

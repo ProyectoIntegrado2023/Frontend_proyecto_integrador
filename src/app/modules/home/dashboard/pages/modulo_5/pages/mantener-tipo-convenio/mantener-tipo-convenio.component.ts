@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { notificacionPromesa, notificacionSimple } from 'src/app/core/function/SweetAlert/alertDinamic';
 import { TipoConvenio } from 'src/app/core/model/index.frontend';
 import { TipoConvenioService } from 'src/app/core/services/index.services.https';
 
@@ -40,10 +40,10 @@ export class MantenerTipoConvenioComponent implements OnInit {
         (res) => {
           this.tipoConvenio = TipoConvenio.init();
           this.listaConvenio.push(res);
-          notificacionSimpleDinamico('Actualizado', 'se actualizo el convenio exitosamente', 'success');
+          notificacionSimple('Actualizado', 'se actualizo el convenio exitosamente', 'success');
         },
         (err) => {
-          notificacionSimpleDinamico('Error', 'No se pudo actualizar el convenio', 'error');
+          notificacionSimple('Error', 'No se pudo actualizar el convenio', 'error');
         }
       );
     } else {
@@ -51,29 +51,30 @@ export class MantenerTipoConvenioComponent implements OnInit {
         (res) => {
           this.tipoConvenio = TipoConvenio.init();
           this.listaConvenio.push(res);
-          notificacionSimpleDinamico('Agregado', 'se agrego el convenio exitosamente', 'success');
+          notificacionSimple('Agregado', 'se agrego el convenio exitosamente', 'success');
         },
         (err) => {
-          notificacionSimpleDinamico('Error', 'No se pudo agregar el convenio', 'error');
+          notificacionSimple('Error', 'No se pudo agregar el convenio', 'error');
         }
       )
     }
   }
 
   public eliminar(id: number){
-    notificacionConfirmacionEliminar('¿Estas seguro de eliminar este convenio?', false, 'Eliminar', true, '')
+    notificacionPromesa('¿Estas seguro de eliminar este convenio?', 'Eliminar', false, '', true)
     .then(res => {
       if(res) {
         this.tipoConvenioService.delete(id).subscribe(
           (res) => {
             this.listaConvenio = this.listaConvenio.filter(convenio => convenio.id != id);
-            notificacionSimpleDinamico('Eliminado', 'se elimino el convenio exitosamente', 'success');
+            notificacionSimple('Eliminado', 'se elimino el convenio exitosamente', 'success');
           },
           (err) => {
-            notificacionSimpleDinamico('Error', 'No se pudo eliminar el convenio', 'error');
+            notificacionSimple('Error', 'No se pudo eliminar el convenio', 'error');
           }
         )
       }
     })
+    
   }
 }

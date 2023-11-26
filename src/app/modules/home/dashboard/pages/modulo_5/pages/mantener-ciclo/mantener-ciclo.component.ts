@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Ciclo, Escuela } from 'src/app/core/model/index.frontend';
 import { CicloService, EscuelaService } from 'src/app/core/services/index.services.https';
-import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { notificacionPromesa, notificacionSimple } from 'src/app/core/function/SweetAlert/alertDinamic';
 
 @Component({
   selector: 'app-mantener-ciclo',
@@ -36,16 +36,16 @@ export class MantenerCicloComponent implements OnInit {
   }
 
   public eliminar(id: number){
-    notificacionConfirmacionEliminar('¿Estas seguro de eliminar este Ciclo?', false, 'Eliminar ciclo', true, '')
+    notificacionPromesa('¿Estas seguro de eliminar este Ciclo?', 'Eliminar ciclo', false, '', true)
     .then(resp => {
       if(resp) {
         this.cicloService.delete(id).subscribe(
           (resp) => {
-            notificacionSimpleDinamico('Eliminado', 'se elimino el ciclo exitosamente', 'success');
+            notificacionSimple('Eliminado', 'se elimino el ciclo exitosamente', 'success');
             this.listaCiclo = this.listaCiclo.filter(ciclo => ciclo.id != id);
           },
           (err) => {
-            notificacionSimpleDinamico('Error', 'No se pudo eliminar el Ciclo', 'error');
+            notificacionSimple('Error', 'No se pudo eliminar el Ciclo', 'error');
           }
         )
       }
@@ -64,10 +64,10 @@ export class MantenerCicloComponent implements OnInit {
           this.inicialiarCiclo();
           this.listaCiclo.push(resp);
           console.log(resp);
-          notificacionSimpleDinamico('Actualizado', 'se actualizo el Ciclo exitosamente', 'success');
+          notificacionSimple('Actualizado', 'se actualizo el Ciclo exitosamente', 'success');
         },
         (err) => {
-          notificacionSimpleDinamico('Error', 'No se pudo actualizar el Ciclo', 'error');
+          notificacionSimple('Error', 'No se pudo actualizar el Ciclo', 'error');
         }
       )
     } else {
@@ -76,10 +76,10 @@ export class MantenerCicloComponent implements OnInit {
           this.inicialiarCiclo();
           this.listaCiclo.push(resp);
           console.log(resp);
-          notificacionSimpleDinamico('Agregado', 'se agrego el Ciclo exitosamente', 'success');
+          notificacionSimple('Agregado', 'se agrego el Ciclo exitosamente', 'success');
         },
         (err) => {
-          notificacionSimpleDinamico('Error', 'No se pudo agregar el Ciclo', 'error');
+          notificacionSimple('Error', 'No se pudo agregar el Ciclo', 'error');
         }
       )
     }

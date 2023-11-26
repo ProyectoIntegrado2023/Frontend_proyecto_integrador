@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { notificacionPromesa, notificacionSimple } from 'src/app/core/function/SweetAlert/alertDinamic';
 import { Facultad } from 'src/app/core/model/index.frontend';
 import { FacultadService } from 'src/app/core/services/index.services.https';
 
@@ -40,10 +40,10 @@ export class MantenerFacultadComponent implements OnInit {
         (res) => {
           this.listaFacultad.push(res);
           this.facultad = Facultad.init();
-          notificacionSimpleDinamico('Actualizado', 'se actualizo la Facultad exitosamente', 'success');
+          notificacionSimple('Actualizado', 'se actualizo la Facultad exitosamente', 'success');
         },
         (err) => {
-          notificacionSimpleDinamico('Error', 'No se pudo actualizar la Facultad', 'error');
+          notificacionSimple('Error', 'No se pudo actualizar la Facultad', 'error');
         }
       )
     } else {
@@ -51,25 +51,25 @@ export class MantenerFacultadComponent implements OnInit {
         (res) => {
           this.listaFacultad.push(res);
           this.facultad = Facultad.init();
-          notificacionSimpleDinamico('Agregado', 'se agrego la Facultad exitosamente', 'success');
+          notificacionSimple('Agregado', 'se agrego la Facultad exitosamente', 'success');
         },
         (err) => {
-          notificacionSimpleDinamico('Error', 'No se pudo agregar la Facultad', 'error');
+          notificacionSimple('Error', 'No se pudo agregar la Facultad', 'error');
         }
       )
     }
   }
   public eliminar(id: number) {
-    notificacionConfirmacionEliminar('¿Estas seguro de eliminar esta Facultad?', false, 'Eliminar Facultad', true, '')
+    notificacionPromesa('¿Estas seguro de eliminar esta Facultad?', 'Eliminar Facultad', false, '', true)
     .then(res => {
       if(res) {
         this.facultadService.delete(id).subscribe(
           (res) => {
             this.listaFacultad = this.listaFacultad.filter(facultad => facultad.id != id);
-            notificacionSimpleDinamico('Eliminado', 'se elimino la Facultad exitosamente', 'success');
+            notificacionSimple('Eliminado', 'se elimino la Facultad exitosamente', 'success');
           },
           (err) => {
-            notificacionSimpleDinamico('Error', 'No se pudo eliminar la Facultad', 'error');
+            notificacionSimple('Error', 'No se pudo eliminar la Facultad', 'error');
           }
         )
       }

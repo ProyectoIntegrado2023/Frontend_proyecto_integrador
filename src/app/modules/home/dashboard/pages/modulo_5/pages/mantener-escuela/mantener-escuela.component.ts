@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
 import { Escuela, Facultad } from 'src/app/core/model/index.frontend';
+import { notificacionPromesa, notificacionSimple } from 'src/app/core/function/SweetAlert/alertDinamic';
 import { EscuelaService, FacultadService } from 'src/app/core/services/index.services.https';
 
 @Component({
@@ -32,10 +32,10 @@ export class MantenerEscuelaComponent implements OnInit {
         (res) => {
           this.escuela = Escuela.init()
           this.escuelaService.getAll().subscribe(res => this.listaEscuela = res)
-          notificacionSimpleDinamico('Actualizado', 'se actualizo la Escuela exitosamente', 'success')
+          notificacionSimple('Actualizado', 'se actualizo la Escuela exitosamente', 'success')
         },
         (err) => {
-          notificacionSimpleDinamico('Error', 'No se pudo actualizar la Escuela', 'error')
+          notificacionSimple('Error', 'No se pudo actualizar la Escuela', 'error')
         }
       )
     } else {
@@ -43,10 +43,10 @@ export class MantenerEscuelaComponent implements OnInit {
         (res) => {
           this.escuela = Escuela.init()
           this.escuelaService.getAll().subscribe(res => this.listaEscuela = res)
-          notificacionSimpleDinamico('Agregado', 'se agrego la Escuela exitosamente', 'success')
+          notificacionSimple('Agregado', 'se agrego la Escuela exitosamente', 'success')
         },
         (err) => {
-          notificacionSimpleDinamico('Error', 'No se pudo agregar la Escuela', 'error')
+          notificacionSimple('Error', 'No se pudo agregar la Escuela', 'error')
         })
       }
   }
@@ -58,17 +58,17 @@ export class MantenerEscuelaComponent implements OnInit {
   }
 
   public eliminar(id: number){
-    notificacionConfirmacionEliminar('¿Estas seguro de eliminar esta Escuela?', false, 'Eliminar Escuela', true, '')
+    notificacionPromesa('¿Estas seguro de eliminar esta Escuela?', 'Eliminar Escuela', false, '', true)
     .then(
       res => {
         if(res) {
           this.escuelaService.delete(id).subscribe(
             (res) => {
               this.escuelaService.getAll().subscribe(res => this.listaEscuela = res)
-              notificacionSimpleDinamico('Eliminado', 'se elimino la Escuela exitosamente', 'success')
+              notificacionSimple('Eliminado', 'se elimino la Escuela exitosamente', 'success')
             },
             (err) => {
-              notificacionSimpleDinamico('Error', 'No se pudo eliminar la Escuela', 'error')
+              notificacionSimple('Error', 'No se pudo eliminar la Escuela', 'error')
             }
           )
         }

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { PlantillaService } from 'src/app/core/services/index.services.https';
 import { UpdateEffectPlantillaService } from 'src/app/core/services/index.services.status';
 import { Plantilla } from 'src/app/core/model/index.frontend';
-import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { notificacionPromesa, notificacionSimple } from 'src/app/core/function/SweetAlert/alertDinamic';
 
 @Component({
   selector: 'app-listar',
@@ -31,7 +31,7 @@ export class ListarComponent {
   }
 
   public eliminarPlantilla(id: number){
-    notificacionConfirmacionEliminar('¿Desea eliminar la plantilla?', true, 'Si, eliminar', true, 'No, cancelar').then((result) => {
+    notificacionPromesa('¿Desea eliminar la plantilla?', 'Si, eliminar', true, 'No, cancelar', true).then((result) => {
       if (result) {
         this.eliminar(id);
       }
@@ -42,10 +42,10 @@ export class ListarComponent {
     this.plantillaService.delete(id).subscribe(
       (res) => {
         this.lista_plantilla = this.lista_plantilla.filter(plt => plt.id != id);
-        notificacionSimpleDinamico('¡Eliminado!', 'Se elimino correctamente', 'success');
+        notificacionSimple('¡Eliminado!', 'Se elimino correctamente', 'success');
       },
       (error) => {
-        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+        notificacionSimple('Error', 'Ocurrio un error', 'error');
       }
     );
   }

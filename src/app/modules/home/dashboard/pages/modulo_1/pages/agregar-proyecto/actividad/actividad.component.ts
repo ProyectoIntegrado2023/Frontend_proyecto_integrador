@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { notificacionPromesa, notificacionSimple } from 'src/app/core/function/SweetAlert/alertDinamic';
 
 import { recopilarProyecto } from 'src/app/core/function/localStorage/recopilarLocalStorage';
 import { Actividad, Proyecto } from 'src/app/core/model/index.frontend';
@@ -28,7 +28,7 @@ export class ActividadComponent implements OnInit {
   }
 
   public eliminarActividad(actividad: Actividad) {
-    notificacionConfirmacionEliminar('¿Desea eliminar esta actividad?', true, 'Eliminar', true, 'No eliminar')
+    notificacionPromesa('¿Desea eliminar esta actividad?', 'Eliminar', true, 'No eliminar',true)
       .then((result) => {
         if(result) {
           this.eliminar(actividad);
@@ -40,8 +40,8 @@ export class ActividadComponent implements OnInit {
     this.listaActividad = this.listaActividad.filter(act => act != actividad);
     if(actividad.id != 0 && actividad.id != null){
       this.actividadService.delete(actividad.id).subscribe(
-        (res) => notificacionSimpleDinamico('Actividad eliminada', 'Actividad eliminada con exito', 'success'),
-        (err) => notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error')
+        (res) => notificacionSimple('Actividad eliminada', 'Actividad eliminada con exito', 'success'),
+        (err) => notificacionSimple('Error', 'Ocurrio un error', 'error')
       )
     }  
   }
@@ -50,16 +50,16 @@ export class ActividadComponent implements OnInit {
     for(let actividad of this.listaActividad) {
       if(actividad.id != 0) {
         this.actividadService.update(actividad).subscribe(
-          (res) => notificacionSimpleDinamico('Actividad actualizada', 'Actividad actualizada con exito', 'success'),
-          (err) => notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error')
+          (res) => notificacionSimple('Actividad actualizada', 'Actividad actualizada con exito', 'success'),
+          (err) => notificacionSimple('Error', 'Ocurrio un error', 'error')
         )
       } else {
         const proyecto: Proyecto = Proyecto.init();
         proyecto.id = recopilarProyecto().id;
         actividad.proyecto = proyecto;
         this.actividadService.save(actividad).subscribe(
-          (res) => notificacionSimpleDinamico('Actividad guardada', 'Actividad guardada con exito', 'success'),
-          (err) => notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error')
+          (res) => notificacionSimple('Actividad guardada', 'Actividad guardada con exito', 'success'),
+          (err) => notificacionSimple('Error', 'Ocurrio un error', 'error')
         )
       }
     }
