@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { notificacionPromesa, notificacionSimple } from 'src/app/core/function/SweetAlert/alertDinamic';
 import { Estado } from 'src/app/core/model/index.frontend';
 import { EstadoService } from 'src/app/core/services/index.services.https';
 
@@ -40,10 +40,10 @@ export class MantenerEstadoComponent implements OnInit {
         (res) => {
           this.estado = Estado.init();
           this.listaEstado.push(res);
-          notificacionSimpleDinamico('Actualizado', 'se actualizo el estado exitosamente', 'success');
+          notificacionSimple('Actualizado', 'se actualizo el estado exitosamente', 'success');
         },
         (err) => {
-          notificacionSimpleDinamico('Error', 'No se pudo actualizar el estado', 'error');
+          notificacionSimple('Error', 'No se pudo actualizar el estado', 'error');
         }
       )
     } else {
@@ -51,26 +51,26 @@ export class MantenerEstadoComponent implements OnInit {
         (res) => {
           this.estado = Estado.init();
           this.listaEstado.push(res);
-          notificacionSimpleDinamico('Agregado', 'se agrego el estado exitosamente', 'success');
+          notificacionSimple('Agregado', 'se agrego el estado exitosamente', 'success');
         },
         (err) => {
-          notificacionSimpleDinamico('Error', 'No se pudo agregar el estado', 'error');
+          notificacionSimple('Error', 'No se pudo agregar el estado', 'error');
         }
       )
     }
   }
 
   public eliminar(id: number){
-    notificacionConfirmacionEliminar('¿Estas seguro de eliminar este estado?', false, 'Eliminar', true, '')
+    notificacionPromesa('¿Estas seguro de eliminar este estado?', 'Eliminar', false, '', true)
     .then(res => {
       if(res) {
         this.estadoService.delete(id).subscribe(
           (res) => {
             this.listaEstado = this.listaEstado.filter(estado => estado.id != id);
-            notificacionSimpleDinamico('Eliminado', 'se elimino el estado exitosamente', 'success');
+            notificacionSimple('Eliminado', 'se elimino el estado exitosamente', 'success');
           },
           (err) => {
-            notificacionSimpleDinamico('Error', 'No se pudo eliminar el estado', 'error');
+            notificacionSimple('Error', 'No se pudo eliminar el estado', 'error');
           }
         )
       }

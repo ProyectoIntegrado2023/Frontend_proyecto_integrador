@@ -6,7 +6,7 @@ import { Proyecto, CursoArticulado, Escuela, Ciclo, TipoConvenio } from 'src/app
 import { ProyectoService, CursoArticuladoService, TipoConvenioService, CicloService, EscuelaService } from 'src/app/core/services/index.services.https';
 
 import { generarCodigoProyecto } from 'src/app/core/function/generacion/generarCodigoEscuela';
-import { notificacionConfirmacionEliminar, notificacionConfirmacionLimpieza, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { notificacionPromesa, notificacionSimple } from 'src/app/core/function/SweetAlert/alertDinamic';
 import { recopilarPersona, recopilarProyecto } from 'src/app/core/function/localStorage/recopilarLocalStorage';
 import { existeItemLocalStorage } from 'src/app/core/function/localStorage/validarLocalStorage';
 import { deactivateProyecto } from 'src/app/core/guards/deactivate-proyecto.guard';
@@ -42,7 +42,7 @@ export class GeneralComponent implements OnInit, deactivateProyecto {
   ){}
 
   canExit() {
-    let exit$: Promise<boolean> = notificacionConfirmacionEliminar('¿Desea abandonar el formulario?',false, 'Si, continuar', true, 'No abandonar')
+    let exit$: Promise<boolean> = notificacionPromesa('¿Desea abandonar el formulario?','Si, continuar', true, 'No abandonar', true)
     return exit$ ?? false;
   }
 
@@ -121,25 +121,25 @@ export class GeneralComponent implements OnInit, deactivateProyecto {
     if(!existeItemLocalStorage('proyecto')) {
       this.proyectoService.save(pry).subscribe(
         (res) => {
-          notificacionSimpleDinamico('¡Guardado!', 'Se guardo Correctamente', 'success');
+          notificacionSimple('¡Guardado!', 'Se guardo Correctamente', 'success');
           this.proyecto = res;
           localStorage.removeItem('proyecto');
           localStorage.setItem('proyecto', JSON.stringify(res));
         },
         (error) => {
-          notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+          notificacionSimple('Error', 'Ocurrio un error', 'error');
         }
       );
     } else {
       this.proyectoService.update(pry).subscribe(
         (res) => {
-          notificacionSimpleDinamico('¡Cambio guardado!', 'Se guardo Correctamente los ultimos cambios', 'success');
+          notificacionSimple('¡Cambio guardado!', 'Se guardo Correctamente los ultimos cambios', 'success');
           this.proyecto = res;
           localStorage.removeItem('proyecto');
           localStorage.setItem('proyecto', JSON.stringify(res));
         },
         (error) =>{
-          notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+          notificacionSimple('Error', 'Ocurrio un error', 'error');
         }
       );
     }
@@ -148,12 +148,12 @@ export class GeneralComponent implements OnInit, deactivateProyecto {
   private editarProyecto(pry: Proyecto){
     this.proyectoService.update(pry).subscribe(
       (res) => {
-        notificacionSimpleDinamico('¡Actualizado!', 'se actualizo corectamente', 'success');
+        notificacionSimple('¡Actualizado!', 'se actualizo corectamente', 'success');
         localStorage.removeItem('proyecto');
         localStorage.setItem('proyecto', JSON.stringify(res))
       },
       (error) =>{
-        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+        notificacionSimple('Error', 'Ocurrio un error', 'error');
       }
     );
   }
@@ -167,7 +167,7 @@ export class GeneralComponent implements OnInit, deactivateProyecto {
   }
 
   public limpiar(){
-    notificacionConfirmacionLimpieza().then((result) => {
+    notificacionPromesa('¿Desea limpiar los campos?', 'Si, continuar', false, '', true).then((result) => {
       if(result) {
         localStorage.removeItem('proyecto');
         this.cargarProyecto();

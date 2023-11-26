@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Semestre } from 'src/app/core/model/index.frontend';
 import { SemestreService } from 'src/app/core/services/index.services.https';
-import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
+import { notificacionPromesa, notificacionSimple } from 'src/app/core/function/SweetAlert/alertDinamic';
 
 @Component({
   selector: 'app-mantener-semestre',
@@ -40,10 +40,10 @@ export class MantenerSemestreComponent implements OnInit {
         (res) => {
           this.semestre = Semestre.init();
           this.listaSemestre.push(res);
-          notificacionSimpleDinamico('Actualizado', 'se actualizo el semestre exitosamente', 'success');
+          notificacionSimple('Actualizado', 'se actualizo el semestre exitosamente', 'success');
         },
         (err) => {
-          notificacionSimpleDinamico('Error', 'No se pudo actualizar el semestre', 'error');
+          notificacionSimple('Error', 'No se pudo actualizar el semestre', 'error');
         }
       );
     } else {
@@ -51,27 +51,27 @@ export class MantenerSemestreComponent implements OnInit {
         (res) => {
           this.semestre = Semestre.init();
           this.listaSemestre.push(res);
-          notificacionSimpleDinamico('Agregado', 'se agrego el semestre exitosamente', 'success');
+          notificacionSimple('Agregado', 'se agrego el semestre exitosamente', 'success');
         },
         (err) => {
-          notificacionSimpleDinamico('Error', 'No se pudo agregar el semestre', 'error');
+          notificacionSimple('Error', 'No se pudo agregar el semestre', 'error');
         }
       )
     }
   }
 
   public eliminar(id: number){
-    notificacionConfirmacionEliminar('¿Estas seguro de eliminar este semestre?', false, 'Eliminar semestre', true, '')
+    notificacionPromesa('¿Estas seguro de eliminar este semestre?', 'Eliminar semestre', false, '', true)
     .then(res => {
       if(res) {
         this.semestreService.delete(id).subscribe(
           (res) => {
             this.semestre = Semestre.init();
             this.listaSemestre = this.listaSemestre.filter(semestre => semestre.id != id);
-            notificacionSimpleDinamico('Eliminado', 'se elimino el semestre exitosamente', 'success');
+            notificacionSimple('Eliminado', 'se elimino el semestre exitosamente', 'success');
           },
           (err) => {
-            notificacionSimpleDinamico('Error', 'No se pudo eliminar el semestre', 'error');
+            notificacionSimple('Error', 'No se pudo eliminar el semestre', 'error');
           }
         )
       }

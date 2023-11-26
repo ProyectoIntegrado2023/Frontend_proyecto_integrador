@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
-import { notificacionConfirmacionEliminar, notificacionSimpleDinamico } from 'src/app/core/function/SweetAlert/alertDinamic';
-import { obtenerIdsAEliminar } from 'src/app/core/function/generacion/obtenerIdsEliminados';
+import { notificacionSimple } from 'src/app/core/function/SweetAlert/alertDinamic';
 import { recopilarProyecto } from 'src/app/core/function/localStorage/recopilarLocalStorage';
 import { Escuela, Facultad, Participante, RolSistema } from 'src/app/core/model/index.frontend';
 import { EscuelaService, ParticipanteService, RolSistemaService } from 'src/app/core/services/index.services.https';
@@ -71,10 +70,10 @@ export class EncargadoComponent implements OnInit {
         // console.log(resultados);
         this.listaParticipante = resultados;
         this.listaParticipanteCopia = resultados;
-        notificacionSimpleDinamico('¡Guardado!', 'Se guardo todo correctamente', 'success');
+        notificacionSimple('¡Guardado!', 'Se guardo todo correctamente', 'success');
       },
       (error) => {
-        notificacionSimpleDinamico('Error', 'Ocurrio un error', 'error');
+        notificacionSimple('Error', 'Ocurrio un error', 'error');
       }
     );
   }
