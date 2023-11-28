@@ -1,3 +1,4 @@
+import { AuthService } from './../../core/services/https/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,21 +15,17 @@ export class LoginComponent implements OnInit {
   hide: boolean = true;
   formulario: FormGroup = new FormGroup({});
   titulo: string = NOMBRE_PAGINA_WEB;
-  usuarios: Usuario[] = []
   loginError: boolean = false
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private usuarioService: UsuarioService
+    private authSrv: AuthService,
+    private usuarioSrv: UsuarioService
   ) {}
 
   ngOnInit(): void {
     localStorage.removeItem('persona');
-
-    this.usuarioService.getAll().subscribe(data => {
-      this.usuarios = data
-    })
 
     this.formulario = this.fb.group({
       usuario: ['', [Validators.required]], // Validators.email
@@ -39,14 +36,18 @@ export class LoginComponent implements OnInit {
 
   onSumit(): void{
     const { value } = this.formulario;
-    const loginValid: boolean = this.usuarios.some(v => v.username === value.usuario && v.password === value.contrasena)
-    if (loginValid) {
-      const usuario: Usuario = this.usuarios.find(v => v.username === value.usuario && v.password === value.contrasena)!;
-      localStorage.setItem('persona', JSON.stringify(usuario.persona));
-      this.router.navigate(['/home']);
-    } else {
-      this.loginError = true
-    }
+    
+    this.authSrv.login(value.usuario, value.contrasena).subscribe(loginValid =>{
+      if (loginValid) {
+        this.usuarioSrv.getAll().subscribe(usuarios =>{
+          const usuario: Usuario = usuarios.find(v => v.username === value.usuario)!;
+          localStorage.setItem('persona', JSON.stringify(usuario.persona));
+          this.router.navigate(['/home']);
+        })
+      } else {
+        this.loginError = true
+      }
+    })
   }
 
 }
