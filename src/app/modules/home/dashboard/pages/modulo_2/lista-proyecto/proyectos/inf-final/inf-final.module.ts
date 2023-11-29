@@ -5,6 +5,7 @@ import { InfFinalRoutingModule } from './inf-final-routing.module';
 import { InfFinalComponent } from './inf-final.component';
 
 import { MatTableModule } from '@angular/material/table';
+import { DropAreaComponent } from 'src/app/shared/components/drop-area/drop-area.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
     CommonModule,
     InfFinalRoutingModule,
     MatTableModule,
+    DropAreaComponent
   ]
 })
 export class InfFinalModule { }

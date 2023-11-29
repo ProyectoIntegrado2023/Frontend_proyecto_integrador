@@ -11,6 +11,10 @@ export class InfFinalComponent {
   displayedColumns: string[] = ['id', 'Actividad', 'Fecha'];
   dataSource = ELEMENT_DATA;
 
+  public onFileUrlsEmitted(fileUrls: string[]) {
+    console.log(fileUrls);
+  }
+
 }
 export interface PeriodicElement {
   id: number;

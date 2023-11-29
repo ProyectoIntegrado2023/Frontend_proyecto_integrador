@@ -42,8 +42,13 @@ export class GeneralComponent implements OnInit, deactivateProyecto {
   ){}
 
   canExit() {
-    let exit$: Promise<boolean> = notificacionPromesa('¿Desea abandonar el formulario?','Si, continuar', true, 'No abandonar', true)
-    return exit$ ?? false;
+    let validate: boolean = existeItemLocalStorage('proyecto');
+    if(validate){
+      return validate;
+    } else {
+      let exit$: Promise<boolean> = notificacionPromesa('¿Desea abandonar el formulario?','Si, continuar', true, 'No abandonar', true);
+      return exit$ ?? false;
+    }
   }
 
   ngOnInit ():void {

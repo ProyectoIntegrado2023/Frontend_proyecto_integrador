@@ -10,6 +10,10 @@ import { MatTableDataSource } from '@angular/material/table';
 export class SeguimientoComponent {
   displayedColumns: string[] = ['position', 'Codigo', 'Nombre', 'Asistencia'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
+  public onFileUrlsEmitted(fileUrls: string[]) {
+    console.log(fileUrls);
+  }
 }
 export interface PeriodicElement {
   Codigo: string;

@@ -7,6 +7,7 @@ import { SeguimientoRoutingModule } from './seguimiento-routing.module';
 import { SeguimientoComponent } from './seguimiento.component';
 
 import { MatTableModule } from '@angular/material/table';
+import { DropAreaComponent } from 'src/app/shared/components/drop-area/drop-area.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MatTableModule } from '@angular/material/table';
     MatSelectModule,
     MatButtonModule,
     MatTableModule,
+    DropAreaComponent
   ]
 })
 export class SeguimientoModule { }

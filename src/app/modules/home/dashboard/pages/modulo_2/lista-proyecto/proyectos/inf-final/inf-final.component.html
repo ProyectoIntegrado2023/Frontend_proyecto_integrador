@@ -97,9 +97,10 @@
       </div>
       <div class="informe-input">
         <label for="informe">Informe Final:</label>
-        <div class="agregar-plantilla-form-contenedor-input-file">
+        <app-drop-area [vertical]="true" [horizontal]="false" (fileUrlsEmitter)="onFileUrlsEmitted($event)"></app-drop-area>
+        <!-- <div class="agregar-plantilla-form-contenedor-input-file">
           <input type="file" name="" id="">
-        </div>
+        </div> -->
       </div>
     </section>
   </div>
