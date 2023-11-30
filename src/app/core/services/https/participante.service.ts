@@ -30,6 +30,7 @@ export class ParticipanteService {
 
   save(participante: Participante): Observable<Participante> {
     const participanteModel: ParticipanteModel = ParticipanteModel.fromFrontend(participante)!;
+    console.log(participanteModel);
     return this.http.post<ParticipanteModel>(this.url + '/agregar', participanteModel).pipe(
       map(v => Participante.fromBackend(v)!)
     )

@@ -14,6 +14,7 @@ export class Participante {
             null,
             null,
             null,
+            0
         )
     }
 
@@ -26,6 +27,7 @@ export class Participante {
             Estudiante.fromBackend(obj.id_estudiante),
             ProyectoUnique.fromBackend(obj.id_proyecto),
             RolSistema.fromBackend(obj.id_rol_sistema),
+            obj.horas
         ) : null;
     }
 
@@ -37,6 +39,7 @@ export class Participante {
         public estudiante                  :   Estudiante                   | null,
         public proyecto                    :   ProyectoUnique               | null,
         public rol_sistema                 :   RolSistema                   | null,
+        public horas                       :   number,
     ){}
 
 }

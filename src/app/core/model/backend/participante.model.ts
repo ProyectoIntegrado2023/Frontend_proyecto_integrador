@@ -16,7 +16,8 @@ export class ParticipanteModel {
             null,
             null,
             [],
-            []
+            [],
+            0
         )
     }
 
@@ -30,7 +31,8 @@ export class ParticipanteModel {
             RolProyectoEncargadoModelUnique.fromFrontend(obj.rol_proyecto_encargado),
             RolSistemaModel.fromFrontend(obj.rol_sistema),
             [],
-            []
+            [],
+            obj.horas
         ) : null;
     }
 
@@ -44,6 +46,7 @@ export class ParticipanteModel {
         public id_rol_sistema              : RolSistemaModel                    | null,
         public actividad_participante      : ActividadParticipanteModel[]       ,
         public encargado                   : EncargadoModel[]                   ,
+        public horas                       : number  
     ){}
 
 }

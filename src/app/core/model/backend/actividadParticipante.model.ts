@@ -8,6 +8,7 @@ export class ActividadParticipanteModel {
             0,
             null,
             null,
+            false
         )
     }
 
@@ -15,14 +16,16 @@ export class ActividadParticipanteModel {
         return obj != null ? new this(
             obj.id,
             ParticipanteModel.fromFrontend(obj.participante),
-            ActividadModel.fromFrontend(obj.actividad)
+            ActividadModel.fromFrontend(obj.actividad),
+            obj.asistencia
         ) : null;
     }
 
     constructor(
         public id_actividad_participant    : number,
         public id_participante             : ParticipanteModel      | null,
-        public id_actividad                : ActividadModel         | null,     
+        public id_actividad                : ActividadModel         | null,    
+        public asistencia                  : boolean               
     ){}
     
 }

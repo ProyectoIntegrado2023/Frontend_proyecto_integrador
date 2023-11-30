@@ -8,6 +8,7 @@ export class ActividadParticipante {
             0,
             null,
             null,
+            false
         )
     }
 
@@ -16,6 +17,7 @@ export class ActividadParticipante {
             obj.id_actividad_participant,
             Participante.fromBackend(obj.id_participante),
             Actividad.fromBackend(obj.id_actividad),
+            obj.asistencia
         ) : null;
     }
 
@@ -23,6 +25,7 @@ export class ActividadParticipante {
         public id               : number,
         public participante     : Participante  | null,
         public actividad        : Actividad     | null,
+        public asistencia       : boolean       
     ){}
 
 }
