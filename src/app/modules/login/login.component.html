@@ -1,4 +1,4 @@
-<section class="contenido-general">
+<div class="limiter">
     <button class="noselect" (click)="loginError = !loginError" [ngClass]="loginError ? 'error-login-activate' : 'error-login-close'">
         <span class="text">Error de autenticacion</span>
         <span class="icon">
@@ -7,24 +7,33 @@
                 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg>
         </span>
     </button>
-    <div>
-        <form [formGroup]="formulario" class="orden-formulario">
-            <h1>{{titulo}}</h1>
-    
-            <mat-form-field class="content-input">
-                <mat-label>Ingresar su email</mat-label>
-                <input matInput placeholder="usuario.example@upeu.edu.pe" formControlName="usuario" required>
-            </mat-form-field>
-    
-            <mat-form-field class="content-input">
-                <mat-label>Ingresar su contraseña</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'" formControlName="contrasena">
-                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                </button>
-            </mat-form-field>
-    
-            <button mat-raised-button color="primary" [disabled]="formulario.invalid" (click)="onSumit()">Iniciar sesion</button>
-        </form>
+    <div class="container-login100" style="background-image: url('../../../../../assets/img/bg-01.png');">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+            <form class="login100-form" autocomplete="off" [formGroup]="formulario" (ngSubmit)="onSumit()">
+                <span class="login100-form-title p-b-49">
+                    Login
+                </span>
+                <div class="wrap-input100 m-b-23">
+                    <span class="label-input100">Username</span>
+                    <input class="input100" type="username" formControlName="username" placeholder="Username">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input100">
+                    <span class="label-input100">Contraseña</span>
+                    <input class="input100" type="password" formControlName="password"
+                        placeholder="Ingrese su contraseña">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="text-right p-t-8 p-b-31"></div>
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn" [disabled]="formulario.invalid" type="submit">
+                            Login
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</section>
+</div>

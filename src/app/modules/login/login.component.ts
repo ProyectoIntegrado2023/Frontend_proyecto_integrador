@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
     localStorage.removeItem('persona');
 
     this.formulario = this.fb.group({
-      usuario: ['', [Validators.required]], // Validators.email
-      contrasena: ['', Validators.required]
+      username: ['', [Validators.required]], // Validators.email
+      password: ['', Validators.required]
     });
 
   }
@@ -37,17 +37,22 @@ export class LoginComponent implements OnInit {
   onSumit(): void{
     const { value } = this.formulario;
     
-    this.authSrv.login(value.usuario, value.contrasena).subscribe(loginValid =>{
-      if (loginValid) {
-        this.usuarioSrv.getAll().subscribe(usuarios =>{
-          const usuario: Usuario = usuarios.find(v => v.username === value.usuario)!;
-          localStorage.setItem('persona', JSON.stringify(usuario.persona));
-          this.router.navigate(['/home']);
-        })
-      } else {
+    this.authSrv.login(value.username, value.password).subscribe(
+      loginValid =>{
+        if (loginValid) {
+          this.usuarioSrv.getAll().subscribe(usuarios =>{
+            const usuario: Usuario = usuarios.find(v => v.username === value.username)!;
+            localStorage.setItem('persona', JSON.stringify(usuario.persona));
+            this.router.navigate(['/home']);
+          })
+        } else {
+          this.loginError = true
+        }
+      },
+      err => {
         this.loginError = true
       }
-    })
+    )
   }
 
 }
